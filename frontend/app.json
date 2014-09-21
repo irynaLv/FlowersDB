@@ -1,6 +1,12 @@
 {
     "name": "FlowersDB",
 
+    "css": [
+        {
+            "path": "bootstrap.css",
+            "x-bootstrap": true
+        }
+    ],
     "requires": [
     ],
 

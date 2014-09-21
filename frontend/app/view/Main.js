@@ -4,23 +4,37 @@ Ext.define('FlowersDB.view.Main', {
         'Ext.tab.Panel',
         'Ext.layout.container.Border'
     ],
-    
+
     xtype: 'app-main',
+    itemId: 'app-main',
+    cls: 'app-main',
+
 
     layout: {
         type: 'border'
     },
 
-    items: [{
-        region: 'west',
-        xtype: 'panel',
-        title: 'west',
-        width: 150
-    },{
-        region: 'center',
-        xtype: 'tabpanel',
-        items:[{
-            title: 'Center Tab 1'
+    items: [
+        {
+            xtype: 'toolbar',
+            cls: 'toolbar-flower',
+            height: '4em',
+            region: 'north'
+//            style: {
+//                'background-image': "url('../resources/images/s_flowe_14.jpg')"
+//            }
+        },
+        {
+            region: 'west',
+
+            xtype: 'app-menu',
+
+            width: 200
+        },{
+//            region: 'center',
+            width: '70%',
+            flex: 1,
+            xtype: 'app-main-container'
+
         }]
-    }]
 });
