@@ -193,6 +193,26 @@ Ext.define('FlowersDB.view.MainContainer', {
                         }
                     ]
                 },
+                {
+                    xtype:'container',
+                    layout:'hbox',
+                    items:[
+                        {
+                            xtype: 'numberfield',
+                            anchor: '100%',
+                            itemId: 'prev-price-field',
+                            name: 'bottles',
+                            fieldLabel: 'Попередня ціна'
+                        },
+                        {
+                            xtype: 'label',
+                            itemId: 'price-err',
+                            hidden: true,
+                            text: 'Вкажіть попередню ціну',
+                            margin: '0 0 0 10'
+                        }
+                    ]
+                },
 
                 {
                     xtype: 'button',
@@ -253,6 +273,7 @@ Ext.define('FlowersDB.view.MainContainer', {
         this.down('#type-field').on('change', this.onTypeChange, this);
         this.down('#shop-field').on('change', this.onShopChange, this);
         this.down('#new-product-btn').on('click', this.onAddNewProduct, this);
+        this.down('#new-goods-btn-revaluation').on('click', this.changePriceForGoods, this);
         this.down('#new-goods-btn-income').on('click', this.onAddNewGoods, this);
         this.down('#quantity-field').on('blur', this.checkIfEmpty, this, this.down('#count-err'));
         this.down('#price-field').on('blur', this.checkIfEmpty, this, this.down('#price-err'));
@@ -511,5 +532,26 @@ Ext.define('FlowersDB.view.MainContainer', {
             isCorrect = false;
         }
         return isCorrect;
+    },
+
+    changePriceForGoods: function(){
+        var isCorrect = this.checkData();
+        if(isCorrect){
+            var obj = {};
+            obj.shopId = this.shopValue.shopId;
+            obj.productId = this.productValue.id;
+            console.log(this.productValue.name, this.productValue.subcategory,  this.productValue.type)
+            obj.price = this.down('#price-field').getValue();
+//            if(this.shopValue.name == 'Склад'){
+//                obj.status = 'warehouse';
+//            }else{
+//                obj.status = 'shop'
+//            }
+            obj.status = 'shop';
+            var quantity = this.down('#quantity-field').getValue();
+            var prevValue = this.down('#prev-price-field').getValue();
+            this.fireEvent('changeprice', obj,quantity, prevValue,  this);
+        }
+
     }
 });

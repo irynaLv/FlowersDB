@@ -1,6 +1,31 @@
 {
     "name": "FlowersDB",
 
+    "js" : [
+
+        {
+            "path": "../ext/ext-dev.js",
+            "x-bootstrap": true,
+            "remote": true
+        },
+        {
+            "path": "bootstrap.js",
+            "x-bootstrap": true
+        },
+//        {
+//            "path": "common/utils/moment.js",
+//            "skipFrameworkFile": false
+//        },
+
+        {
+            "path": "app.js",
+            "bundle": true,
+            /* Indicates that all class dependencies are concatenated into this file when build */
+            "update": "delta"
+        }
+    ],
+
+
     "css": [
         {
             "path": "bootstrap.css",

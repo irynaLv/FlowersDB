@@ -21,46 +21,39 @@ module.exports = function (app, passport) {
         });
     });
 
-    app.get('/api/documents', function(req, res) {
-        var query = Document.find({});
-        query.exec(function (err, doc) {
-            res.json(doc);
-        });
-    });
-
-    app.get('/api/document/:id', function(req, res) {
-        Document.findById(req.params.id, function (err, doc) {
-            if (!err && doc) {
-                res.json(doc);
-            } else {
-                res.status(404);
-                res.send();
-            }
-        });
-    });
-    app.post('/api/document', function(req, res) {
-        var body = req.body,
-            obj = {
-                title: body.title || 'No title',
-                owner: body.owner || 'No owner',
-                accessLayer: body.accessLayer || 0,
-                description: body.description || 'No description',
-                fileName: body.fileName || 'Test.txt',
-                uploadDate: new Date(),
-                updateDate: new Date(),
-                tags: body.tags || ['doc'],
-                type: body.type || 'doc'
-            },
-            doc = new Document(obj);
-        doc.save(function (err, doc) {
-            if (!err && doc) {
-                res.json(doc);
-            } else {
-                res.status(404);
-                res.send();
-            }
-        });
-    });
+//    app.get('/api/document/:id', function(req, res) {
+//        Document.findById(req.params.id, function (err, doc) {
+//            if (!err && doc) {
+//                res.json(doc);
+//            } else {
+//                res.status(404);
+//                res.send();
+//            }
+//        });
+//    });
+//    app.post('/api/document', function(req, res) {
+//        var body = req.body,
+//            obj = {
+//                title: body.title || 'No title',
+//                owner: body.owner || 'No owner',
+//                accessLayer: body.accessLayer || 0,
+//                description: body.description || 'No description',
+//                fileName: body.fileName || 'Test.txt',
+//                uploadDate: new Date(),
+//                updateDate: new Date(),
+//                tags: body.tags || ['doc'],
+//                type: body.type || 'doc'
+//            },
+//            doc = new Document(obj);
+//        doc.save(function (err, doc) {
+//            if (!err && doc) {
+//                res.json(doc);
+//            } else {
+//                res.status(404);
+//                res.send();
+//            }
+//        });
+//    });
 
     app.post('/api/newgoods', function(req, res) {
         var length = parseInt(req.body.quantity);
@@ -73,7 +66,7 @@ module.exports = function (app, passport) {
                     status: body.status,
                     incomeDate: new Date()
                 };
-                var doc = new Goods(obj);
+            var doc = new Goods(obj);
             doc.save(function (err, doc) {
                 if (!err && doc) {
                     res.json(doc);
@@ -86,16 +79,16 @@ module.exports = function (app, passport) {
 
 
     });
-    app.post('/api/document/:id', function(req, res) {
-        Document.findByIdAndUpdate(req.params.id, req.body, function (err, doc) {
-            if (!err && doc) {
-                res.json(doc);
-            } else {
-                res.status(404);
-                res.send();
-            }
-        });
-    });
+//    app.post('/api/document/:id', function(req, res) {
+//        Document.findByIdAndUpdate(req.params.id, req.body, function (err, doc) {
+//            if (!err && doc) {
+//                res.json(doc);
+//            } else {
+//                res.status(404);
+//                res.send();
+//            }
+//        });
+//    });
 
     app.post('/api/product', function(req, res) {
         var body = req.body,
@@ -117,15 +110,29 @@ module.exports = function (app, passport) {
             }
         });
     });
-    app.post('/api/product/:id', function(req, res) {
-        Product.findByIdAndUpdate(req.params.id, req.body, function (err, doc) {
-            if (!err && doc) {
-                res.json(doc);
-            } else {
-                res.status(404);
-                res.send();
-            }
-        });
+    app.post('/api/changeprice', function(req, res) {
+        var limitValue = parseInt(req.body.quantity);
+        var query = Goods.find({shopId: req.body.shopId, productId: req.body.productId, price:req.body.prevValue})
+            .limit(limitValue)
+            .exec(function (err, doc) {
+                for(var i=0; i<doc.length; i++){
+                    var goods = doc[i];
+                    goods.price = req.body.price;
+                    goods.save(function (err) {
+                        if (!err && doc) {
+                            res.json(doc);
+                        } else {
+                            res.status(404);
+                            res.send();
+                        }
+                    });
+                }
+                if(doc.length == 0){
+                    res.json([]);
+                }
+
+
+            })
     });
 
     app.get('/api/documents', function(req, res) {

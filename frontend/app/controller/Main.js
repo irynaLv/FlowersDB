@@ -39,7 +39,8 @@ Ext.define('FlowersDB.controller.Main', {
             },
             'app-main-container':{
                 'addnewproduct': this.addNewProductItem,
-                'addnewgoods': this.addNewGoods
+                'addnewgoods': this.addNewGoods,
+                'changeprice': this.changePriceForSelectedGoods
             },
             'app-menu #income-btn, app-menu #sale-btn, app-menu #revaluation-btn':{
                 click: this.setCorrectContainer
@@ -146,6 +147,29 @@ Ext.define('FlowersDB.controller.Main', {
 
     setCorrectContainer: function(el){
         this.getMainContainer().fireEvent('income', el)
+    },
+
+    changePriceForSelectedGoods: function(body, quantity, prevValue){
+        Ext.Ajax.request({
+            method: 'POST',
+            url: '/api/changeprice',
+            params: {
+                shopId: parseInt(body.shopId),
+                productId: parseInt(body.productId),
+                price: parseInt(body.price),
+                status: body.status,
+                quantity: parseInt(quantity),
+                prevValue: parseInt(prevValue)
+            },
+            success: function(response){
+                var text = response.responseText;
+                var data = JSON.parse(text);
+
+            },
+            error:function(){
+
+            }
+        })
     }
 
 });
