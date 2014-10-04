@@ -10,6 +10,7 @@ Ext.define('FlowersDB.view.Menu', {
 
     xtype: 'app-menu',
     itemId: 'app-menu',
+    cls: 'app-menu',
 
     layout: {
         type: 'vbox'
@@ -18,37 +19,56 @@ Ext.define('FlowersDB.view.Menu', {
     items: [
         {
             xtype: 'button',
+            text: 'Головна',
+            width: 200,
+            pressed:true,
+            toggleGroup:'menu',
+            itemId: 'main-btn',
+            icon:'resources/flower_8-512.png'
+        },
+        {
+            xtype: 'button',
             text: 'Прихід',
-            width: '13em',
-            itemId: 'income-btn'
-
+            width: 200,
+//            pressed:true,
+            toggleGroup:'menu',
+            itemId: 'income-btn',
+            icon:'resources/goods_arrival-512.png'
         },
         {
             xtype: 'button',
             text: 'Продаж',
-            width: '13em',
-            itemId: 'sale-btn'
+            toggleGroup:'menu',
+            width: 200,
+            itemId: 'sale-btn',
+            icon:'resources/goods_return-512.png'
 
         },
         {
             xtype: 'button',
             text: 'Переоцінка',
-            width: '13em',
-            itemId: 'revaluation-btn'
+            width: 200,
+            toggleGroup:'menu',
+            itemId: 'revaluation-btn',
+            icon:'resources/dynamic_blue_right.png'
 
         },
         {
             xtype: 'button',
             text: 'Залишок',
-            width: '13em',
-            itemId: 'remainder-btn'
+            width: 200,
+            toggleGroup:'menu',
+            itemId: 'remainder-btn',
+            icon:'resources/gr-org-icon.png'
 
         },
         {
             xtype: 'button',
             text: 'Виручка',
-            width: '13em',
-            itemId: 'revenue-btn'
+            width: 200,
+            toggleGroup:'menu',
+            itemId: 'revenue-btn',
+            icon:'resources/Invest_128x128.png'
 
         },
 //        {
@@ -61,17 +81,19 @@ Ext.define('FlowersDB.view.Menu', {
         {
             xtype: 'button',
             text: 'Додати категорію товарів',
-            width: '13em',
-            itemId: 'add-category-btn'
-
-        },
-        {
-            xtype: 'button',
-            text: 'Редагути товари',
-            width: '13em',
-            itemId: 'update-category-btn'
+            width: 200,
+            toggleGroup:'menu',
+            itemId: 'add-category-btn',
+            icon:'resources/plus_orange.png'
 
         }
+//        {
+//            xtype: 'button',
+//            text: 'Редагути товари',
+//            width: '13em',
+//            itemId: 'update-category-btn'
+//
+//        }
     ],
 
     initComponent: function () {

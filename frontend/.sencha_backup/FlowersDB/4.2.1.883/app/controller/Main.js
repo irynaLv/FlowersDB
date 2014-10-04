@@ -19,6 +19,18 @@ Ext.define('FlowersDB.controller.Main', {
         {
             ref: 'mainContainer',
             selector: 'app-main-container'
+        },
+        {
+            ref: 'menu',
+            selector: 'app-menu'
+        },
+        {
+            ref: 'productsBoxes',
+            selector: 'products-boxes'
+        },
+        {
+            ref: 'shopBoxes',
+            selector: 'shop-boxes'
         }
     ],
     init: function() {
@@ -35,8 +47,17 @@ Ext.define('FlowersDB.controller.Main', {
             },
             'app-main-container':{
                 'addnewproduct': this.addNewProductItem,
-                'addnewgoods': this.addNewGoods
+                'addnewgoods': this.addNewGoods,
+                'changeprice': this.changePriceForSelectedGoods,
+                'soldstaus': this.setSaleStatus
+            },
+            'app-menu #income-btn, app-menu #sale-btn, app-menu #revaluation-btn':{
+                click: this.setCorrectContainer
+            },
+            'app-menu #add-category-btn':{
+                click: this.addNewCategory
             }
+
         });
     },
 
@@ -79,15 +100,15 @@ Ext.define('FlowersDB.controller.Main', {
 
     loadShops: function(data){
         this.shopsStore.loadData(data);
-        this.getMainContainer().shopData =  data;
-        this.getMainContainer().fireEvent('shopsloaded');
+        this.getShopBoxes().shopData =  data;
+        this.getShopBoxes().fireEvent('shopsloaded');
     },
 
     loadCategory: function(data){
         this.productsStore.loadData(data);
 //        this.getMainContainer().data =  this.productsStore;
-        this.getMainContainer().data =  data;
-        this.getMainContainer().fireEvent('productsloaded');
+        this.getProductsBoxes().data =  data;
+        this.getProductsBoxes().fireEvent('productsloaded');
     },
 
     addNewProductItem: function(body){
@@ -123,7 +144,63 @@ Ext.define('FlowersDB.controller.Main', {
                 productId: parseInt(body.productId),
                 price: parseInt(body.price),
                 status: body.status,
+                quantity: parseInt(quantity),
+                category: body.category,
+                subcategory: body.subcategory,
+                name:body.name,
+                type:body.type
+            },
+            success: function(response){
+                var text = response.responseText;
+                var data = JSON.parse(text);
+
+            },
+            error:function(){
+
+            }
+        })
+    },
+
+    setCorrectContainer: function(el){
+        this.getMainContainer().fireEvent('income', el)
+    },
+
+    addNewCategory:function(el){
+        this.getMainContainer().fireEvent('addcategory')
+    },
+    changePriceForSelectedGoods: function(body, quantity, prevValue){
+        Ext.Ajax.request({
+            method: 'POST',
+            url: '/api/changeprice',
+            params: {
+                shopId: parseInt(body.shopId),
+                productId: parseInt(body.productId),
+                price: parseInt(body.price),
+                status: body.status,
+                quantity: parseInt(quantity),
+                prevValue: parseInt(prevValue)
+            },
+            success: function(response){
+                var text = response.responseText;
+                var data = JSON.parse(text);
+
+            },
+            error:function(){
+
+            }
+        })
+    },
+    setSaleStatus: function(body, quantity, prevValue){
+        Ext.Ajax.request({
+            method: 'POST',
+            url: '/api/saleproducts',
+            params: {
+                shopId: parseInt(body.shopId),
+                productId: parseInt(body.productId),
+                price: parseInt(body.price),
+                status: body.status,
                 quantity: parseInt(quantity)
+//                prevValue: parseInt(prevValue)
             },
             success: function(response){
                 var text = response.responseText;
@@ -135,5 +212,6 @@ Ext.define('FlowersDB.controller.Main', {
             }
         })
     }
+
 
 });

@@ -29,6 +29,22 @@ GoodsSchema = new mongoose.Schema({
     saleDate:{
         type: Date
 //        required: true
+    },
+    category:{
+        type: String,
+        required:true
+    },
+    subcategory:{
+        type: String,
+        required:true
+    },
+    name:{
+        type: String
+//            required:true
+    },
+    type:{
+        type: String
+//            required:true
     }
 
 

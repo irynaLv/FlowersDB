@@ -3,12 +3,17 @@ Ext.define('FlowersDB.Application', {
 
     extend: 'Ext.app.Application',
 
-    views: [
-        // TODO: add views here
+    views:[
+        'FlowersDB.view.Menu',
+        'FlowersDB.view.MainContainer',
+        'FlowersDB.view.ProductsBoxes',
+        'FlowersDB.view.ShopBoxes',
+        'FlowersDB.view.NumberInputField',
+        'FlowersDB.view.AddCategory'
     ],
 
-    controllers: [
-        // TODO: add controllers here
+    controllers:[
+        'FlowersDB.controller.Main'
     ],
 
     stores: [

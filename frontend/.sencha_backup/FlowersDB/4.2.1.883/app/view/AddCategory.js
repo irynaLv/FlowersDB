@@ -17,79 +17,21 @@ Ext.define('FlowersDB.view.AddCategory', {
         type: 'vbox'
     },
 
-    items: [
+    hidden: true,
+    itemId: 'new-product-container',
+    items:[
         {
-            xtype: 'container',
-            layout:'hbox',
-            items:[
-                {
-                    xtype: 'combobox',
-                    fieldLabel: 'Категорія',
-                    store: null,
-                    queryMode: 'local',
-                    displayField: 'name',
-                    valueField: 'abbr',
-                    renderTo: Ext.getBody()
-                },
-                {
-                    xtype:'button',
-                    text:'+'
-                }
-            ]
-        },
-        {
-            xtype: 'container',
-            layout:'hbox',
-            items:[
-                {
-                    xtype: 'combobox',
-                    fieldLabel: 'Вид',
-                    store: null,
-                    queryMode: 'local',
-                    displayField: 'name',
-                    valueField: 'abbr',
-                    renderTo: Ext.getBody()
-                },
-                {
-                    xtype:'button',
-                    text:'+'
-                }
-            ]
-        },
-
-
-
-
-        {
-            xtype: 'combobox',
-            fieldLabel: 'Колір',
-            store: null,
-            queryMode: 'local',
-            displayField: 'name',
-            valueField: 'abbr',
+            xtype: 'textareafield',
+            grow      : true,
+            name      : 'description',
+            fieldLabel: 'Опис',
+            itemId:'description-field',
             renderTo: Ext.getBody()
         },
         {
-            xtype: 'combobox',
-            fieldLabel: 'Тип',
-            store: null,
-            queryMode: 'local',
-            displayField: 'name',
-            valueField: 'abbr',
-            renderTo: Ext.getBody()
-        },
-        {
-            xtype: 'numberfield',
-            anchor: '100%',
-            name: 'bottles',
-            fieldLabel: 'Кількість'
-        },
-        {
-            xtype: 'numberfield',
-            anchor: '100%',
-            name: 'bottles',
-            fieldLabel: 'Ціна'
+            xtype: 'button',
+            text:"Додати",
+            itemId:'new-product-btn'
         }
-
     ]
 });

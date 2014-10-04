@@ -5,5 +5,9 @@ Ext.define('FlowersDB.store.Products', {
     extend: 'Ext.data.Store',
     model: 'FlowersDB.model.Products',
     autoLoad: false,
-    storeId: 'products'
+    storeId: 'products',
+    sorters: [{
+        property: 'category',
+        direction: 'ASC'
+    }]
 });

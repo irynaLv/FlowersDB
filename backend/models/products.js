@@ -29,7 +29,9 @@ var mongoose = require('mongoose'),
             type: Number
         },
         id:{
-            type: Number
+            type: Number,
+            unique:true,
+            required:true
         }
 
     });

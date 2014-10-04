@@ -18,22 +18,18 @@ Ext.define('FlowersDB.view.Main', {
         {
             xtype: 'toolbar',
             cls: 'toolbar-flower',
-            height: '4em',
+            height: '10em',
             region: 'north'
-//            style: {
-//                'background-image': "url('../resources/images/s_flowe_14.jpg')"
-//            }
         },
         {
             region: 'west',
-
             xtype: 'app-menu',
-
             width: 200
-        },{
-//            region: 'center',
+        },
+        {
             width: '70%',
             flex: 1,
+            height:'80%',
             xtype: 'app-main-container'
 
         }]

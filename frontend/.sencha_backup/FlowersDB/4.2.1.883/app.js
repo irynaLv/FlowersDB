@@ -3,25 +3,19 @@
     needed for your application, but these edits will have to be merged by
     Sencha Cmd when upgrading.
 */
-Ext.Loader.setConfig({
-    disableCaching: false
-});
+//Ext.Loader.setConfig({
+//    disableCaching: false
+//});
 
 Ext.application({
     name: 'FlowersDB',
 
     extend: 'FlowersDB.Application',
     
-    autoCreateViewport: true,
+    autoCreateViewport: true
 
-    views:[
-        'FlowersDB.view.Menu',
-        'FlowersDB.view.MainContainer',
-        'FlowersDB.view.AddCategory'
-    ],
-    controllers:[
-        'FlowersDB.controller.Main'
-    ]
+
+
 //    stores:[
 //        'Products'
 //    ],

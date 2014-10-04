@@ -12,8 +12,6 @@ module.exports = function (app, passport) {
         });
     });
 
-
-
     app.get('/api/shops', function(req, res) {
         var query = Shop.find({});
         query.exec(function (err, doc) {
@@ -64,7 +62,12 @@ module.exports = function (app, passport) {
                     productId: body.productId,
                     price: body.price,
                     status: body.status,
-                    incomeDate: new Date()
+                    incomeDate: new Date(),
+                    category: body.category||null,
+                    subcategory: body.subcategory || null,
+                    name:body.name || null,
+                    type:body.type || null,
+                    saleDate: null
                 };
             var doc = new Goods(obj);
             doc.save(function (err, doc) {
@@ -134,6 +137,76 @@ module.exports = function (app, passport) {
 
             })
     });
+    app.post('/api/saleproducts', function(req, res) {
+        var limitValue = parseInt(req.body.quantity);
+        var query = Goods.find({
+            shopId: req.body.shopId,
+            productId: req.body.productId,
+            price:req.body.price,
+            status:req.body.status
+        })
+            .limit(limitValue)
+            .exec(function (err, doc) {
+                for(var i=0; i<doc.length; i++){
+                    var goods = doc[i];
+                    goods.status = 'sold';
+                    goods.saleDate = new Date();
+                    goods.save(function (err) {
+                        if (!err && doc) {
+                            res.json(doc);
+                        } else {
+                            res.status(404);
+                            res.send();
+                        }
+                    });
+                }
+                if(doc.length == 0){
+                    res.json([]);
+                }
+
+
+            })
+    });
+
+    app.get('/api/balance', function(req, res) {
+        var obj = {};
+        var shopId = req.query.shopId;
+        var productId  = req.query.productId;
+        var status  = req.query.status;
+        var category  = req.query.category;
+        var subcategory  = req.query.subcategory;
+        var name  = req.query.name;
+        if(shopId){
+            obj.shopId = shopId;
+        }
+        if(productId){
+            obj.productId = productId;
+        }
+        if(status){
+            obj.status = status;
+        }
+        if(category){
+            obj.category = category;
+        }
+        if(subcategory){
+            obj.subcategory = subcategory;
+        }
+        if(name){
+            obj.name = name;
+        }
+        var query = Goods.find(obj).exec(function (err, doc) {
+            if (!err && doc) {
+                res.json(doc);
+            } else {
+                res.status(404);
+                res.send();
+            }
+        });
+
+
+
+    });
+
 
     app.get('/api/documents', function(req, res) {
         function escapeRegExp(str) {

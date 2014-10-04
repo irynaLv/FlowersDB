@@ -412,6 +412,7 @@ Ext.ClassManager.addNameAlternateMappings({
   ],
   "Ext.grid.RowEditor": [],
   "Ext.grid.RowEditorButtons": [],
+  "Ext.grid.Scroller": [],
   "Ext.grid.View": [],
   "Ext.grid.ViewDropZone": [],
   "Ext.grid.column.Action": [
@@ -829,7 +830,20 @@ Ext.ClassManager.addNameAlternateMappings({
   ],
   "FlowersDB.Application": [],
   "FlowersDB.controller.Main": [],
+  "FlowersDB.model.Products": [],
+  "FlowersDB.model.Shops": [],
+  "FlowersDB.store.Products": [],
+  "FlowersDB.store.Shops": [],
+  "FlowersDB.view.AddCategory": [],
+  "FlowersDB.view.IncomeContainer": [],
   "FlowersDB.view.Main": [],
+  "FlowersDB.view.MainContainer": [],
+  "FlowersDB.view.Menu": [],
+  "FlowersDB.view.NumberInputField": [],
+  "FlowersDB.view.ProductsBoxes": [],
+  "FlowersDB.view.RevaluationContainer": [],
+  "FlowersDB.view.SaleContainer": [],
+  "FlowersDB.view.ShopBoxes": [],
   "FlowersDB.view.Viewport": []
 });
 Ext.ClassManager.addNameAliasMappings({
@@ -1268,6 +1282,7 @@ Ext.ClassManager.addNameAliasMappings({
   "Ext.grid.RowEditorButtons": [
     "widget.roweditorbuttons"
   ],
+  "Ext.grid.Scroller": [],
   "Ext.grid.View": [
     "widget.gridview"
   ],
@@ -1819,10 +1834,43 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "FlowersDB.Application": [],
   "FlowersDB.controller.Main": [],
+  "FlowersDB.model.Products": [],
+  "FlowersDB.model.Shops": [],
+  "FlowersDB.store.Products": [],
+  "FlowersDB.store.Shops": [],
+  "FlowersDB.view.AddCategory": [
+    "widget.add-category"
+  ],
+  "FlowersDB.view.IncomeContainer": [
+    "widget.income-container"
+  ],
   "FlowersDB.view.Main": [
     "widget.app-main"
   ],
-  "FlowersDB.view.Viewport": []
+  "FlowersDB.view.MainContainer": [
+    "widget.app-main-container"
+  ],
+  "FlowersDB.view.Menu": [
+    "widget.app-menu"
+  ],
+  "FlowersDB.view.NumberInputField": [
+    "widget.number-input-field"
+  ],
+  "FlowersDB.view.ProductsBoxes": [
+    "widget.products-boxes"
+  ],
+  "FlowersDB.view.RevaluationContainer": [
+    "widget.revaluation-container"
+  ],
+  "FlowersDB.view.SaleContainer": [
+    "widget.sale-container"
+  ],
+  "FlowersDB.view.ShopBoxes": [
+    "widget.shop-boxes"
+  ],
+  "FlowersDB.view.Viewport": [
+    "widget.viewport"
+  ]
 });
 Ext.setVersion("ext-theme-base", "4.2.1");
 Ext.setVersion("ext-theme-classic", "4.2.1");

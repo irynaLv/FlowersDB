@@ -12,20 +12,6 @@ Ext.application({
 
     extend: 'FlowersDB.Application',
     
-    autoCreateViewport: true,
+    autoCreateViewport: true
 
-    views:[
-        'FlowersDB.view.Menu',
-        'FlowersDB.view.MainContainer',
-        'FlowersDB.view.AddCategory'
-    ],
-    controllers:[
-        'FlowersDB.controller.Main'
-    ]
-//    stores:[
-//        'Products'
-//    ],
-//    models:[
-//        'Products'
-//    ]
 });

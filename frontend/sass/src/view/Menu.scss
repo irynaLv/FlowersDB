@@ -1,0 +1,22 @@
+.app-menu{
+  border-right-width: 1px;
+  border-right-style: solid;
+  border-right-color: #18057C;
+  background: #BED6FA;
+  .x-btn{
+    height: 2.5em;
+    .x-btn-inner{
+      text-align: left !important;
+      line-height: 23px;
+      padding-left: 28px;
+    }
+    .x-btn-button{
+      height: 20px;
+    }
+    .x-btn-icon-el{
+      background-size: contain;
+      width: 2em;
+      height: 1.7em;
+    }
+  }
+}

@@ -14,134 +14,23 @@ Ext.define('FlowersDB.view.MainContainer', {
     layout: {
         type: 'vbox'
     },
+    width: '100%',
     data: null,
     items: [
-
         {
-            xtype: 'combobox',
-            fieldLabel: 'Магазин',
-            itemId: 'shop-field',
-            store: null,
-            queryMode: 'local',
-            displayField: 'address',
-            valueField: 'address',
-            renderTo: Ext.getBody()
+            xtype: 'shop-boxes'
         },
         {
-            xtype: 'container',
-            layout: 'hbox',
-            items: [
-                {
-                    xtype: 'combobox',
-                    itemId: 'category-field',
-                    fieldLabel: 'Категорія',
-                    store:null,
-                    queryMode: 'local',
-                    displayField: 'category',
-                    valueField: 'category',
-                    renderTo: Ext.getBody()
-                }
-            ]
-        },
-        {
-            xtype: 'container',
-            layout: 'hbox',
-            items: [
-                {
-                    xtype: 'combobox',
-                    fieldLabel: 'Підкатегорія',
-                    itemId: 'subcategory-field',
-                    store: null,
-                    queryMode: 'local',
-                    displayField: 'subcategory',
-                    valueField: 'subcategory',
-                    renderTo: Ext.getBody()
-                }
-            ]
+            xtype:'products-boxes'
         },
 
         {
-            xtype: 'container',
-            layout: 'hbox',
-            items: [
-                {
-                    xtype: 'combobox',
-                    itemId: 'name-field',
-                    fieldLabel: 'Назва',
-                    store: null,
-                    queryMode: 'local',
-                    displayField: 'name',
-                    valueField: 'name',
-                    renderTo: Ext.getBody()
-                }
-
-            ]
+            xtype:'number-input-field'
         },
 
         {
-            xtype: 'container',
-            layout: 'hbox',
-            items: [
-                {
-                    xtype: 'combobox',
-                    itemId: 'type-field',
-                    fieldLabel: 'Тип',
-                    store: null,
-                    queryMode: 'local',
-                    displayField: 'type',
-                    valueField: 'type',
-                    renderTo: Ext.getBody()
-                }
-            ]
-        },
-        {
-            xtype:'container',
-            layout: 'vbox',
-//            hidden: true,
-            itemId: 'number-fields',
-            items:[
-                {
-                    xtype: 'numberfield',
-                    anchor: '100%',
-                    name: 'bottles',
-                    itemId: 'quantity-field',
-                    fieldLabel: 'Кількість'
-                },
-                {
-                    xtype: 'numberfield',
-                    anchor: '100%',
-                    itemId: 'price-field',
-                    name: 'bottles',
-                    fieldLabel: 'Ціна'
-                },
-                {
-                    xtype: 'button',
-                    text:"Додати",
-                    itemId:'new-goods-btn'
-                }
-            ]
-        },
+            xtype:'add-category'
 
-        {
-            xtype:'container',
-            layout: 'vbox',
-            hidden: true,
-            itemId: 'new-goods-container',
-            items:[
-                {
-                    xtype: 'textareafield',
-                    grow      : true,
-                    name      : 'description',
-                    fieldLabel: 'Опис',
-                    itemId:'description-field',
-                    renderTo: Ext.getBody()
-                },
-                {
-                    xtype: 'button',
-                    text:"Додати",
-                    itemId:'new-product-btn'
-                }
-            ]
         }
 
 
@@ -149,147 +38,144 @@ Ext.define('FlowersDB.view.MainContainer', {
     initComponent: function () {
         var me = this;
         me.callParent();
-        this.down('#category-field').on('change', this.onCategoryChange, this);
-        this.down('#subcategory-field').on('change', this.onSubcategoryChange, this);
-        this.down('#name-field').on('change', this.onNameChange, this);
-//        this.down('#add-category-btn').on('click', this.addCategory, this);
-//        this.down('#add-subctg-btn').on('click', this.addSubcategory, this);
-//        this.down('#add-name-btn').on('click', this.addNewName, this);
-//        this.down('#add-type-btn').on('click', this.addNewType, this);
         this.down('#new-product-btn').on('click', this.onAddNewProduct, this);
-        this.down('#new-goods-btn').on('click', this.onAddNewGoods, this);
-        this.on('productsloaded', this.showCategoryData);
-        this.on('shopsloaded', this.showShops);
+        this.down('#new-goods-btn-revaluation').on('click', this.changePriceForGoods, this);
+        this.down('#new-goods-btn-income').on('click', this.onAddNewGoods, this);
+        this.down('#new-goods-btn-sale').on('click', this.setSaleStatus, this);
+        this.down('#quantity-field').on('blur', this.checkIfEmpty, this, this.down('#count-err'));
+        this.down('#price-field').on('blur', this.checkIfEmpty, this, this.down('#price-err'));
+        this.on('income', this.setNumericContainer, this);
+        this.on('addcategory', this.showAddCategoryContainer, this);
+    },
+    setButtonHidden: function(){
+        this.down('#new-goods-btn-income').setVisible(false);
+        this.down('#new-goods-btn-sale').setVisible(false);
+        this.down('#new-goods-btn-revaluation').setVisible(false);
+        this.down('#new-product-container').setVisible(false);
+        this.down('#number-fields').setVisible(false);
     },
 
-    filterData: function(data, type){
-        var arr = [];
-        for(var i=0; i<data.length; i++){
-            if(arr.length == 0){
-                arr.push(data[i])
-            }else{
-                var isExist = false;
-                for(var j=0; j<arr.length; j++){
-                    if(data[i][type] == arr[j][type]){
-                        isExist = true
-                    }
-                }
-                if(!isExist){
-                    arr.push(data[i])
-                }
-            }
+    setEditableFields: function(value){
+        this.down('#category-field').setEditable(value);
+        this.down('#subcategory-field').setEditable(value);
+        this.down('#name-field').setEditable(value);
+        this.down('#type-field').setEditable(value);
+
+    },
+    setEditableShops:function(value){
+        this.down('#shop-field').setEditable(value);
+},
+
+    setNumericContainer: function(btn){
+        this.setButtonHidden();
+        this.setEditableFields(false);
+        if(btn.itemId == 'income-btn'){
+            this.down('#new-goods-btn-income').setVisible(true);
+        }else if(btn.itemId == 'sale-btn'){
+            this.down('#new-goods-btn-sale').setVisible(true)
+        }else if(btn.itemId == 'revaluation-btn'){
+            this.down('#new-goods-btn-revaluation').setVisible(true)
         }
-        return arr;
+        this.down('#new-product-container').setVisible(false);
+        this.down('#number-fields').setVisible(true);
     },
 
-    showShops: function(){
-        this.shopStore = Ext.create('Ext.data.Store', {
-            model: 'FlowersDB.model.Shops',
-            storeId: 'shops',
-            sorters: [{
-                property: 'address',
-                direction: 'ASC'
-            }]
-        })
-        this.shopStore.loadData(this.shopData);
-        this.down('#shop-field').bindStore(this.shopStore);
-    },
-
-    showCategoryData: function(){
-        var store = Ext.create('Ext.data.Store', {
-            model: 'FlowersDB.model.Products',
-            sorters: [{
-                property: 'category',
-                direction: 'ASC'
-            }]
-        });
-        var arr = this.filterData(this.data, 'category');
-        store.loadData(arr);
-
-        this.down('#category-field').setValue(null);
-        this.down('#category-field').bindStore(store);
-//        this.down('#category-field').setValue(store.first())
-    },
-
-    onCategoryChange: function(el, newValue, oldValue){
-        var store = Ext.create('Ext.data.Store', {
-            model: 'FlowersDB.model.Products',
-            sorters: [{
-                property: 'subcategory',
-                direction: 'ASC'
-            }]
-        });
-        var arr = [];
-        for(var i=0; i<this.data.length; i++){
-            if(this.data[i].category == newValue){
-                arr.push(this.data[i]);
-            }
+    checkIfEmpty: function( el,e, err){
+        if(el.getValue() > 0){
+            err.setVisible(false)
         }
-        arr = this.filterData(arr, 'subcategory');
-        store.loadData(arr);
-
-        this.down('#subcategory-field').setValue(null);
-        this.down('#subcategory-field').bindStore(store);
-    },
-    onSubcategoryChange: function(el, newValue){
-        var store = Ext.create('Ext.data.Store', {
-            model: 'FlowersDB.model.Products',
-            sorters: [{
-                property: 'name',
-                direction: 'ASC'
-            }]
-        });
-        var arr = [];
-        for(var i=0; i<this.data.length; i++){
-            if(this.data[i].subcategory == newValue){
-                arr.push(this.data[i]);
-            }
-        }
-        arr = this.filterData(arr, 'name');
-        store.loadData(arr);
-        this.down('#name-field').setValue(null);
-        this.down('#name-field').bindStore(store);
-    },
-
-    onNameChange: function(el, newValue){
-        var store = Ext.create('Ext.data.Store', {
-            model: 'FlowersDB.model.Products',
-            sorters: [{
-                property: 'type',
-                direction: 'ASC'
-            }]
-        });
-        var arr = [];
-        for(var i=0; i<this.data.length; i++){
-            if(this.data[i].name == newValue){
-                arr.push(this.data[i]);
-            }
-        }
-        arr = this.filterData(arr, 'type');
-        store.loadData(arr);
-        this.down('#type-field').setValue(null);
-        this.down('#type-field').bindStore(store);
     },
 
     onAddNewProduct:function(){
-        var obj = {};
-        obj.category = this.down('#category-field').getValue();
-        obj.subcategory = this.down('#subcategory-field').getValue();
-        obj.name = this.down('#name-field').getValue();
-        obj.type = this.down('#type-field').getValue();
-        obj.description = this.down('#description-field').getValue();
-        this.fireEvent('addnewproduct', obj,this);
+        var shopsView = this.down('#shop-boxes');
+        var productsView = this.down('#products-boxes');
+        var isCorrect =  productsView.checkData() && shopsView.checkData();
+        if(isCorrect) {
+            var obj = {};
+            obj.category = this.down('#category-field').getValue();
+            obj.subcategory = this.down('#subcategory-field').getValue();
+            obj.name = this.down('#name-field').getValue();
+            obj.type = this.down('#type-field').getValue();
+            obj.description = this.down('#description-field').getValue();
+            this.fireEvent('addnewproduct', obj, this);
+        }
     },
     onAddNewGoods: function(){
-        var obj = {};
-        if(this.down('#shop-field').getValue()){
-            var shopRecord = this.down('#shop-field').findRecord(this.down('#shop-field').getValue());
-            obj.shopId = shopRecord.data.shopId;
+        var shopsView = this.down('#shop-boxes');
+        var productsView = this.down('#products-boxes');
+        var isCorrect = this.checkData() && productsView.checkData() && shopsView.checkData();
+        if(isCorrect){
+            var obj = {};
+            obj.shopId = shopsView.shopValue.shopId;
+            obj.productId = productsView.productValue.id;
+            obj.category = productsView.productValue.category;
+            obj.subcategory = productsView.productValue.subcategory;
+            obj.name = productsView.productValue.name;
+            obj.type = productsView.productValue.type;
+//            console.log(ths.productValue.name, this.productValue.subcategory,  this.productValue.type)
+            obj.price = this.down('#price-field').getValue();
+            obj.status = 'shop';
+            var quantity = this.down('#quantity-field').getValue();
+            this.fireEvent('addnewgoods', obj, quantity,  this);
         }
-        obj.productId = this.down('#name-field').findRecord(this.down('#name-field').getValue()).data.id;
-        obj.price = this.down('#price-field').getValue();
-        obj.status = 'shop';
-        var quantity = this.down('#quantity-field').getValue();
-        this.fireEvent('addnewgoods', obj,quantity,  this);
+
+    },
+    checkData: function(){
+        var isCorrect = true;
+        if(!this.down('#price-field').getValue()){
+            this.down('#price-err').setVisible(true);
+            isCorrect = false;
+        }
+        if(!this.down('#quantity-field').getValue()){
+            this.down('#count-err').setVisible(true);
+            isCorrect = false;
+        }
+        return isCorrect;
+    },
+
+    changePriceForGoods: function(){
+        var isCorrect = this.checkData();
+        if(isCorrect){
+            var obj = {};
+            obj.shopId = this.shopValue.shopId;
+            obj.productId = this.productValue.id;
+            console.log(this.productValue.name, this.productValue.subcategory,  this.productValue.type)
+            obj.price = this.down('#price-field').getValue();
+//            if(this.shopValue.name == 'Склад'){
+//                obj.status = 'warehouse';
+//            }else{
+//                obj.status = 'shop'
+//            }
+            obj.status = 'shop';
+            var quantity = this.down('#quantity-field').getValue();
+            var prevValue = this.down('#prev-price-field').getValue();
+            this.fireEvent('changeprice', obj,quantity, prevValue,  this);
+        }
+
+    },
+
+    setSaleStatus: function(){
+        var isCorrect = this.checkData();
+        if(isCorrect){
+            var obj = {};
+            obj.shopId = this.shopValue.shopId;
+            obj.productId = this.productValue.id;
+            console.log(this.productValue.name, this.productValue.subcategory,  this.productValue.type);
+            obj.price = this.down('#price-field').getValue();
+//            if(this.shopValue.name == 'Склад'){
+//                obj.status = 'warehouse';
+//            }else{
+//                obj.status = 'shop'
+//            }
+            obj.status = 'shop';
+            var quantity = this.down('#quantity-field').getValue();
+//            var prevValue = this.down('#prev-price-field').getValue();
+            this.fireEvent('soldstaus', obj,quantity,  this);
+        }
+    },
+    showAddCategoryContainer:function(){
+        this.down("#new-product-container").setVisible(true);
+        this.setEditableFields(true);
+        this.down('#shop-field').setVisible(false)
     }
 });
