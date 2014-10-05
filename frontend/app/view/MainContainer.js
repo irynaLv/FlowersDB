@@ -117,14 +117,15 @@ Ext.define('FlowersDB.view.MainContainer', {
     onAddNewProduct:function(){
         var shopsView = this.down('#shop-boxes');
         var productsView = this.down('#products-boxes');
-        var isCorrect =  productsView.checkData() && shopsView.checkData();
+        var cont = this.down('#new-product-container');
+        var isCorrect =  cont.checkData();
         if(isCorrect) {
             var obj = {};
-            obj.category = this.down('#category-field').getValue();
-            obj.subcategory = this.down('#subcategory-field').getValue();
-            obj.name = this.down('#name-field').getValue();
-            obj.type = this.down('#type-field').getValue();
-            obj.description = this.down('#description-field').getValue();
+            obj.category = cont.down('#category-field').getValue();
+            obj.subcategory = cont.down('#subcategory-field').getValue();
+            obj.name = cont.down('#name-field').getValue();
+            obj.type = cont.down('#type-field').getValue();
+            obj.description = cont.down('#description-field').getValue();
             this.fireEvent('addnewproduct', obj, this);
         }
     },

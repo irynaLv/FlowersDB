@@ -111,7 +111,6 @@ Ext.define('FlowersDB.view.AddCategory', {
                     store: null,
                     cls: 'input-field',
                     editable: true,
-//                    hidden: true,
                     queryMode: 'local',
                     displayField: 'type',
                     valueField: 'type',
@@ -132,6 +131,7 @@ Ext.define('FlowersDB.view.AddCategory', {
             grow      : true,
             name      : 'description',
             fieldLabel: 'Опис',
+            cls: 'input-field',
             itemId:'description-field',
             renderTo: Ext.getBody()
         },
@@ -153,7 +153,7 @@ Ext.define('FlowersDB.view.AddCategory', {
     },
 
 
-     filterData: function(data, type){
+    filterData: function(data, type){
         var arr = [];
         for(var i=0; i<data.length; i++){
             if(arr.length == 0 && !!data[i][type]){
@@ -275,44 +275,24 @@ Ext.define('FlowersDB.view.AddCategory', {
         var typeRecord = this.down('#type-field').findRecord('type', newValue);
         this.productValue = typeRecord.data;
     },
-    checkIfEmpty: function( el,e, err){
-        if(el.getValue() > 0){
-            err.setVisible(false)
-        }
-    },
 
     checkData: function(){
         var isCorrect = true;
-
-        if(this.productValue){
-            if( this.down('#category-field').getValue() != this.productValue.category){
-                this.down('#category-err').setVisible(true);
-                isCorrect = false;
-            }else if(this.down('#subcategory-field').isVisible() && this.down('#subcategory-field').getValue() && this.down('#subcategory-field').getValue() != this.productValue.subcategory){
-                this.down('#subcategory-err').setVisible(true);
-                isCorrect = false;
-            }else if(this.down('#name-field').isVisible() && this.down('#name-field').getValue() &&  this.down('#name-field').getValue() != this.productValue.name){
-                this.down('#name-err').setVisible(true);
-                isCorrect = false;
-            }else if(this.down('#type-field').isVisible() && this.down('#type-field').getValue() && this.down('#type-field').getValue() != this.productValue.type){
-                this.down('#type-err').setVisible(true);
-                isCorrect = false;
-            }
-        }else{
-            if(!this.down('#category-field').getValue()){
-                this.down('#category-err').setVisible(true);
-                isCorrect = false;
-            }else if(this.down('#subcategory-field').isVisible() && !this.down('#subcategory-field').getValue()){
-                this.down('#subcategory-err').setVisible(true);
-                isCorrect = false;
-            }else if(this.down('#name-field').isVisible() && !this.down('#name-field').getValue()){
-                this.down('#name-err').setVisible(true);
-                isCorrect = false;
-            }else if(this.down('#type-field').isVisible() && !this.down('#type-field').getValue()){
-                this.down('#type-err').setVisible(true);
-                isCorrect = false;
-            }
+        if(!this.down('#category-field').getValue()){
+            this.down('#category-err').setVisible(true);
+            isCorrect = false;
+        }else if(this.down('#subcategory-field').isVisible() && !this.down('#subcategory-field').getValue()){
+            this.down('#subcategory-err').setVisible(true);
+            isCorrect = false;
         }
+// else if(this.down('#name-field').isVisible() && !this.down('#name-field').getValue()){
+//            this.down('#name-err').setVisible(true);
+//            isCorrect = false;
+//        }else if(this.down('#type-field').isVisible() && !this.down('#type-field').getValue()){
+//            this.down('#type-err').setVisible(true);
+//            isCorrect = false;
+//        }
+
         return isCorrect;
     }
 });

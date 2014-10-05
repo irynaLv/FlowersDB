@@ -72,7 +72,7 @@ Ext.define('FlowersDB.controller.Main', {
         this.productsStore = Ext.getStore('FlowersDB.store.Products');
         this.shopsStore = Ext.getStore('FlowersDB.store.Shops');
     },
-    loadProductsAndShop: function(){
+    loadProductsAndShop: function(isAddCategory){
         var me = this;
         Ext.Ajax.request({
             method: 'GET',
@@ -96,7 +96,7 @@ Ext.define('FlowersDB.controller.Main', {
             },
             success: function(response){
                 var text = response.responseText;
-                me.loadCategory(JSON.parse(text));
+                me.loadCategory(JSON.parse(text), isAddCategory);
 
             },
             error:function(){
@@ -114,10 +114,16 @@ Ext.define('FlowersDB.controller.Main', {
     showDashboard:function(){
         this.getMainContainer().fireEvent('showdashboard')
     },
-    loadCategory: function(data){
+    loadCategory: function(data, isAddCategory){
         this.productsStore.loadData(data);
-        this.getProductsBoxes().data =  data;
-        this.getProductsBoxes().fireEvent('productsloaded');
+        if(isAddCategory){
+            this.getAddCategoryContainer().data = data
+            this.getAddCategoryContainer().fireEvent('showdata')
+        }else{
+            this.getProductsBoxes().data =  data;
+            this.getProductsBoxes().fireEvent('productsloaded');
+        }
+
     },
 
     addNewProductItem: function(body){
@@ -175,11 +181,11 @@ Ext.define('FlowersDB.controller.Main', {
         this.getMainContainer().fireEvent('income', el)
     },
 
-    addNewCategory:function(el){
-        this.loadProductsAndShop();
-        this.getMainContainer().fireEvent('addcategory');
-        this.getAddCategoryContainer().data = this.productsStore;
-        this.getAddCategoryContainer().fireEvent('showdata')
+addNewCategory:function(el){
+//        this.getAddCategoryContainer().data = this.productsStore;
+        this.loadProductsAndShop(true);
+
+    this.getMainContainer().fireEvent('addcategory');
     },
     changePriceForSelectedGoods: function(body, quantity, prevValue){
         Ext.Ajax.request({
