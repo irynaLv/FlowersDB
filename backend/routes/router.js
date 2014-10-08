@@ -19,40 +19,6 @@ module.exports = function (app, passport) {
         });
     });
 
-//    app.get('/api/document/:id', function(req, res) {
-//        Document.findById(req.params.id, function (err, doc) {
-//            if (!err && doc) {
-//                res.json(doc);
-//            } else {
-//                res.status(404);
-//                res.send();
-//            }
-//        });
-//    });
-//    app.post('/api/document', function(req, res) {
-//        var body = req.body,
-//            obj = {
-//                title: body.title || 'No title',
-//                owner: body.owner || 'No owner',
-//                accessLayer: body.accessLayer || 0,
-//                description: body.description || 'No description',
-//                fileName: body.fileName || 'Test.txt',
-//                uploadDate: new Date(),
-//                updateDate: new Date(),
-//                tags: body.tags || ['doc'],
-//                type: body.type || 'doc'
-//            },
-//            doc = new Document(obj);
-//        doc.save(function (err, doc) {
-//            if (!err && doc) {
-//                res.json(doc);
-//            } else {
-//                res.status(404);
-//                res.send();
-//            }
-//        });
-//    });
-
     app.post('/api/newgoods', function(req, res) {
         var length = parseInt(req.body.quantity);
         for(var i=0; i<length; i++){
@@ -61,7 +27,7 @@ module.exports = function (app, passport) {
                     shopId: body.shopId,
                     productId: body.productId,
                     price: body.price,
-                    status: body.status,
+                    status: 'shop',
                     incomeDate: new Date(),
                     category: body.category||null,
                     subcategory: body.subcategory || null,
@@ -82,16 +48,6 @@ module.exports = function (app, passport) {
 
 
     });
-//    app.post('/api/document/:id', function(req, res) {
-//        Document.findByIdAndUpdate(req.params.id, req.body, function (err, doc) {
-//            if (!err && doc) {
-//                res.json(doc);
-//            } else {
-//                res.status(404);
-//                res.send();
-//            }
-//        });
-//    });
 
     app.post('/api/product', function(req, res) {
         var body = req.body,
@@ -115,7 +71,7 @@ module.exports = function (app, passport) {
     });
     app.post('/api/changeprice', function(req, res) {
         var limitValue = parseInt(req.body.quantity);
-        var query = Goods.find({shopId: req.body.shopId, productId: req.body.productId, price:req.body.prevValue})
+        var query = Goods.find({shopId: req.body.shopId, productId: req.body.productId, price:req.body.prevValue, status:'shop'})
             .limit(limitValue)
             .exec(function (err, doc) {
                 for(var i=0; i<doc.length; i++){
@@ -137,13 +93,41 @@ module.exports = function (app, passport) {
 
             })
     });
+
+    app.post('/api/writeoff', function(req, res) {
+        var limitValue = parseInt(req.body.quantity);
+        var query = Goods.find({shopId: req.body.shopId, productId: req.body.productId, price:req.body.price, status:'shop'})
+            .limit(limitValue)
+            .exec(function (err, doc) {
+                for(var i=0; i<doc.length; i++){
+                    var goods = doc[i];
+                    goods.price = 0;
+                    goods.status = 'sold';
+                    goods.saleDate = new Date();
+                    goods.save(function (err) {
+                        if (!err && doc) {
+                            res.json(doc);
+                        } else {
+                            res.status(404);
+                            res.send();
+                        }
+                    });
+                }
+                if(doc.length == 0){
+                    res.json([]);
+                }
+
+
+            })
+    });
+
     app.post('/api/saleproducts', function(req, res) {
         var limitValue = parseInt(req.body.quantity);
         var query = Goods.find({
             shopId: req.body.shopId,
             productId: req.body.productId,
             price:req.body.price,
-            status:req.body.status
+            status:'shop'
         })
             .limit(limitValue)
             .exec(function (err, doc) {
@@ -172,7 +156,7 @@ module.exports = function (app, passport) {
         var obj = {};
         var shopId = req.query.shopId;
         var productId  = req.query.productId;
-        var status  = req.query.status;
+        var status  = 'shop';
         var category  = req.query.category;
         var subcategory  = req.query.subcategory;
         var name  = req.query.name;
@@ -181,9 +165,6 @@ module.exports = function (app, passport) {
         }
         if(productId){
             obj.productId = productId;
-        }
-        if(status){
-            obj.status = status;
         }
         if(category){
             obj.category = category;
@@ -194,6 +175,7 @@ module.exports = function (app, passport) {
         if(name){
             obj.name = name;
         }
+        obj.status = 'shop';
         var query = Goods.find(obj).exec(function (err, doc) {
             if (!err && doc) {
                 res.json(doc);

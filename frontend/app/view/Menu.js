@@ -55,10 +55,19 @@ Ext.define('FlowersDB.view.Menu', {
         },
         {
             xtype: 'button',
+            text: 'Списання',
+            width: 200,
+            toggleGroup:'menu',
+            itemId: 'write-off-btn',
+            icon:'resources/Write.png'
+
+        },
+        {
+            xtype: 'button',
             text: 'Залишок',
             width: 200,
             toggleGroup:'menu',
-            itemId: 'remainder-btn',
+            itemId: 'balance-btn',
             icon:'resources/gr-org-icon.png'
 
         },

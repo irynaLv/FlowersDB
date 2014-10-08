@@ -35,6 +35,10 @@ Ext.define('FlowersDB.controller.Main', {
         {
             ref: 'addCategoryContainer',
             selector: 'add-category'
+        },
+        {
+            ref: 'balanceGrid',
+            selector: 'balance-grid'
         }
     ],
     init: function() {
@@ -53,13 +57,18 @@ Ext.define('FlowersDB.controller.Main', {
                 'addnewproduct': this.addNewProductItem,
                 'addnewgoods': this.addNewGoods,
                 'changeprice': this.changePriceForSelectedGoods,
-                'soldstaus': this.setSaleStatus
+                'soldstaus': this.setSaleStatus,
+                'writeoff' : this.setWriteOff,
+                'showBalance' : this.getBalance
             },
-            'app-menu #income-btn, app-menu #sale-btn, app-menu #revaluation-btn':{
+            'app-menu #income-btn, app-menu #sale-btn, app-menu #revaluation-btn, app-menu #write-off-btn':{
                 click: this.setCorrectContainer
             },
             'app-menu #add-category-btn':{
                 click: this.addNewCategory
+            },
+            'app-menu #balance-btn':{
+                click: this.onBalanceBtn
             },
             'app-menu #main-btn':{
                 click: this.showDashboard
@@ -181,11 +190,11 @@ Ext.define('FlowersDB.controller.Main', {
         this.getMainContainer().fireEvent('income', el)
     },
 
-addNewCategory:function(el){
+    addNewCategory:function(el){
 //        this.getAddCategoryContainer().data = this.productsStore;
         this.loadProductsAndShop(true);
 
-    this.getMainContainer().fireEvent('addcategory');
+        this.getMainContainer().fireEvent('addcategory');
     },
     changePriceForSelectedGoods: function(body, quantity, prevValue){
         Ext.Ajax.request({
@@ -219,7 +228,6 @@ addNewCategory:function(el){
                 price: parseInt(body.price),
                 status: body.status,
                 quantity: parseInt(quantity)
-//                prevValue: parseInt(prevValue)
             },
             success: function(response){
                 var text = response.responseText;
@@ -230,7 +238,106 @@ addNewCategory:function(el){
 
             }
         })
+    },
+
+    setWriteOff: function(body, quantity){
+        Ext.Ajax.request({
+            method: 'POST',
+            url: '/api/writeoff',
+            params: {
+                shopId: parseInt(body.shopId),
+                productId: parseInt(body.productId),
+                price: parseInt(body.price),
+                quantity: parseInt(quantity)
+            },
+            success: function(response){
+                var text = response.responseText;
+                var data = JSON.parse(text);
+
+            },
+            error:function(){
+
+            }
+        })
+    },
+
+    onBalanceBtn: function(){
+        this.loadProductsAndShop();
+        this.getMainContainer().fireEvent('balance', this)
+    },
+
+    getBalance: function(body){
+        var me = this;
+        var obj= {};
+        var shopId = body.shopId;
+        var productId  = body.productId;
+        var category  = body.category;
+        var subcategory  = body.subcategory;
+        var name  = body.name;
+        if(shopId){
+            obj.shopId = shopId;
+        }
+        if(productId){
+            obj.productId = productId;
+        }
+        if(category){
+            obj.category = category;
+        }
+        if(subcategory){
+            obj.subcategory = subcategory;
+        }
+        if(name){
+            obj.name = name;
+        }
+
+        Ext.Ajax.request({
+            method: 'GET',
+            url: '/api/balance',
+            params:obj,
+            success: function(response){
+                var text = response.responseText;
+                var data = JSON.parse(text);
+                me.sortBalanceData(data)
+            },
+            error:function(){
+
+            }
+        })
+    },
+
+    sortBalanceData: function(data){
+        var arr =[];
+        for(var i=0; i<data.length; i++){
+            if(arr.length == 0){
+                data[i].counter = 1;
+                arr.push(data[i])
+            }else{
+                var prodId = data[i].productId;
+                var price = data[i].price;
+                var isExist = true;
+                for(var j=0; j<arr.length; j++){
+                    var arrId = arr[j].productId;
+                    var arrPrice = arr[j].price;
+                    if(arrId == prodId && arrPrice == price){
+                        arr[j].counter++;
+                        isExist = true;
+                        break;
+                    }else{
+                        isExist = false
+                    }
+                }
+                if(!isExist){
+                    data[i].counter = 1;
+                    arr.push(data[i])
+                }
+            }
+        }
+        var store = Ext.create('FlowersDB.store.Balance');
+        store.loadData(arr);
+        var grid = Ext.create('FlowersDB.view.BalanceGrid', {
+            store: store
+        })
+//        this.getBalanceGrid().store = store;
+        this.getMainContainer().add(grid);
     }
-
-
 });

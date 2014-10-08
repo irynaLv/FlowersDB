@@ -12,7 +12,10 @@ Ext.define('FlowersDB.Application', {
         'FlowersDB.view.AddCategory',
         'FlowersDB.view.IncomeContainer',
         'FlowersDB.view.SaleContainer',
-        'FlowersDB.view.RevaluationContainer'
+        'FlowersDB.view.RevaluationContainer',
+        'FlowersDB.view.WriteOffContainer',
+        'FlowersDB.view.BalanceContainer',
+        'FlowersDB.view.BalanceGrid'
     ],
 
     controllers:[
@@ -20,6 +23,6 @@ Ext.define('FlowersDB.Application', {
     ],
 
     stores: [
-        // TODO: add stores here
+        'Balance'
     ]
 });

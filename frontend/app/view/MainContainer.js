@@ -46,6 +46,18 @@ Ext.define('FlowersDB.view.MainContainer', {
             hidden:true
         },
         {
+            xtype: 'writeoff-container',
+            width: 500,
+            height:200,
+            hidden:true
+        },
+        {
+            xtype: 'balance-container',
+            width: 500,
+            height:200,
+            hidden:true
+        },
+        {
             xtype: 'add-category',
             width: 500,
             height:200,
@@ -60,10 +72,13 @@ Ext.define('FlowersDB.view.MainContainer', {
         this.down('#new-goods-btn-revaluation').on('click', this.changePriceForGoods, this);
         this.down('#new-goods-btn-income').on('click', this.onAddNewGoods, this);
         this.down('#new-goods-btn-sale').on('click', this.setSaleStatus, this);
+        this.down('#write-off-btn').on('click', this.setWriteOff, this);
+        this.down('#balance-btn').on('click', this.onBalanceClick, this);
 
         this.on('income', this.showCorrectContainer, this);
         this.on('addcategory', this.showAddCategoryContainer, this);
         this.on('showdashboard', this.showDashboard, this);
+        this.on('balance', this.showBalance, this);
     },
     showDashboard:function(){
         this.setContainerHidden();
@@ -81,13 +96,16 @@ Ext.define('FlowersDB.view.MainContainer', {
         var cont = null;
         if(btn.itemId == 'income-btn'){
             cont =this.down('#income-container');
-            this.down('#income-container').setVisible(true);
+            cont.setVisible(true);
         }else if(btn.itemId == 'sale-btn'){
             cont = this.down('#sale-container');
-            this.down('#sale-container').setVisible(true)
+            cont.setVisible(true)
         }else if(btn.itemId == 'revaluation-btn'){
             cont = this.down('#revaluation-container');
-            this.down('#revaluation-container').setVisible(true)
+            cont.setVisible(true)
+        }else if(btn.itemId == 'write-off-btn'){
+            cont = this.down('#writeoff-container');
+            cont.setVisible(true)
         }
         cont.down('#price-field').setValue(null);
         cont.down('#quantity-field').setValue(null);
@@ -100,6 +118,8 @@ Ext.define('FlowersDB.view.MainContainer', {
         this.down('#sale-container').setVisible(false);
         this.down('#revaluation-container').setVisible(false);
         this.down('#new-product-container').setVisible(false);
+        this.down('#writeoff-container').setVisible(false);
+        this.down('#balance-container').setVisible(false);
     },
 
     setEditableFields: function(value){
@@ -206,10 +226,55 @@ Ext.define('FlowersDB.view.MainContainer', {
             this.fireEvent('soldstaus', obj,quantity,  this);
         }
     },
+
+    setWriteOff: function(){
+        var shopsView = this.down('#shop-boxes');
+        var productsView = this.down('#products-boxes');
+        var isCorrect = this.checkData(this.down('#writeoff-container'));
+        if(isCorrect){
+            var obj = {};
+            obj.shopId = shopsView.shopValue.shopId;
+            obj.productId = productsView.productValue.id;
+            obj.price = this.down('#writeoff-container').down('#price-field').getValue();
+            var quantity = this.down('#writeoff-container').down('#quantity-field').getValue();
+            this.fireEvent('writeoff', obj,quantity,  this);
+        }
+    },
+
+    showBalance: function(){
+        this.setComboBoxVisibility(true);
+        this.setContainerHidden();
+        this.down("#balance-container").setVisible(true);
+
+    },
+    onBalanceClick: function(){
+        var shopsView = this.down('#shop-boxes');
+        var productsView = this.down('#products-boxes');
+        var obj = {};
+        if(shopsView.shopValue){
+            obj.shopId = shopsView.shopValue.shopId;
+        }else{
+
+        }
+        if(productsView.productValue){
+            obj.productId = productsView.productValue.id;
+            obj.category = productsView.productValue.category;
+            obj.subcategory = productsView.productValue.subcategory;
+            obj.name = productsView.productValue.name;
+            obj.type = productsView.productValue.type;
+        }else{
+            obj.category = productsView.down('#category-field').getValue();
+            obj.subcategory = productsView.down('#subcategory-field').getValue();
+            obj.name = productsView.down('#name-field').getValue();
+            obj.type = productsView.down('#type-field').getValue();
+            obj.productId = null;
+        }
+
+        this.fireEvent('showBalance', obj,  this);
+    },
+
     showAddCategoryContainer:function(){
         this.setComboBoxVisibility(false);
         this.down("#new-product-container").setVisible(true);
-//        this.setEditableFields(true);
-//        this.down('#shop-field').setVisible(false)
     }
 });
