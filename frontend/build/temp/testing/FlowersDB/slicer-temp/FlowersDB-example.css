@@ -20955,18 +20955,90 @@ body.x-nbr .x-tab-default-right-frameInfo {
   height: 1.7em;
 }
 
+/* line 4, ../../../../../sass/src/view/BalanceGrid.scss */
+.balance-grid .x-grid-header-ct.x-docked {
+  z-index: 0;
+}
+/* line 8, ../../../../../sass/src/view/BalanceGrid.scss */
+.balance-grid .x-grid-header-ct .x-column-header {
+  background-color: #FFFFFF;
+}
+
+/* line 14, ../../../../../sass/src/view/BalanceGrid.scss */
+.x-grid-rowbody-tr {
+  text-align: left;
+  margin-bottom: 15px;
+  height: 315px;
+}
+/* line 19, ../../../../../sass/src/view/BalanceGrid.scss */
+.x-grid-rowbody-tr .x-grid-cell-rowbody {
+  height: 315px;
+}
+/* line 21, ../../../../../sass/src/view/BalanceGrid.scss */
+.x-grid-rowbody-tr .x-grid-cell-rowbody .x-grid-rowbody {
+  height: 100%;
+}
+/* line 26, ../../../../../sass/src/view/BalanceGrid.scss */
+.x-grid-rowbody-tr .x-form-type-text {
+  margin: 0;
+}
+/* line 30, ../../../../../sass/src/view/BalanceGrid.scss */
+.x-grid-rowbody-tr .x-form-item-label {
+  margin-top: 0;
+  color: #000;
+}
+/* line 34, ../../../../../sass/src/view/BalanceGrid.scss */
+.x-grid-rowbody-tr .x-form-display-field {
+  margin-top: 0;
+}
+
+/* line 40, ../../../../../sass/src/view/BalanceGrid.scss */
+.x-form-display-field-body {
+  height: 20px;
+}
+
+/* line 44, ../../../../../sass/src/view/BalanceGrid.scss */
+.x-column-header-text {
+  font-size: 0.9em;
+}
+
+/* line 48, ../../../../../sass/src/view/BalanceGrid.scss */
+.x-grid-row-expander {
+  margin: 0 auto;
+}
+
+/* line 53, ../../../../../sass/src/view/BalanceGrid.scss */
+.x-grid-data-row, tr.x-grid-rowbody-tr {
+  background: #FFF;
+}
+
+/* line 57, ../../../../../sass/src/view/BalanceGrid.scss */
+.x-btn.x-btn-default-small.view-all-on-map-button {
+  background-position: 83px -44px !important;
+}
+
+/* line 61, ../../../../../sass/src/view/BalanceGrid.scss */
+.x-btn.x-btn-default-small.export-data-button {
+  background-position: 50px -61px !important;
+}
+
+/* line 66, ../../../../../sass/src/view/BalanceGrid.scss */
+.x-btn.x-btn-default-small.previous-job {
+  background: none!important;
+}
+
 /* line 1, ../../../../../sass/src/view/MainContainer.scss */
 .app-main-container {
   padding: 1em;
 }
 /* line 3, ../../../../../sass/src/view/MainContainer.scss */
-.app-main-container .x-box-inner {
-  width: 100%;
-  height: 100%;
-}
-/* line 7, ../../../../../sass/src/view/MainContainer.scss */
 .app-main-container .input-field {
   margin: .2em 0!important;
+}
+
+/* line 13, ../../../../../sass/src/view/MainContainer.scss */
+.balance-grid .x-grid-rowwrap.x-grid-td {
+  overflow: visible;
 }
 
 /* line 2, ../../../../../sass/src/view/Main.scss */

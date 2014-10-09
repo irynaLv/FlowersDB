@@ -9,87 +9,113 @@ Ext.define('FlowersDB.view.BalanceGrid', {
     ],
     xtype: 'balance-grid',
     itemId: 'balance-grid',
+    cls: 'balance-grid',
     store: 'balance',
     data:[],
     columnLines: true,
-    height: 350,
-    width: 600,
-    title: 'Залишок',
-    viewConfig: {
-        stripeRows: true
-    },
+    height: 500,
+    width: 680,
 
+    defaults: {
+        flex: 1
+    },
+    dockedItems: [{
+        xtype: 'toolbar',
+        dock: 'bottom',
+        items: [{
+            xtype: 'textfield',
+            itemId:'total-amount',
+            fieldLabel: 'Загальна суму',
+            editable:false
+        }]
+    }],
 
     initComponent: function () {
-        this.columns = [{
-            xtype: 'rownumberer'
-        }, {
-            text     : 'Категорія',
-            locked   : true,
-            width    : 80,
-            sortable : false,
-            dataIndex: 'category'
-        }, {
-            text     : 'Підкатегрія',
-            lockable: false,
-            width    : 80,
-            sortable : true,
-//            renderer : 'usMoney',
-            dataIndex: 'subcategory'
-        }, {
-            text     : 'Назва',
-//            hidden   : true,
-            width    : 80,
-            sortable : false,
-//            renderer : function(val) {
-//                return Math.round(val * 3.14 * 100) / 10;
-//            },
-            dataIndex: 'name'
-        }, {
-            text     : 'Тип',
-            width    : 80,
-            sortable : true,
-//            renderer : function(val) {
-//                if (val > 0) {
-//                    return '<span style="color:green;">' + val + '</span>';
-//                } else if (val < 0) {
-//                    return '<span style="color:red;">' + val + '</span>';
-//                }
-//                return val;
-//            },
-            dataIndex: 'type'
-        },
+        this.totalAmount = 0;
+        this.columns = [
+
             {
-            text     : 'Кількість',
-            width    : 105,
-            sortable : true,
-//            renderer : function(val) {
-//                if (val > 0) {
-//                    return '<span style="color:green;">' + val + '%</span>';
-//                } else if (val < 0) {
-//                    return '<span style="color:red;">' + val + '%</span>';
-//                }
-//                return val;
-//            },
-            dataIndex: 'counter'
-        },
+                xtype: 'rownumberer'
+            },
             {
-                text     : 'Магазин',
+                text     : 'Категорія',
                 width    : 80,
                 sortable : true,
-//            renderer : Ext.util.Format.dateRenderer('m/d/Y'),
-                dataIndex: 'shop'
+                dataIndex: 'category'
+            }, {
+                text     : 'Підкатегрія',
+//                lockable: false,
+                width    : 80,
+                sortable : true,
+                dataIndex: 'subcategory'
+            }, {
+                text     : 'Назва',
+//            hidden   : true,
+                width    : 80,
+                sortable : true,
+                dataIndex: 'name'
+            }, {
+                text     : 'Тип',
+                width    : 80,
+                sortable : true,
+                dataIndex: 'type'
+            },
+            {
+                text     : 'Кількість',
+                width    : 60,
+                sortable : true,
+                dataIndex: 'counter'
             },
             {
                 text     : 'Ціна',
                 width    : 80,
                 sortable : true,
-//            renderer : Ext.util.Format.dateRenderer('m/d/Y'),
+                renderer: function(val){
+                    return val + ' грн'
+                },
                 dataIndex: 'price'
-            }];
+            },
+            {
+                text     : 'Магазин',
+                width    : 80,
+                sortable : true,
+                renderer : function(val) {
+                    var record = Ext.getStore('shops').findRecord('shopId', val);
+                    if(record){
+                        val = record.data.address
+                    }else{
+                        val = "-"
+                    }
+                    return val;
+                },
+                dataIndex: 'shopId'
+            },
+            {
+                text     : 'Сума',
+                width    : 80,
+//                sortable : true,
+                renderer : function(price, el, record) {
+                    var counter = record.data.counter;
+                    var val = price*counter;
+//                    this.totalAmount +=val;
+//                    this.down('#total-amount').setValue(this.totalAmount)
+                    return val;
+                },
+                dataIndex: 'price'
+            }
+        ];
 
 
+        this.store = Ext.getStore('FlowersDB.store.Balance');
         this.callParent();
-        this.store = Ext.getStore('FlowersDB.store.Products');
+        this.down('#total-amount').setValue(this.totalAmount)
+        this.on('afterrender', this.setTotalAmount, this)
+    },
+    viewConfig: {
+        stripeRows: true
+    },
+
+    setTotalAmount:function(){
+
     }
 });

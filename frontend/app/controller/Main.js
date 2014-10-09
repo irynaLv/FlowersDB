@@ -2,7 +2,8 @@ Ext.define('FlowersDB.controller.Main', {
     extend: 'Ext.app.Controller',
     stores:[
         'FlowersDB.store.Products',
-        'FlowersDB.store.Shops'
+        'FlowersDB.store.Shops',
+        'FlowersDB.store.Balance'
     ],
     models:[
         'Products'
@@ -80,6 +81,9 @@ Ext.define('FlowersDB.controller.Main', {
     initStores: function(){
         this.productsStore = Ext.getStore('FlowersDB.store.Products');
         this.shopsStore = Ext.getStore('FlowersDB.store.Shops');
+        this.balanceStore = Ext.getStore('FlowersDB.store.Balance');
+        this.balanceStore.on('load', this.sortBalanceData, this)
+        this.balanceStore.on('datachanged', this.setTotalAmount, this)
     },
     loadProductsAndShop: function(isAddCategory){
         var me = this;
@@ -263,6 +267,7 @@ Ext.define('FlowersDB.controller.Main', {
 
     onBalanceBtn: function(){
         this.loadProductsAndShop();
+        this.balanceStore.removeAll();
         this.getMainContainer().fireEvent('balance', this)
     },
 
@@ -293,16 +298,22 @@ Ext.define('FlowersDB.controller.Main', {
         Ext.Ajax.request({
             method: 'GET',
             url: '/api/balance',
-            params:obj,
+            params: obj,
             success: function(response){
                 var text = response.responseText;
                 var data = JSON.parse(text);
                 me.sortBalanceData(data)
+
             },
             error:function(){
 
             }
         })
+
+
+//        var proxy = this.balanceStore.getProxy();
+//        proxy.params = obj;
+//        this.balanceStore.load();
     },
 
     sortBalanceData: function(data){
@@ -314,11 +325,13 @@ Ext.define('FlowersDB.controller.Main', {
             }else{
                 var prodId = data[i].productId;
                 var price = data[i].price;
+                var shopId = data[i].shopId;
                 var isExist = true;
                 for(var j=0; j<arr.length; j++){
                     var arrId = arr[j].productId;
                     var arrPrice = arr[j].price;
-                    if(arrId == prodId && arrPrice == price){
+                    var arrShop = arr[j].shopId;
+                    if(arrId == prodId && arrPrice == price && arrShop == shopId){
                         arr[j].counter++;
                         isExist = true;
                         break;
@@ -332,12 +345,14 @@ Ext.define('FlowersDB.controller.Main', {
                 }
             }
         }
-        var store = Ext.create('FlowersDB.store.Balance');
-        store.loadData(arr);
-        var grid = Ext.create('FlowersDB.view.BalanceGrid', {
-            store: store
-        })
-//        this.getBalanceGrid().store = store;
-        this.getMainContainer().add(grid);
+        this.balanceStore.removeAll();
+        this.balanceStore.loadData(arr);
+
+        this.getBalanceGrid().bindStore(this.balanceStore);
+        this.getBalanceGrid().reconfigure(this.balanceStore)
+    },
+
+    setTotalAmount:function(){
+        
     }
 });

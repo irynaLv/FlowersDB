@@ -830,11 +830,15 @@ Ext.ClassManager.addNameAlternateMappings({
   ],
   "FlowersDB.Application": [],
   "FlowersDB.controller.Main": [],
+  "FlowersDB.model.Balance": [],
   "FlowersDB.model.Products": [],
   "FlowersDB.model.Shops": [],
+  "FlowersDB.store.Balance": [],
   "FlowersDB.store.Products": [],
   "FlowersDB.store.Shops": [],
   "FlowersDB.view.AddCategory": [],
+  "FlowersDB.view.BalanceContainer": [],
+  "FlowersDB.view.BalanceGrid": [],
   "FlowersDB.view.IncomeContainer": [],
   "FlowersDB.view.Main": [],
   "FlowersDB.view.MainContainer": [],
@@ -844,7 +848,8 @@ Ext.ClassManager.addNameAlternateMappings({
   "FlowersDB.view.RevaluationContainer": [],
   "FlowersDB.view.SaleContainer": [],
   "FlowersDB.view.ShopBoxes": [],
-  "FlowersDB.view.Viewport": []
+  "FlowersDB.view.Viewport": [],
+  "FlowersDB.view.WriteOffContainer": []
 });
 Ext.ClassManager.addNameAliasMappings({
   "Ext.AbstractComponent": [],
@@ -1834,12 +1839,20 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "FlowersDB.Application": [],
   "FlowersDB.controller.Main": [],
+  "FlowersDB.model.Balance": [],
   "FlowersDB.model.Products": [],
   "FlowersDB.model.Shops": [],
+  "FlowersDB.store.Balance": [],
   "FlowersDB.store.Products": [],
   "FlowersDB.store.Shops": [],
   "FlowersDB.view.AddCategory": [
     "widget.add-category"
+  ],
+  "FlowersDB.view.BalanceContainer": [
+    "widget.balance-container"
+  ],
+  "FlowersDB.view.BalanceGrid": [
+    "widget.balance-grid"
   ],
   "FlowersDB.view.IncomeContainer": [
     "widget.income-container"
@@ -1870,6 +1883,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "FlowersDB.view.Viewport": [
     "widget.viewport"
+  ],
+  "FlowersDB.view.WriteOffContainer": [
+    "widget.writeoff-container"
   ]
 });
 Ext.setVersion("ext-theme-base", "4.2.1");

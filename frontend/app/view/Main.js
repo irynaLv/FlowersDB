@@ -13,7 +13,9 @@ Ext.define('FlowersDB.view.Main', {
     layout: {
         type: 'border'
     },
-
+//    layout: 'fit',
+    minWidth: 960,
+    minHeight: 600,
     items: [
         {
             xtype: 'toolbar',

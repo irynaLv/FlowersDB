@@ -1,13 +1,5 @@
 .app-main-container{
   padding: 1em;
-//  .x-box-inner{
-//    width:100% !important;
-//    height: 100% !important;
-//    .x-box-target{
-//      width:100% !important;
-//      height: 100% !important;
-//    }
-//  }
   .input-field{
     margin: .2em 0!important;
   }
@@ -15,5 +7,10 @@
 .shop-boxes{
   .shop-field{
 
+  }
+}
+.balance-grid {
+  .x-grid-rowwrap.x-grid-td {
+    overflow: visible;
   }
 }

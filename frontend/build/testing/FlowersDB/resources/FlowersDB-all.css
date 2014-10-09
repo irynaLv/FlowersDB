@@ -4715,6 +4715,121 @@ img {
   position: relative;
 }
 
+/* line 2, ../../../../ext/packages/ext-theme-base/sass/src/panel/Table.scss */
+.x-grid-row,
+.x-grid-data-row {
+  outline: none;
+}
+
+/* line 6, ../../../../ext/packages/ext-theme-base/sass/src/panel/Table.scss */
+.x-grid-view {
+  overflow: hidden;
+  position: relative;
+}
+
+/* line 11, ../../../../ext/packages/ext-theme-base/sass/src/panel/Table.scss */
+.x-grid-table {
+  table-layout: fixed;
+  border-collapse: separate;
+}
+
+/* line 16, ../../../../ext/packages/ext-theme-base/sass/src/panel/Table.scss */
+.x-grid-td {
+  overflow: hidden;
+  border-width: 0;
+  vertical-align: top;
+}
+
+/* line 22, ../../../../ext/packages/ext-theme-base/sass/src/panel/Table.scss */
+.x-grid-cell-inner {
+  overflow: hidden;
+  white-space: nowrap;
+  zoom: 1;
+}
+
+/* line 28, ../../../../ext/packages/ext-theme-base/sass/src/panel/Table.scss */
+.x-grid-resize-marker {
+  position: absolute;
+  z-index: 5;
+  top: 0;
+}
+
+/* line 2, ../../../../ext/packages/ext-theme-base/sass/src/grid/header/DropZone.scss */
+.col-move-top,
+.col-move-bottom {
+  position: absolute;
+  top: 0;
+  line-height: 0;
+  font-size: 0;
+  overflow: hidden;
+  z-index: 20000;
+  background: no-repeat center top transparent;
+}
+
+/* line 1, ../../../../ext/packages/ext-theme-base/sass/src/grid/header/Container.scss */
+.x-grid-header-ct {
+  cursor: default;
+}
+
+/* line 1, ../../../../ext/packages/ext-theme-base/sass/src/grid/column/Column.scss */
+.x-column-header {
+  position: absolute;
+  overflow: hidden;
+  background-repeat: repeat-x;
+}
+
+/* line 7, ../../../../ext/packages/ext-theme-base/sass/src/grid/column/Column.scss */
+.x-column-header-inner {
+  zoom: 1;
+  white-space: nowrap;
+  position: relative;
+  overflow: hidden;
+}
+
+/* line 14, ../../../../ext/packages/ext-theme-base/sass/src/grid/column/Column.scss */
+.x-column-header-text {
+  white-space: nowrap;
+  background-repeat: no-repeat;
+  zoom: 1;
+  display: inline-block;
+}
+
+/* line 25, ../../../../ext/packages/ext-theme-base/sass/src/grid/column/Column.scss */
+.x-column-header-trigger {
+  display: none;
+  height: 100%;
+  background-repeat: no-repeat;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 2;
+}
+
+/* line 43, ../../../../ext/packages/ext-theme-base/sass/src/grid/column/Column.scss */
+.x-column-header-over .x-column-header-trigger, .x-column-header-open .x-column-header-trigger {
+  display: block;
+}
+
+/* line 48, ../../../../ext/packages/ext-theme-base/sass/src/grid/column/Column.scss */
+.x-column-header-align-right {
+  text-align: right;
+}
+
+/* line 58, ../../../../ext/packages/ext-theme-base/sass/src/grid/column/Column.scss */
+.x-column-header-align-left {
+  text-align: left;
+}
+
+/* line 68, ../../../../ext/packages/ext-theme-base/sass/src/grid/column/Column.scss */
+.x-column-header-align-center {
+  text-align: center;
+}
+
+/* line 1, ../../../../ext/packages/ext-theme-base/sass/src/grid/column/RowNumberer.scss */
+.x-row-numberer .x-column-header-inner {
+  text-overflow: clip;
+}
+
 /* line 1, ../../../../ext/packages/ext-theme-base/sass/src/resizer/Splitter.scss */
 .x-splitter {
   font-size: 1px;
@@ -4842,6 +4957,20 @@ a.x-tab {
 /* line 1, ../../../../ext/packages/ext-theme-base/sass/src/tab/Bar.scss */
 .x-tab-bar {
   position: relative;
+}
+
+/* line 1, ../../../../ext/packages/ext-theme-base/sass/src/selection/CheckboxModel.scss */
+.x-column-header-checkbox .x-column-header-text {
+  display: block;
+  background-repeat: no-repeat;
+  font-size: 0;
+}
+
+/* line 7, ../../../../ext/packages/ext-theme-base/sass/src/selection/CheckboxModel.scss */
+.x-grid-cell-row-checker {
+  vertical-align: middle;
+  background-repeat: no-repeat;
+  font-size: 0;
 }
 
 /* line 1, ../../../../ext/packages/ext-theme-base/sass/src/tab/Panel.scss */
@@ -12974,6 +13103,393 @@ div.x-form-spinner-down {
   border-bottom-width: 1px;
 }
 
+/* line 1, ../../../../ext/packages/ext-theme-neutral/sass/src/panel/Table.scss */
+.x-grid-body {
+  background: white;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #99bce8;
+}
+
+/* line 8, ../../../../ext/packages/ext-theme-neutral/sass/src/panel/Table.scss */
+.x-grid-empty {
+  padding: 10px;
+  color: gray;
+  background-color: white;
+  font: normal 11px tahoma, arial, verdana, sans-serif;
+}
+
+/* line 15, ../../../../ext/packages/ext-theme-neutral/sass/src/panel/Table.scss */
+.x-grid-cell {
+  color: null;
+  font: normal 11px/13px tahoma, arial, verdana, sans-serif;
+  background-color: white;
+  border-color: #ededed #d0d0d0 #ededed #d0d0d0;
+  border-style: solid;
+}
+
+/* line 26, ../../../../ext/packages/ext-theme-neutral/sass/src/panel/Table.scss */
+.x-grid-row-alt .x-grid-td {
+  background-color: #fafafa;
+}
+/* line 30, ../../../../ext/packages/ext-theme-neutral/sass/src/panel/Table.scss */
+.x-grid-row-before-over .x-grid-td {
+  border-bottom-style: solid;
+  border-bottom-color: #dddddd;
+}
+/* line 35, ../../../../ext/packages/ext-theme-neutral/sass/src/panel/Table.scss */
+.x-grid-row-over .x-grid-td {
+  border-bottom-style: solid;
+  border-bottom-color: #dddddd;
+}
+/* line 40, ../../../../ext/packages/ext-theme-neutral/sass/src/panel/Table.scss */
+.x-grid-row-before-selected .x-grid-td {
+  border-bottom-style: dotted;
+  border-bottom-color: #a3bae9;
+}
+/* line 45, ../../../../ext/packages/ext-theme-neutral/sass/src/panel/Table.scss */
+.x-grid-row-selected .x-grid-td {
+  border-bottom-style: dotted;
+  border-bottom-color: #a3bae9;
+}
+/* line 50, ../../../../ext/packages/ext-theme-neutral/sass/src/panel/Table.scss */
+.x-grid-row-before-focused .x-grid-td {
+  border-bottom-style: dotted;
+  border-bottom-color: #464646;
+  border-bottom-width: 1px;
+}
+/* line 58, ../../../../ext/packages/ext-theme-neutral/sass/src/panel/Table.scss */
+.x-grid-row-focused .x-grid-td {
+  background-color: #efefef;
+}
+/* line 65, ../../../../ext/packages/ext-theme-neutral/sass/src/panel/Table.scss */
+.x-grid-row-over .x-grid-td {
+  background-color: #efefef;
+}
+/* line 73, ../../../../ext/packages/ext-theme-neutral/sass/src/panel/Table.scss */
+.x-grid-row-selected .x-grid-td {
+  background-color: #dfe8f6;
+}
+/* line 82, ../../../../ext/packages/ext-theme-neutral/sass/src/panel/Table.scss */
+.x-grid-row-focused .x-grid-td {
+  border-bottom-style: dotted;
+  border-bottom-color: #464646;
+  border-bottom-width: 1px;
+}
+/* line 92, ../../../../ext/packages/ext-theme-neutral/sass/src/panel/Table.scss */
+.x-grid-table .x-grid-row-focused-first .x-grid-td {
+  border-top: 1px dotted #464646;
+}
+/* line 103, ../../../../ext/packages/ext-theme-neutral/sass/src/panel/Table.scss */
+.x-grid-row-selected .x-grid-row-summary .x-grid-td {
+  border-bottom-color: #dfe8f6;
+  border-top-width: 0;
+}
+/* line 108, ../../../../ext/packages/ext-theme-neutral/sass/src/panel/Table.scss */
+.x-grid-row-focused .x-grid-row-summary .x-grid-td {
+  border-bottom-color: #efefef;
+  border-top-width: 0;
+}
+
+/* line 115, ../../../../ext/packages/ext-theme-neutral/sass/src/panel/Table.scss */
+.x-grid-with-row-lines .x-grid-td {
+  border-bottom-width: 1px;
+}
+/* line 121, ../../../../ext/packages/ext-theme-neutral/sass/src/panel/Table.scss */
+.x-grid-with-row-lines .x-grid-table {
+  border-top: 1px solid white;
+}
+/* line 125, ../../../../ext/packages/ext-theme-neutral/sass/src/panel/Table.scss */
+.x-grid-with-row-lines .x-grid-table-over-first {
+  border-top-style: solid;
+  border-top-color: #dddddd;
+}
+/* line 130, ../../../../ext/packages/ext-theme-neutral/sass/src/panel/Table.scss */
+.x-grid-with-row-lines .x-grid-table-selected-first {
+  border-top-style: dotted;
+  border-top-color: #a3bae9;
+}
+
+/* line 139, ../../../../ext/packages/ext-theme-neutral/sass/src/panel/Table.scss */
+.x-grid-body .x-grid-table-focused-first {
+  border-top: 1px dotted #464646;
+}
+
+/* line 149, ../../../../ext/packages/ext-theme-neutral/sass/src/panel/Table.scss */
+.x-grid-cell-inner {
+  text-overflow: ellipsis;
+  padding: 3px 6px 4px 6px;
+}
+
+/* line 163, ../../../../ext/packages/ext-theme-neutral/sass/src/panel/Table.scss */
+.x-grid-no-row-lines .x-grid-row-focused .x-grid-cell-inner {
+  padding-top: 2px;
+  padding-bottom: 3px;
+}
+
+/* line 178, ../../../../ext/packages/ext-theme-neutral/sass/src/panel/Table.scss */
+.x-grid-cell-special {
+  border-color: #ededed #d0d0d0 #ededed #d0d0d0;
+  border-style: solid;
+  border-right-width: 1px;
+  background-image: none;
+  background-color: #f6f6f6;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f6f6f6), color-stop(100%, #e9e9e9));
+  background-image: -webkit-linear-gradient(top, #f6f6f6, #e9e9e9);
+  background-image: -moz-linear-gradient(top, #f6f6f6, #e9e9e9);
+  background-image: -o-linear-gradient(top, #f6f6f6, #e9e9e9);
+  background-image: linear-gradient(top, #f6f6f6, #e9e9e9);
+  /*<if slicer>*/
+  /*</if slicer>*/
+  /* */
+  /*<if slicer>*/
+  /*</if slicer>*/
+  /* */
+}
+/* line 191, ../../../../ext/packages/ext-theme-neutral/sass/src/panel/Table.scss */
+.x-grid-row-selected .x-grid-cell-special {
+  border-right-color: #ededed #aaccf6;
+  background-image: none;
+  background-color: #dfe8f6;
+  background-image: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(0%, #dfe8f6), color-stop(100%, #cbdaf0));
+  background-image: -webkit-linear-gradient(left, #dfe8f6, #cbdaf0);
+  background-image: -moz-linear-gradient(left, #dfe8f6, #cbdaf0);
+  background-image: -o-linear-gradient(left, #dfe8f6, #cbdaf0);
+  background-image: linear-gradient(left, #dfe8f6, #cbdaf0);
+}
+/* line 206, ../../../../ext/packages/ext-theme-neutral/sass/src/panel/Table.scss */
+.x-nlg .x-grid-cell-special {
+  background-repeat: repeat-y;
+  background-image: url(images/grid/cell-special-bg.gif);
+}
+/* line 211, ../../../../ext/packages/ext-theme-neutral/sass/src/panel/Table.scss */
+.x-nlg .x-grid-row-selected .x-grid-cell-special {
+  background-image: url(images/grid/cell-special-selected-bg.gif);
+}
+/* line 78, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
+.x-grid-cell-special .x-grid-cell-special:after {
+  display: none;
+  content: "x-slicer:bg:url(images/grid/cell-special-bg.gif)";
+}
+/* line 78, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
+.x-grid-cell-special .x-grid-cell-special-selected:after {
+  display: none;
+  content: "x-slicer:bg:url(images/grid/cell-special-selected-bg.gif)";
+}
+
+/* line 228, ../../../../ext/packages/ext-theme-neutral/sass/src/panel/Table.scss */
+.x-grid-dirty-cell {
+  background: url(images/grid/dirty.gif) no-repeat 0 0;
+}
+
+/* line 241, ../../../../ext/packages/ext-theme-neutral/sass/src/panel/Table.scss */
+.x-grid-row .x-grid-cell-selected {
+  color: null;
+  background-color: #b8cfee;
+}
+
+/* line 247, ../../../../ext/packages/ext-theme-neutral/sass/src/panel/Table.scss */
+.x-grid-with-col-lines .x-grid-cell {
+  border-right-width: 1px;
+}
+
+/* line 259, ../../../../ext/packages/ext-theme-neutral/sass/src/panel/Table.scss */
+.x-grid-resize-marker {
+  width: 1px;
+  background-color: #0f0f0f;
+}
+
+/* line 2, ../../../../ext/packages/ext-theme-neutral/sass/src/grid/header/DropZone.scss */
+.col-move-top,
+.col-move-bottom {
+  width: 9px;
+  height: 9px;
+}
+
+/* line 7, ../../../../ext/packages/ext-theme-neutral/sass/src/grid/header/DropZone.scss */
+.col-move-top {
+  background-image: url(images/grid/col-move-top.gif);
+}
+
+/* line 11, ../../../../ext/packages/ext-theme-neutral/sass/src/grid/header/DropZone.scss */
+.col-move-bottom {
+  background-image: url(images/grid/col-move-bottom.gif);
+}
+
+/* line 1, ../../../../ext/packages/ext-theme-neutral/sass/src/grid/header/Container.scss */
+.x-grid-header-ct {
+  border: 1px solid #99bce8;
+  border-bottom-color: #c5c5c5;
+  background-color: #c5c5c5;
+  background-image: none;
+  background-color: #c5c5c5;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f9f9f9), color-stop(100%, #e3e4e6));
+  background-image: -webkit-linear-gradient(top, #f9f9f9, #e3e4e6);
+  background-image: -moz-linear-gradient(top, #f9f9f9, #e3e4e6);
+  background-image: -o-linear-gradient(top, #f9f9f9, #e3e4e6);
+  background-image: linear-gradient(top, #f9f9f9, #e3e4e6);
+}
+
+/* line 28, ../../../../ext/packages/ext-theme-neutral/sass/src/grid/header/Container.scss */
+.x-grid-body {
+  border-top-color: #c5c5c5;
+}
+
+/* line 32, ../../../../ext/packages/ext-theme-neutral/sass/src/grid/header/Container.scss */
+.x-hmenu-sort-asc .x-menu-item-icon {
+  background-image: url(images/grid/hmenu-asc.gif);
+}
+
+/* line 36, ../../../../ext/packages/ext-theme-neutral/sass/src/grid/header/Container.scss */
+.x-hmenu-sort-desc .x-menu-item-icon {
+  background-image: url(images/grid/hmenu-desc.gif);
+}
+
+/* line 40, ../../../../ext/packages/ext-theme-neutral/sass/src/grid/header/Container.scss */
+.x-cols-icon .x-menu-item-icon {
+  background-image: url(images/grid/columns.gif);
+}
+
+/* line 1, ../../../../ext/packages/ext-theme-neutral/sass/src/grid/column/Column.scss */
+.x-column-header {
+  border-right: 1px solid #c5c5c5;
+  color: black;
+  font: normal 11px/13px tahoma, arial, verdana, sans-serif;
+  background-image: none;
+  background-color: #c5c5c5;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #f9f9f9), color-stop(100%, #e3e4e6));
+  background-image: -webkit-linear-gradient(top, #f9f9f9, #e3e4e6);
+  background-image: -moz-linear-gradient(top, #f9f9f9, #e3e4e6);
+  background-image: -o-linear-gradient(top, #f9f9f9, #e3e4e6);
+  background-image: linear-gradient(top, #f9f9f9, #e3e4e6);
+}
+
+/* line 24, ../../../../ext/packages/ext-theme-neutral/sass/src/grid/column/Column.scss */
+.x-group-sub-header {
+  background: transparent;
+  border-top: 1px solid #c5c5c5;
+}
+/* line 29, ../../../../ext/packages/ext-theme-neutral/sass/src/grid/column/Column.scss */
+.x-group-sub-header .x-column-header-inner {
+  padding: 3px 6px 5px 6px;
+}
+
+/* line 34, ../../../../ext/packages/ext-theme-neutral/sass/src/grid/column/Column.scss */
+.x-column-header-inner {
+  padding: 4px 6px 5px 6px;
+  text-overflow: ellipsis;
+}
+
+/* line 42, ../../../../ext/packages/ext-theme-neutral/sass/src/grid/column/Column.scss */
+.x-column-header-over,
+.x-column-header-sort-ASC,
+.x-column-header-sort-DESC {
+  background-image: none;
+  background-color: #aaccf6;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ebf3fd), color-stop(39%, #ebf3fd), color-stop(40%, #d9e8fb), color-stop(100%, #d9e8fb));
+  background-image: -webkit-linear-gradient(top, #ebf3fd, #ebf3fd 39%, #d9e8fb 40%, #d9e8fb);
+  background-image: -moz-linear-gradient(top, #ebf3fd, #ebf3fd 39%, #d9e8fb 40%, #d9e8fb);
+  background-image: -o-linear-gradient(top, #ebf3fd, #ebf3fd 39%, #d9e8fb 40%, #d9e8fb);
+  background-image: linear-gradient(top, #ebf3fd, #ebf3fd 39%, #d9e8fb 40%, #d9e8fb);
+}
+
+/* line 51, ../../../../ext/packages/ext-theme-neutral/sass/src/grid/column/Column.scss */
+.x-nlg .x-grid-header-ct,
+.x-nlg .x-column-header {
+  background-image: url(images/grid/column-header-bg.gif);
+}
+
+/* line 62, ../../../../ext/packages/ext-theme-neutral/sass/src/grid/column/Column.scss */
+.x-nlg .x-column-header-over,
+.x-nlg .x-column-header-sort-ASC,
+.x-nlg .x-column-header-sort-DESC {
+  background-image: url(images/grid/column-header-over-bg.gif);
+}
+
+/* line 70, ../../../../ext/packages/ext-theme-neutral/sass/src/grid/column/Column.scss */
+.x-column-header-open {
+  background-color: transparent;
+}
+/* line 73, ../../../../ext/packages/ext-theme-neutral/sass/src/grid/column/Column.scss */
+.x-column-header-open .x-column-header-trigger {
+  background-color: transparent;
+}
+
+/* line 78, ../../../../ext/packages/ext-theme-neutral/sass/src/grid/column/Column.scss */
+.x-column-header-trigger {
+  width: 14px;
+  cursor: pointer;
+  background-color: transparent;
+  background-position: 0 center;
+}
+
+/* line 96, ../../../../ext/packages/ext-theme-neutral/sass/src/grid/column/Column.scss */
+.x-column-header-align-right .x-column-header-text {
+  margin-right: 9px;
+}
+
+/* line 110, ../../../../ext/packages/ext-theme-neutral/sass/src/grid/column/Column.scss */
+.x-column-header-sort-ASC .x-column-header-text,
+.x-column-header-sort-DESC .x-column-header-text {
+  padding-right: 12px;
+  background-position: right center;
+}
+
+/* line 127, ../../../../ext/packages/ext-theme-neutral/sass/src/grid/column/Column.scss */
+.x-column-header-sort-ASC .x-column-header-text {
+  background-image: url(images/grid/sort_asc.gif);
+}
+
+/* line 130, ../../../../ext/packages/ext-theme-neutral/sass/src/grid/column/Column.scss */
+.x-column-header-sort-DESC .x-column-header-text {
+  background-image: url(images/grid/sort_desc.gif);
+}
+
+/*<if slicer>*/
+/* line 78, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
+.x-column-header:after {
+  display: none;
+  content: "x-slicer:bg:url(images/grid/column-header-bg.gif), stretch:bottom";
+}
+
+/*</if slicer>*/
+/* */
+/*<if slicer>*/
+/* line 78, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
+.x-column-header-over:after {
+  display: none;
+  content: "x-slicer:bg:url(images/grid/column-header-over-bg.gif), stretch:bottom";
+}
+
+/*</if slicer>*/
+/* */
+/* line 1, ../../../../ext/packages/ext-theme-neutral/sass/src/grid/column/RowNumberer.scss */
+.x-grid-cell-inner-row-numberer {
+  padding: 3px 5px 4px 3px;
+}
+
+/* line 1, ../../../../ext/packages/ext-theme-neutral/sass/src/grid/locking/Lockable.scss */
+.x-grid-locked .x-grid-inner-locked {
+  border-width: 0 1px 0 0;
+  border-style: solid;
+}
+
+/* line 17, ../../../../ext/packages/ext-theme-neutral/sass/src/grid/locking/Lockable.scss */
+.x-grid-inner-locked .x-column-header-last,
+.x-grid-inner-locked .x-grid-cell-last {
+  border-right-width: 0!important;
+}
+
+/* line 39, ../../../../ext/packages/ext-theme-neutral/sass/src/grid/locking/Lockable.scss */
+.x-hmenu-lock .x-menu-item-icon {
+  background-image: url(images/grid/hmenu-lock.gif);
+}
+
+/* line 43, ../../../../ext/packages/ext-theme-neutral/sass/src/grid/locking/Lockable.scss */
+.x-hmenu-unlock .x-menu-item-icon {
+  background-image: url(images/grid/hmenu-unlock.gif);
+}
+
 /* line 1, ../../../../ext/packages/ext-theme-neutral/sass/src/resizer/Splitter.scss */
 .x-collapse-el {
   cursor: pointer;
@@ -15795,6 +16311,42 @@ body.x-nbr .x-tab-default-right-frameInfo {
   height: 23px;
 }
 
+/* line 1, ../../../../ext/packages/ext-theme-neutral/sass/src/selection/CheckboxModel.scss */
+.x-column-header-checkbox {
+  border-color: #c5c5c5;
+}
+
+/* line 6, ../../../../ext/packages/ext-theme-neutral/sass/src/selection/CheckboxModel.scss */
+.x-grid-row-checker,
+.x-column-header-checkbox .x-column-header-text {
+  height: 13px;
+  width: 13px;
+  background-image: url(images/form/checkbox.gif);
+  line-height: 13px;
+}
+
+/* line 15, ../../../../ext/packages/ext-theme-neutral/sass/src/selection/CheckboxModel.scss */
+.x-column-header-checkbox .x-column-header-inner {
+  padding: 5px 5px 4px 5px;
+}
+
+/* line 19, ../../../../ext/packages/ext-theme-neutral/sass/src/selection/CheckboxModel.scss */
+.x-grid-cell-row-checker .x-grid-cell-inner {
+  padding: 4px 5px 3px 5px;
+}
+/* line 23, ../../../../ext/packages/ext-theme-neutral/sass/src/selection/CheckboxModel.scss */
+.x-grid-no-row-lines .x-grid-row-focused .x-grid-cell-row-checker .x-grid-cell-inner {
+  padding-top: 3px;
+  padding-bottom: 2px;
+}
+
+/* line 32, ../../../../ext/packages/ext-theme-neutral/sass/src/selection/CheckboxModel.scss */
+.x-grid-hd-checker-on .x-column-header-text,
+.x-grid-row-selected .x-grid-row-checker,
+.x-grid-row-checked .x-grid-row-checker {
+  background-position: 0 -13px;
+}
+
 /* including package ext-theme-classic */
 /* line 2, ../../../../ext/packages/ext-theme-classic/sass/src/dom/Element.scss */
 .x-box-tl {
@@ -15985,6 +16537,12 @@ body.x-nbr .x-tab-default-right-frameInfo {
   height: 9px;
 }
 
+/* line 1, ../../../../ext/packages/ext-theme-classic/sass/src/grid/column/Column.scss */
+.x-column-header-trigger {
+  background-color: #c5c5c5;
+  background-image: url(images/grid/grid3-hd-btn.gif);
+}
+
 /* line 5, ../../../../ext/packages/ext-theme-classic/sass/src/resizer/Resizer.scss */
 .x-resizable-over .x-resizable-handle-east,
 .x-resizable-over .x-resizable-handle-west,
@@ -16059,13 +16617,90 @@ body.x-nbr .x-tab-default-right-frameInfo {
   height: 1.7em;
 }
 
+/* line 4, ../../../../sass/src/view/BalanceGrid.scss */
+.balance-grid .x-grid-header-ct.x-docked {
+  z-index: 0;
+}
+/* line 8, ../../../../sass/src/view/BalanceGrid.scss */
+.balance-grid .x-grid-header-ct .x-column-header {
+  background-color: #FFFFFF;
+}
+
+/* line 14, ../../../../sass/src/view/BalanceGrid.scss */
+.x-grid-rowbody-tr {
+  text-align: left;
+  margin-bottom: 15px;
+  height: 315px;
+}
+/* line 19, ../../../../sass/src/view/BalanceGrid.scss */
+.x-grid-rowbody-tr .x-grid-cell-rowbody {
+  height: 315px;
+}
+/* line 21, ../../../../sass/src/view/BalanceGrid.scss */
+.x-grid-rowbody-tr .x-grid-cell-rowbody .x-grid-rowbody {
+  height: 100%;
+}
+/* line 26, ../../../../sass/src/view/BalanceGrid.scss */
+.x-grid-rowbody-tr .x-form-type-text {
+  margin: 0;
+}
+/* line 30, ../../../../sass/src/view/BalanceGrid.scss */
+.x-grid-rowbody-tr .x-form-item-label {
+  margin-top: 0;
+  color: #000;
+}
+/* line 34, ../../../../sass/src/view/BalanceGrid.scss */
+.x-grid-rowbody-tr .x-form-display-field {
+  margin-top: 0;
+}
+
+/* line 40, ../../../../sass/src/view/BalanceGrid.scss */
+.x-form-display-field-body {
+  height: 20px;
+}
+
+/* line 44, ../../../../sass/src/view/BalanceGrid.scss */
+.x-column-header-text {
+  font-size: 0.9em;
+}
+
+/* line 48, ../../../../sass/src/view/BalanceGrid.scss */
+.x-grid-row-expander {
+  margin: 0 auto;
+}
+
+/* line 53, ../../../../sass/src/view/BalanceGrid.scss */
+.x-grid-data-row, tr.x-grid-rowbody-tr {
+  background: #FFF;
+}
+
+/* line 57, ../../../../sass/src/view/BalanceGrid.scss */
+.x-btn.x-btn-default-small.view-all-on-map-button {
+  background-position: 83px -44px !important;
+}
+
+/* line 61, ../../../../sass/src/view/BalanceGrid.scss */
+.x-btn.x-btn-default-small.export-data-button {
+  background-position: 50px -61px !important;
+}
+
+/* line 66, ../../../../sass/src/view/BalanceGrid.scss */
+.x-btn.x-btn-default-small.previous-job {
+  background: none!important;
+}
+
 /* line 1, ../../../../sass/src/view/MainContainer.scss */
 .app-main-container {
   padding: 1em;
 }
-/* line 11, ../../../../sass/src/view/MainContainer.scss */
+/* line 3, ../../../../sass/src/view/MainContainer.scss */
 .app-main-container .input-field {
   margin: .2em 0!important;
+}
+
+/* line 13, ../../../../sass/src/view/MainContainer.scss */
+.balance-grid .x-grid-rowwrap.x-grid-td {
+  overflow: visible;
 }
 
 /* line 2, ../../../../sass/src/view/Main.scss */

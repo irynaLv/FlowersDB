@@ -26,9 +26,6 @@ Ext.define('FlowersDB.view.BalanceContainer', {
             xtype: 'button',
             text:"Залишок",
             itemId:'balance-btn'
-        },
-        {
-//            xtype:'balance-grid'
         }
     ],
     initComponent: function () {

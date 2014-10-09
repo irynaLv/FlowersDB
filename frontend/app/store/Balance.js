@@ -10,4 +10,5 @@ Ext.define('FlowersDB.store.Balance', {
         property: 'category',
         direction: 'ASC'
     }]
+
 });

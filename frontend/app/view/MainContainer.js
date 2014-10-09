@@ -11,57 +11,76 @@ Ext.define('FlowersDB.view.MainContainer', {
     xtype: 'app-main-container',
     itemId: 'app-main-container',
     cls: 'app-main-container',
+    layout:'hbox',
 
-    layout: {
-        type: 'vbox'
-    },
     width: '100%',
     data: null,
     items: [
         {
-            xtype: 'shop-boxes',
-            hidden:true
-        },
-        {
-            xtype: 'products-boxes',
-            hidden:true
-        },
+            xtype:'container',
+            layout: {
+                type: 'vbox'
+            },
+            items:[
+                {
+                    xtype: 'shop-boxes',
+                    hidden:true
+                },
+                {
+                    xtype: 'products-boxes',
+                    hidden:true
+                },
 
-        {
-            xtype: 'income-container',
-            width: 500,
-            height:200,
-            hidden:true
+                {
+                    xtype: 'income-container',
+                    width: 400,
+                    height:200,
+                    hidden:true
+                },
+                {
+                    xtype: 'sale-container',
+                    width: 400,
+                    height:200,
+                    hidden:true
+                },
+                {
+                    xtype: 'revaluation-container',
+                    width: 400,
+                    height:200,
+                    hidden:true
+                },
+                {
+                    xtype: 'writeoff-container',
+                    width: 400,
+                    height:200,
+                    hidden:true
+                },
+                {
+                    xtype: 'balance-container',
+                    width: 300,
+                    height:200,
+                    hidden:true
+                },
+                {
+                    xtype: 'add-category',
+                    width: 400,
+                    height:200,
+                    hidden:true
+                }
+            ]
         },
         {
-            xtype: 'sale-container',
-            width: 500,
-            height:200,
-            hidden:true
-        },
-        {
-            xtype: 'revaluation-container',
-            width: 500,
-            height:200,
-            hidden:true
-        },
-        {
-            xtype: 'writeoff-container',
-            width: 500,
-            height:200,
-            hidden:true
-        },
-        {
-            xtype: 'balance-container',
-            width: 500,
-            height:200,
-            hidden:true
-        },
-        {
-            xtype: 'add-category',
-            width: 500,
-            height:200,
-            hidden:true
+            xtype:'container',
+            flex:1,
+            region:'east',
+            items:[
+                {
+                    flex:1,
+                    hidden:true,
+                    itemId:'balance-grid',
+                    xtype:'balance-grid'
+                }
+            ]
         }
     ],
     initComponent: function () {
@@ -120,6 +139,7 @@ Ext.define('FlowersDB.view.MainContainer', {
         this.down('#new-product-container').setVisible(false);
         this.down('#writeoff-container').setVisible(false);
         this.down('#balance-container').setVisible(false);
+        this.down('#balance-grid').setVisible(false);
     },
 
     setEditableFields: function(value){
@@ -245,6 +265,7 @@ Ext.define('FlowersDB.view.MainContainer', {
         this.setComboBoxVisibility(true);
         this.setContainerHidden();
         this.down("#balance-container").setVisible(true);
+        this.down('#balance-grid').setVisible(true);
 
     },
     onBalanceClick: function(){
@@ -275,6 +296,7 @@ Ext.define('FlowersDB.view.MainContainer', {
 
     showAddCategoryContainer:function(){
         this.setComboBoxVisibility(false);
+        this.setContainerHidden();
         this.down("#new-product-container").setVisible(true);
     }
 });
