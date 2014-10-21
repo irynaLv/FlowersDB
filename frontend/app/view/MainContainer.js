@@ -34,7 +34,7 @@ Ext.define('FlowersDB.view.MainContainer', {
                 {
                     xtype: 'income-container',
                     width: 400,
-                    height:200,
+                    height:400,
                     hidden:true
                 },
                 {
@@ -61,6 +61,13 @@ Ext.define('FlowersDB.view.MainContainer', {
                     height:200,
                     hidden:true
                 },
+                {
+                    xtype: 'revenue-container',
+                    width: 300,
+                    height:200,
+                    hidden:true
+                },
+
                 {
                     xtype: 'add-category',
                     width: 400,
@@ -98,6 +105,7 @@ Ext.define('FlowersDB.view.MainContainer', {
         this.on('addcategory', this.showAddCategoryContainer, this);
         this.on('showdashboard', this.showDashboard, this);
         this.on('balance', this.showBalance, this);
+        this.on('revenue', this.showRevenueContainer, this);
     },
     showDashboard:function(){
         this.setContainerHidden();
@@ -172,6 +180,7 @@ Ext.define('FlowersDB.view.MainContainer', {
     onAddNewGoods: function(){
         var shopsView = this.down('#shop-boxes');
         var productsView = this.down('#products-boxes');
+
         var isCorrect = this.checkData(this.down('#income-container'));
         if(isCorrect){
             var obj = {};
@@ -181,6 +190,7 @@ Ext.define('FlowersDB.view.MainContainer', {
             obj.subcategory = productsView.productValue.subcategory;
             obj.name = productsView.productValue.name;
             obj.type = productsView.productValue.type;
+            obj.date = this.down('#income-container').down('#date-field-picker').getValue();
             obj.price = this.down('#income-container').down('#price-field').getValue();
             obj.status = 'shop';
             var quantity = this.down('#income-container').down('#quantity-field').getValue();
@@ -242,6 +252,7 @@ Ext.define('FlowersDB.view.MainContainer', {
             obj.productId = productsView.productValue.id;
             obj.status = 'shop';
             obj.price = this.down('#sale-container').down('#price-field').getValue();
+            obj.date = this.down('#sale-container').down('#date-field-picker').getValue();
             var quantity = this.down('#sale-container').down('#quantity-field').getValue();
             this.fireEvent('soldstaus', obj,quantity,  this);
         }
@@ -256,6 +267,7 @@ Ext.define('FlowersDB.view.MainContainer', {
             obj.shopId = shopsView.shopValue.shopId;
             obj.productId = productsView.productValue.id;
             obj.price = this.down('#writeoff-container').down('#price-field').getValue();
+            obj.date = this.down('#writeoff-container').down('#date-field-picker').getValue();
             var quantity = this.down('#writeoff-container').down('#quantity-field').getValue();
             this.fireEvent('writeoff', obj,quantity,  this);
         }
@@ -294,9 +306,16 @@ Ext.define('FlowersDB.view.MainContainer', {
         this.fireEvent('showBalance', obj,  this);
     },
 
+    showRevenueContainer: function(){
+
+    },
+
+
     showAddCategoryContainer:function(){
         this.setComboBoxVisibility(false);
         this.setContainerHidden();
         this.down("#new-product-container").setVisible(true);
     }
+
+
 });

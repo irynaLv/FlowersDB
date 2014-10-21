@@ -21,6 +21,10 @@ Ext.define('FlowersDB.view.IncomeContainer', {
     items: [
 
         {
+            xtype: 'date-field'
+        },
+
+        {
             xtype:'container',
             layout:'hbox',
             items:[

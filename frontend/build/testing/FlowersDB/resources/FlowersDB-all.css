@@ -4710,6 +4710,102 @@ img {
   font-size: 0;
 }
 
+/* line 1, ../../../../ext/packages/ext-theme-base/sass/src/picker/Date.scss */
+.x-datepicker {
+  position: relative;
+}
+
+/* line 5, ../../../../ext/packages/ext-theme-base/sass/src/picker/Date.scss */
+.x-datepicker-inner {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: separate;
+}
+
+/* line 11, ../../../../ext/packages/ext-theme-base/sass/src/picker/Date.scss */
+.x-datepicker-cell {
+  padding: 0;
+}
+
+/* line 15, ../../../../ext/packages/ext-theme-base/sass/src/picker/Date.scss */
+.x-datepicker-header {
+  position: relative;
+  zoom: 1;
+}
+
+/* line 20, ../../../../ext/packages/ext-theme-base/sass/src/picker/Date.scss */
+.x-datepicker-arrow {
+  position: absolute;
+  outline: none;
+  font-size: 0;
+}
+
+/* line 26, ../../../../ext/packages/ext-theme-base/sass/src/picker/Date.scss */
+.x-datepicker-column-header {
+  padding: 0;
+}
+
+/* line 30, ../../../../ext/packages/ext-theme-base/sass/src/picker/Date.scss */
+.x-datepicker-date {
+  display: block;
+  zoom: 1;
+  text-decoration: none;
+}
+
+/* line 36, ../../../../ext/packages/ext-theme-base/sass/src/picker/Date.scss */
+.x-monthpicker {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+/* line 42, ../../../../ext/packages/ext-theme-base/sass/src/picker/Date.scss */
+.x-monthpicker-body {
+  height: 100%;
+}
+
+/* line 47, ../../../../ext/packages/ext-theme-base/sass/src/picker/Date.scss */
+.x-monthpicker-months,
+.x-monthpicker-years {
+  float: left;
+  height: 100%;
+}
+
+/* line 52, ../../../../ext/packages/ext-theme-base/sass/src/picker/Date.scss */
+.x-monthpicker-item {
+  float: left;
+}
+
+/* line 56, ../../../../ext/packages/ext-theme-base/sass/src/picker/Date.scss */
+.x-monthpicker-item-inner {
+  display: block;
+  text-decoration: none;
+}
+
+/* line 61, ../../../../ext/packages/ext-theme-base/sass/src/picker/Date.scss */
+.x-monthpicker-yearnav-button-ct {
+  float: left;
+  text-align: center;
+}
+
+/* line 66, ../../../../ext/packages/ext-theme-base/sass/src/picker/Date.scss */
+.x-monthpicker-yearnav-button {
+  display: inline-block;
+  outline: none;
+  font-size: 0;
+}
+
+/* line 72, ../../../../ext/packages/ext-theme-base/sass/src/picker/Date.scss */
+.x-monthpicker-buttons {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+/* line 78, ../../../../ext/packages/ext-theme-base/sass/src/picker/Date.scss */
+.x-strict .x-ie6 .x-monthpicker-buttons {
+  bottom: -1px;
+}
+
 /* line 1, ../../../../ext/packages/ext-theme-base/sass/src/layout/container/Fit.scss */
 .x-fit-item {
   position: relative;
@@ -13101,6 +13197,340 @@ div.x-form-spinner-down {
 .x-boundlist-above {
   border-top-width: 1px;
   border-bottom-width: 1px;
+}
+
+/* line 9, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+.x-datepicker {
+  border-width: 1px;
+  border-style: solid;
+  border-color: #1b376c;
+  background-color: white;
+  width: 177px;
+}
+
+/* line 19, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+.x-datepicker-header {
+  padding: 3px 6px;
+  text-align: center;
+  background-image: none;
+  background-color: #23427c;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #264888), color-stop(100%, #1f3a6c));
+  background-image: -webkit-linear-gradient(top, #264888, #1f3a6c);
+  background-image: -moz-linear-gradient(top, #264888, #1f3a6c);
+  background-image: -o-linear-gradient(top, #264888, #1f3a6c);
+  background-image: linear-gradient(top, #264888, #1f3a6c);
+}
+
+/* line 32, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+.x-datepicker-arrow {
+  width: 15px;
+  height: 15px;
+  top: 6px;
+  cursor: pointer;
+  background-color: #23427c;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
+  opacity: 0.7;
+}
+
+/* line 50, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+a.x-datepicker-arrow:hover {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+}
+
+/* line 55, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+.x-datepicker-next {
+  right: 6px;
+  background-image: url(images/shared/right-btn.gif);
+}
+
+/* line 60, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+.x-datepicker-prev {
+  left: 6px;
+  background-image: url(images/shared/left-btn.gif);
+}
+
+/* line 76, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+.x-datepicker-month .x-btn,
+.x-datepicker-month .x-btn .x-btn-tc,
+.x-datepicker-month .x-btn .x-btn-tl,
+.x-datepicker-month .x-btn .x-btn-tr,
+.x-datepicker-month .x-btn .x-btn-mc,
+.x-datepicker-month .x-btn .x-btn-ml,
+.x-datepicker-month .x-btn .x-btn-mr,
+.x-datepicker-month .x-btn .x-btn-bc,
+.x-datepicker-month .x-btn .x-btn-bl,
+.x-datepicker-month .x-btn .x-btn-br {
+  background: transparent;
+  border-width: 0 !important;
+}
+/* line 83, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+.x-datepicker-month .x-btn-inner {
+  color: white;
+}
+/* line 88, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+.x-datepicker-month .x-btn-split-right {
+  background-image: url(images/button/s-arrow-light.gif);
+  padding-right: 12px;
+}
+
+/* line 94, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+.x-datepicker-column-header {
+  width: 25px;
+  color: #233d6d;
+  font: normal 10px tahoma, arial, verdana, sans-serif;
+  text-align: right;
+  border-width: 0 0 1px;
+  border-style: solid;
+  border-color: #b2d1f5;
+  background-image: none;
+  background-color: #dfecfb;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #edf4fd), color-stop(100%, #cde1f9));
+  background-image: -webkit-linear-gradient(top, #edf4fd, #cde1f9);
+  background-image: -moz-linear-gradient(top, #edf4fd, #cde1f9);
+  background-image: -o-linear-gradient(top, #edf4fd, #cde1f9);
+  background-image: linear-gradient(top, #edf4fd, #cde1f9);
+}
+
+/* line 113, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+.x-datepicker-column-header-inner {
+  line-height: 19px;
+  padding: 0 7px 0 0;
+}
+
+/* line 118, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+.x-datepicker-cell {
+  text-align: right;
+  border-width: 1px;
+  border-style: solid;
+  border-color: white;
+}
+
+/* line 128, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+.x-datepicker-date {
+  padding: 0 4px 0 0;
+  font: normal 11px tahoma, arial, verdana, sans-serif;
+  color: black;
+  cursor: pointer;
+  line-height: 18px;
+}
+
+/* line 138, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+a.x-datepicker-date:hover {
+  color: black;
+  background-color: #ddecfe;
+}
+
+/* line 143, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+.x-datepicker-selected {
+  border-style: solid;
+  border-color: #8db2e3;
+}
+/* line 146, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+.x-datepicker-selected .x-datepicker-date {
+  background-color: #dae5f3;
+  font-weight: bold;
+}
+
+/* line 152, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+.x-datepicker-today {
+  border-color: darkred;
+  border-style: solid;
+}
+
+/* line 159, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+.x-datepicker-prevday .x-datepicker-date,
+.x-datepicker-nextday .x-datepicker-date {
+  color: #aaaaaa;
+}
+
+/* line 166, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+.x-datepicker-disabled a.x-datepicker-date {
+  background-color: #eeeeee;
+  cursor: default;
+  color: #bbbbbb;
+}
+
+/* line 174, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+.x-datepicker-disabled a.x-datepicker-date:hover {
+  background-color: #eeeeee;
+}
+
+/* line 179, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+.x-datepicker-footer,
+.x-monthpicker-buttons {
+  padding: 4px 0;
+  border-width: 1px 0 0;
+  border-style: solid;
+  border-color: #b2d1f5;
+  background-image: none;
+  background-color: #dfecfb;
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #dee8f5), color-stop(49%, #d1dff0), color-stop(51%, #c7d8ed), color-stop(100%, #cbdaee));
+  background-image: -webkit-linear-gradient(top, #dee8f5, #d1dff0 49%, #c7d8ed 51%, #cbdaee);
+  background-image: -moz-linear-gradient(top, #dee8f5, #d1dff0 49%, #c7d8ed 51%, #cbdaee);
+  background-image: -o-linear-gradient(top, #dee8f5, #d1dff0 49%, #c7d8ed 51%, #cbdaee);
+  background-image: linear-gradient(top, #dee8f5, #d1dff0 49%, #c7d8ed 51%, #cbdaee);
+  text-align: center;
+}
+/* line 195, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+.x-datepicker-footer .x-btn,
+.x-monthpicker-buttons .x-btn {
+  margin: 0 2px 0 2px;
+}
+
+/* line 201, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+.x-monthpicker {
+  width: 177px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #1b376c;
+  background-color: white;
+}
+
+/* line 211, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+.x-monthpicker-months {
+  border-width: 0 1px 0 0;
+  border-color: #1b376c;
+  border-style: solid;
+  width: 87px;
+}
+/* line 220, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+.x-monthpicker-months .x-monthpicker-item {
+  width: 43px;
+}
+
+/* line 225, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+.x-monthpicker-years {
+  width: 88px;
+}
+/* line 228, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+.x-monthpicker-years .x-monthpicker-item {
+  width: 44px;
+}
+
+/* line 233, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+.x-monthpicker-item {
+  margin: 5px 0 4px;
+  font: normal 11px tahoma, arial, verdana, sans-serif;
+  text-align: center;
+}
+
+/* line 239, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+.x-monthpicker-item-inner {
+  margin: 0 5px 0 5px;
+  color: #15428b;
+  border-width: 1px;
+  border-style: solid;
+  border-color: white;
+  line-height: 16px;
+  cursor: pointer;
+}
+
+/* line 254, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+a.x-monthpicker-item-inner:hover {
+  background-color: #ddecfe;
+}
+
+/* line 258, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+.x-monthpicker-selected {
+  background-color: #dae5f3;
+  border-style: solid;
+  border-color: #8db2e3;
+}
+
+/* line 264, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+.x-monthpicker-yearnav {
+  height: 27px;
+}
+
+/* line 268, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+.x-monthpicker-yearnav-button-ct {
+  width: 44px;
+}
+
+/* line 272, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+.x-monthpicker-yearnav-button {
+  height: 15px;
+  width: 15px;
+  cursor: pointer;
+  margin-top: 6px;
+  background-color: white;
+}
+
+/* line 294, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+.x-monthpicker-yearnav-next {
+  background-image: url(images/tools/tool-sprites.gif);
+  background-position: 0 -120px;
+}
+
+/* line 299, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+.x-monthpicker-yearnav-next-over {
+  background-position: -15px -120px;
+}
+
+/* line 303, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+.x-monthpicker-yearnav-prev {
+  background-image: url(images/tools/tool-sprites.gif);
+  background-position: 0 -105px;
+}
+
+/* line 308, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+.x-monthpicker-yearnav-prev-over {
+  background-position: -15px -105px;
+}
+
+/* line 313, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+.x-monthpicker-small .x-monthpicker-item {
+  margin: 2px 0 2px;
+}
+/* line 317, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+.x-monthpicker-small .x-monthpicker-item-inner {
+  margin: 0 5px 0 5px;
+}
+/* line 321, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+.x-monthpicker-small .x-monthpicker-yearnav {
+  height: 22px;
+}
+/* line 325, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+.x-monthpicker-small .x-monthpicker-yearnav-button {
+  margin-top: 3px;
+}
+
+/* line 334, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+.x-nlg .x-datepicker-header {
+  background-image: url(images/datepicker/datepicker-header-bg.gif);
+  background-repeat: repeat-x;
+  background-position: top left;
+}
+/* line 343, ../../../../ext/packages/ext-theme-neutral/sass/src/picker/Date.scss */
+.x-nlg .x-datepicker-footer,
+.x-nlg .x-monthpicker-buttons {
+  background-image: url(images/datepicker/datepicker-footer-bg.gif);
+  background-repeat: repeat-x;
+  background-position: top left;
+}
+
+/*<if slicer>*/
+/* line 78, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
+.x-datepicker-header:after {
+  display: none;
+  content: "x-slicer:bg:url(images/datepicker/datepicker-header-bg.gif)";
+}
+
+/*</if slicer>*/
+/* */
+/*<if slicer>*/
+/* line 78, ../../../../ext/packages/ext-theme-base/sass/etc/mixins/slicer.scss */
+.x-datepicker-footer:after {
+  display: none;
+  content: "x-slicer:bg:url(images/datepicker/datepicker-footer-bg.gif)";
+}
+
+/*</if slicer>*/
+/* */
+/* line 1, ../../../../ext/packages/ext-theme-neutral/sass/src/form/field/Date.scss */
+.x-form-date-trigger {
+  background-image: url(images/form/date-trigger.gif);
 }
 
 /* line 1, ../../../../ext/packages/ext-theme-neutral/sass/src/panel/Table.scss */

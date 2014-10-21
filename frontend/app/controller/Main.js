@@ -71,6 +71,9 @@ Ext.define('FlowersDB.controller.Main', {
             'app-menu #balance-btn':{
                 click: this.onBalanceBtn
             },
+            'app-menu #revenue-btn':{
+                click: this.onRevenueBtn
+            },
             'app-menu #main-btn':{
                 click: this.showDashboard
             }
@@ -176,6 +179,7 @@ Ext.define('FlowersDB.controller.Main', {
                 category: body.category,
                 subcategory: body.subcategory,
                 name:body.name,
+                date:body.date,
                 type:body.type
             },
             success: function(response){
@@ -231,6 +235,7 @@ Ext.define('FlowersDB.controller.Main', {
                 productId: parseInt(body.productId),
                 price: parseInt(body.price),
                 status: body.status,
+                date: body.date,
                 quantity: parseInt(quantity)
             },
             success: function(response){
@@ -252,6 +257,7 @@ Ext.define('FlowersDB.controller.Main', {
                 shopId: parseInt(body.shopId),
                 productId: parseInt(body.productId),
                 price: parseInt(body.price),
+                date:body.date,
                 quantity: parseInt(quantity)
             },
             success: function(response){
@@ -353,6 +359,12 @@ Ext.define('FlowersDB.controller.Main', {
     },
 
     setTotalAmount:function(){
-        
+
+    },
+
+    onRevenueBtn: function(){
+        this.loadProductsAndShop(true);
+//        this.getMainContainer().fireEvent('revenue');
     }
+
 });

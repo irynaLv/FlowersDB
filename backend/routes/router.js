@@ -28,7 +28,7 @@ module.exports = function (app, passport) {
                     productId: body.productId,
                     price: body.price,
                     status: 'shop',
-                    incomeDate: new Date(),
+                    incomeDate: body.date,
                     category: body.category||null,
                     subcategory: body.subcategory || null,
                     name:body.name || null,
@@ -103,7 +103,7 @@ module.exports = function (app, passport) {
                     var goods = doc[i];
                     goods.price = 0;
                     goods.status = 'sold';
-                    goods.saleDate = new Date();
+                    goods.saleDate = req.body.date;
                     goods.save(function (err) {
                         if (!err && doc) {
                             res.json(doc);
@@ -134,7 +134,7 @@ module.exports = function (app, passport) {
                 for(var i=0; i<doc.length; i++){
                     var goods = doc[i];
                     goods.status = 'sold';
-                    goods.saleDate = new Date();
+                    goods.saleDate = req.body.date;
                     goods.save(function (err) {
                         if (!err && doc) {
                             res.json(doc);

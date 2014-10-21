@@ -19,6 +19,10 @@ Ext.define('FlowersDB.view.SaleContainer', {
     data: null,
     items: [
 
+        {
+            xtype: 'date-field'
+        },
+
 
         {
             xtype:'container',

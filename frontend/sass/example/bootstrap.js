@@ -839,6 +839,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "FlowersDB.view.AddCategory": [],
   "FlowersDB.view.BalanceContainer": [],
   "FlowersDB.view.BalanceGrid": [],
+  "FlowersDB.view.DateField": [],
   "FlowersDB.view.IncomeContainer": [],
   "FlowersDB.view.Main": [],
   "FlowersDB.view.MainContainer": [],
@@ -846,6 +847,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "FlowersDB.view.NumberInputField": [],
   "FlowersDB.view.ProductsBoxes": [],
   "FlowersDB.view.RevaluationContainer": [],
+  "FlowersDB.view.RevenueContainer": [],
   "FlowersDB.view.SaleContainer": [],
   "FlowersDB.view.ShopBoxes": [],
   "FlowersDB.view.Viewport": [],
@@ -1854,6 +1856,9 @@ Ext.ClassManager.addNameAliasMappings({
   "FlowersDB.view.BalanceGrid": [
     "widget.balance-grid"
   ],
+  "FlowersDB.view.DateField": [
+    "widget.date-field"
+  ],
   "FlowersDB.view.IncomeContainer": [
     "widget.income-container"
   ],
@@ -1874,6 +1879,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "FlowersDB.view.RevaluationContainer": [
     "widget.revaluation-container"
+  ],
+  "FlowersDB.view.RevenueContainer": [
+    "widget.revenue-container"
   ],
   "FlowersDB.view.SaleContainer": [
     "widget.sale-container"

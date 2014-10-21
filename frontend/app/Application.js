@@ -15,7 +15,8 @@ Ext.define('FlowersDB.Application', {
         'FlowersDB.view.RevaluationContainer',
         'FlowersDB.view.WriteOffContainer',
         'FlowersDB.view.BalanceContainer',
-        'FlowersDB.view.BalanceGrid'
+        'FlowersDB.view.RevenueContainer',
+        'FlowersDB.view.DateField'
     ],
 
     controllers:[

@@ -21,6 +21,9 @@ Ext.define('FlowersDB.view.WriteOffContainer', {
     flex:1,
     width: '100%',
     items: [
+        {
+            xtype: 'date-field'
+        },
 
         {
             xtype:'container',
