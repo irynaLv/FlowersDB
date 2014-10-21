@@ -32,7 +32,7 @@ app.use(cookieParser());
 // routes ======================================================================
 require('./routes/router.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
-if (process.env.PRODUCTION) {
+if (process.env.NODE_ENV === 'production') {
     console.log('Production');
     app.use(express.static(path.join(__dirname, 'public')));
 } else {
