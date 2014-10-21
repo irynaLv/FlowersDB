@@ -60,7 +60,8 @@ Ext.define('FlowersDB.controller.Main', {
                 'changeprice': this.changePriceForSelectedGoods,
                 'soldstaus': this.setSaleStatus,
                 'writeoff' : this.setWriteOff,
-                'showBalance' : this.getBalance
+                'showBalance' : this.getBalance,
+                'showRevenue' : this.getRevenue
             },
             'app-menu #income-btn, app-menu #sale-btn, app-menu #revaluation-btn, app-menu #write-off-btn':{
                 click: this.setCorrectContainer
@@ -364,7 +365,11 @@ Ext.define('FlowersDB.controller.Main', {
 
     onRevenueBtn: function(){
         this.loadProductsAndShop(true);
-//        this.getMainContainer().fireEvent('revenue');
+        this.getMainContainer().fireEvent('revenue');
+    },
+
+    getRevenue: function(){
+
     }
 
 });

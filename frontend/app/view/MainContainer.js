@@ -100,6 +100,7 @@ Ext.define('FlowersDB.view.MainContainer', {
         this.down('#new-goods-btn-sale').on('click', this.setSaleStatus, this);
         this.down('#write-off-btn').on('click', this.setWriteOff, this);
         this.down('#balance-btn').on('click', this.onBalanceClick, this);
+        this.down('#revenue-btn').on('click', this.onRevenueClick, this);
 
         this.on('income', this.showCorrectContainer, this);
         this.on('addcategory', this.showAddCategoryContainer, this);
@@ -160,8 +161,6 @@ Ext.define('FlowersDB.view.MainContainer', {
     setEditableShops:function(value){
         this.down('#shop-field').setEditable(value);
     },
-
-
     onAddNewProduct:function(){
         var shopsView = this.down('#shop-boxes');
         var productsView = this.down('#products-boxes');
@@ -307,9 +306,35 @@ Ext.define('FlowersDB.view.MainContainer', {
     },
 
     showRevenueContainer: function(){
-
+        this.setComboBoxVisibility(true);
+        this.setContainerHidden();
+        this.down("#revenue-container").setVisible(true);
     },
 
+    onRevenueClick: function(){
+        var shopsView = this.down('#shop-boxes');
+        var productsView = this.down('#products-boxes');
+        var obj = {};
+        if(shopsView.shopValue) {
+            obj.shopId = shopsView.shopValue.shopId;
+        }
+        obj.dateFrom = this.down("#revenue-container").down('#dateFrom').getValue();
+        obj.dateTo = this.down("#revenue-container").down('#dateTo').getValue();
+        if(productsView.productValue){
+            obj.productId = productsView.productValue.id;
+            obj.category = productsView.productValue.category;
+            obj.subcategory = productsView.productValue.subcategory;
+            obj.name = productsView.productValue.name;
+            obj.type = productsView.productValue.type;
+        }else{
+            obj.category = productsView.down('#category-field').getValue();
+            obj.subcategory = productsView.down('#subcategory-field').getValue();
+            obj.name = productsView.down('#name-field').getValue();
+            obj.type = productsView.down('#type-field').getValue();
+            obj.productId = null;
+        }
+        this.fireEvent('showRevenue', obj,  this);
+    },
 
     showAddCategoryContainer:function(){
         this.setComboBoxVisibility(false);

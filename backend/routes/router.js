@@ -189,6 +189,44 @@ module.exports = function (app, passport) {
 
     });
 
+    app.get('/api/revenue', function(req, res) {
+        var obj = {};
+        var shopId = req.query.shopId;
+        var productId  = req.query.productId;
+        var status  = 'sold';
+        var category  = req.query.category;
+        var subcategory  = req.query.subcategory;
+        var name  = req.query.name;
+        if(shopId){
+            obj.shopId = shopId;
+        }
+        if(productId){
+            obj.productId = productId;
+        }
+        if(category){
+            obj.category = category;
+        }
+        if(subcategory){
+            obj.subcategory = subcategory;
+        }
+        if(name){
+            obj.name = name;
+        }
+        obj.status = 'sold';
+
+        var query = Goods.find(obj).exec(function (err, doc) {
+            if (!err && doc) {
+                res.json(doc);
+            } else {
+                res.status(404);
+                res.send();
+            }
+        });
+
+
+
+    });
+
 
     app.get('/api/documents', function(req, res) {
         function escapeRegExp(str) {

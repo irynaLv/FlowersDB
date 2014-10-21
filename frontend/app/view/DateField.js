@@ -33,11 +33,5 @@ Ext.define('FlowersDB.view.DateField', {
     initComponent: function () {
         var me = this;
         me.callParent(arguments);
-//        this.down('#change-date-btn').on('click', this.onCalendarBtn, this);
-    },
-
-    onCalendarBtn: function(){
-        this.down('#date-picker').setVisible(true);
     }
-
 })
