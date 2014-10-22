@@ -148,6 +148,7 @@ Ext.define('FlowersDB.view.MainContainer', {
         this.down('#new-product-container').setVisible(false);
         this.down('#writeoff-container').setVisible(false);
         this.down('#balance-container').setVisible(false);
+        this.down('#revenue-container').setVisible(false);
         this.down('#balance-grid').setVisible(false);
     },
 
@@ -309,6 +310,7 @@ Ext.define('FlowersDB.view.MainContainer', {
         this.setComboBoxVisibility(true);
         this.setContainerHidden();
         this.down("#revenue-container").setVisible(true);
+        this.down('#balance-grid').setVisible(true);
     },
 
     onRevenueClick: function(){

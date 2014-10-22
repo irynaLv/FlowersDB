@@ -14,7 +14,7 @@ Ext.define('FlowersDB.view.BalanceGrid', {
     data:[],
     columnLines: true,
     height: 500,
-    width: 680,
+    width: 800,
 
     defaults: {
         flex: 1
@@ -93,7 +93,6 @@ Ext.define('FlowersDB.view.BalanceGrid', {
             {
                 text     : 'Сума',
                 width    : 80,
-//                sortable : true,
                 renderer : function(price, el, record) {
                     var counter = record.data.counter;
                     var val = price*counter;
@@ -102,20 +101,41 @@ Ext.define('FlowersDB.view.BalanceGrid', {
                     return val;
                 },
                 dataIndex: 'price'
+            },
+            {
+                text     : 'Дата приходу',
+                width    : 80,
+                sortable : true,
+                renderer : function(val) {
+                    var date = new Date().getDate();
+                    var month =  new Date().getMonth();
+                    var year =  new Date().getFullYear();
+                    return date+'/'+month + '/'+ year;
+                },
+                dataIndex: 'incomeDate'
+            },
+            {
+                text     : 'Дата продажу',
+                width    : 80,
+                sortable : true,
+                renderer : function(val) {
+                    var date = new Date().getDate();
+                    var month =  new Date().getMonth();
+                    var year =  new Date().getFullYear();
+                    return date+'/'+month + '/'+ year;
+                },
+                dataIndex: 'saleDate'
             }
         ];
 
 
         this.store = Ext.getStore('FlowersDB.store.Balance');
         this.callParent();
-        this.down('#total-amount').setValue(this.totalAmount)
-        this.on('afterrender', this.setTotalAmount, this)
+        this.down('#total-amount').setValue(this.totalAmount);
+        //this.on('afterrender', this.setTotalAmount, this)
     },
     viewConfig: {
         stripeRows: true
-    },
-
-    setTotalAmount:function(){
-
     }
+
 });

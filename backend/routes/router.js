@@ -190,40 +190,34 @@ module.exports = function (app, passport) {
     });
 
     app.get('/api/revenue', function(req, res) {
-        var obj = {};
-        var shopId = req.query.shopId;
-        var productId  = req.query.productId;
-        var status  = 'sold';
-        var category  = req.query.category;
-        var subcategory  = req.query.subcategory;
-        var name  = req.query.name;
-        if(shopId){
-            obj.shopId = shopId;
+        var query = Goods.find(
+            {
+                'saleDate':{$gte:req.query.dateFrom, $lt:req.query.dateTo},
+                'status': 'sold'
+            });
+        if(req.query.shopId){
+            query.where('shopId').equals(req.query.shopId)
         }
-        if(productId){
-            obj.productId = productId;
+        if(req.query.productId){
+            query.where('productId').equals(req.query.productId)
         }
-        if(category){
-            obj.category = category;
+        if(req.query.category){
+            query.where('category').equals(req.query.category)
         }
-        if(subcategory){
-            obj.subcategory = subcategory;
+        if(req.query.subcategory){
+            query.where('subcategory').equals(req.query.subcategory)
         }
-        if(name){
-            obj.name = name;
+        if(req.query.name){
+            query.where('name').equals(req.query.name)
         }
-        obj.status = 'sold';
-
-        var query = Goods.find(obj).exec(function (err, doc) {
-            if (!err && doc) {
-                res.json(doc);
-            } else {
-                res.status(404);
-                res.send();
-            }
-        });
-
-
+        query.exec(function (err, doc) {
+                if (!err && doc) {
+                    res.json(doc);
+                } else {
+                    res.status(404);
+                    res.send();
+                }
+            });
 
     });
 
