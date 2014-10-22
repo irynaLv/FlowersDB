@@ -16,7 +16,7 @@ var mongoose = require('mongoose'),
             type: Number,
             required:true
         },
-        id:{
+        shopId:{
             type: Number,
             required:true
         }

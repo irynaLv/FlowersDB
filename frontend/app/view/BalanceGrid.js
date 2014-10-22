@@ -93,7 +93,6 @@ Ext.define('FlowersDB.view.BalanceGrid', {
             {
                 text     : 'Сума',
                 width    : 80,
-//                sortable : true,
                 renderer : function(price, el, record) {
                     var counter = record.data.counter;
                     var val = price*counter;
@@ -108,7 +107,7 @@ Ext.define('FlowersDB.view.BalanceGrid', {
 
         this.store = Ext.getStore('FlowersDB.store.Balance');
         this.callParent();
-        this.down('#total-amount').setValue(this.totalAmount)
+        this.down('#total-amount').setValue(this.totalAmount);
         this.on('afterrender', this.setTotalAmount, this)
     },
     viewConfig: {

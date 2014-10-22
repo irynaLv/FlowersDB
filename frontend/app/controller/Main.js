@@ -85,6 +85,7 @@ Ext.define('FlowersDB.controller.Main', {
     initStores: function(){
         this.productsStore = Ext.getStore('FlowersDB.store.Products');
         this.shopsStore = Ext.getStore('FlowersDB.store.Shops');
+        //this.balanceStore = Ext.getStore('FlowersDB.store.Balance');
         this.balanceStore = Ext.getStore('FlowersDB.store.Balance');
         this.balanceStore.on('load', this.sortBalanceData, this)
         this.balanceStore.on('datachanged', this.setTotalAmount, this)
@@ -368,8 +369,83 @@ Ext.define('FlowersDB.controller.Main', {
         this.getMainContainer().fireEvent('revenue');
     },
 
-    getRevenue: function(){
+    getRevenue: function(body){
+        var me = this;
+        var obj= {};
+        var shopId = body.shopId;
+        var productId  = body.productId;
+        var category  = body.category;
+        var subcategory  = body.subcategory;
+        var name  = body.name;
+        obj.dateFrom  = body.dateFrom;
+        obj.dateTo  = new Date(body.dateTo.setHours(23,59,59,999));
+        if(shopId){
+            obj.shopId = shopId;
+        }
+        if(productId){
+            obj.productId = productId;
+        }
+        if(category){
+            obj.category = category;
+        }
+        if(subcategory){
+            obj.subcategory = subcategory;
+        }
+        if(name){
+            obj.name = name;
+        }
 
+        Ext.Ajax.request({
+            method: 'GET',
+            url: '/api/revenue',
+            params: obj,
+            success: function(response){
+                var text = response.responseText;
+                var data = JSON.parse(text);
+                me.sortRevenueData(data)
+
+            },
+            error:function(){
+
+            }
+        })
+
+    },
+
+    sortRevenueData: function(data){
+        var arr =[];
+        for(var i=0; i<data.length; i++){
+            if(arr.length == 0){
+                data[i].counter = 1;
+                arr.push(data[i])
+            }else{
+                var prodId = data[i].productId;
+                var price = data[i].price;
+                var shopId = data[i].shopId;
+                var isExist = true;
+                for(var j=0; j<arr.length; j++){
+                    var arrId = arr[j].productId;
+                    var arrPrice = arr[j].price;
+                    var arrShop = arr[j].shopId;
+                    if(arrId == prodId && arrPrice == price && arrShop == shopId){
+                        arr[j].counter++;
+                        isExist = true;
+                        break;
+                    }else{
+                        isExist = false
+                    }
+                }
+                if(!isExist){
+                    data[i].counter = 1;
+                    arr.push(data[i])
+                }
+            }
+        }
+        this.balanceStore.removeAll();
+        this.balanceStore.loadData(arr);
+
+        this.getBalanceGrid().bindStore(this.balanceStore);
+        this.getBalanceGrid().reconfigure(this.balanceStore)
     }
 
 });

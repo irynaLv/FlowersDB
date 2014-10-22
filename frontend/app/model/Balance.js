@@ -14,6 +14,7 @@ Ext.define('FlowersDB.model.Balance', {
         { name: 'productId', type: 'int'},
         { name: 'shopId', type: 'int'},
         { name: 'incomeDate', type: 'Date'},
+        { name: 'saleDate', type: 'Date'},
         { name: 'price', type: 'int'}
     ]
 });
