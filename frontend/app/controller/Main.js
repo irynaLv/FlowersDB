@@ -87,8 +87,9 @@ Ext.define('FlowersDB.controller.Main', {
         this.shopsStore = Ext.getStore('FlowersDB.store.Shops');
         //this.balanceStore = Ext.getStore('FlowersDB.store.Balance');
         this.balanceStore = Ext.getStore('FlowersDB.store.Balance');
-        this.balanceStore.on('load', this.sortBalanceData, this)
-        this.balanceStore.on('datachanged', this.setTotalAmount, this)
+        this.balanceStore.on('load', this.sortBalanceData, this);
+        this.balanceStore.on('datachanged', this.setTotalAmount, this);
+        this.alert = Ext.create('Ext.window.MessageBox');
     },
     loadProductsAndShop: function(isAddCategory){
         var me = this;
@@ -144,7 +145,10 @@ Ext.define('FlowersDB.controller.Main', {
 
     },
 
+
     addNewProductItem: function(body){
+        //this.showMsgAlert();
+        var me = this;
         Ext.Ajax.request({
             method: 'POST',
             url: '/api/product',
@@ -160,7 +164,7 @@ Ext.define('FlowersDB.controller.Main', {
             success: function(response){
                 var text = response.responseText;
                 var data = JSON.parse(text);
-
+                me.alert.alert('Результат', 'Додано новий товар в категорію ' + body.category);
             },
             error:function(){
 
@@ -169,6 +173,7 @@ Ext.define('FlowersDB.controller.Main', {
 
     },
     addNewGoods: function(body, quantity){
+        var me = this;
         Ext.Ajax.request({
             method: 'POST',
             url: '/api/newgoods',
@@ -187,7 +192,7 @@ Ext.define('FlowersDB.controller.Main', {
             success: function(response){
                 var text = response.responseText;
                 var data = JSON.parse(text);
-
+                me.alert.alert('Результат', 'Прихід: ' + " категорія "+ body.category + " кількість " +quantity + " ціна "+ body.price );
             },
             error:function(){
 
@@ -201,12 +206,12 @@ Ext.define('FlowersDB.controller.Main', {
     },
 
     addNewCategory:function(el){
-//        this.getAddCategoryContainer().data = this.productsStore;
         this.loadProductsAndShop(true);
 
         this.getMainContainer().fireEvent('addcategory');
     },
     changePriceForSelectedGoods: function(body, quantity, prevValue){
+        var me = this;
         Ext.Ajax.request({
             method: 'POST',
             url: '/api/changeprice',
@@ -221,7 +226,11 @@ Ext.define('FlowersDB.controller.Main', {
             success: function(response){
                 var text = response.responseText;
                 var data = JSON.parse(text);
-
+                if(data.length >0){
+                    me.alert.alert('Результат', 'Ціну змінено з '+ prevValue +'грн на '+body.price+ 'грн в категорії '+ data[0].category);
+                }else{
+                    me.alert.alert('Результат', 'Товарів із заданими параметрами не знайдено');
+                }
             },
             error:function(){
 
@@ -229,6 +238,7 @@ Ext.define('FlowersDB.controller.Main', {
         })
     },
     setSaleStatus: function(body, quantity, prevValue){
+        var me = this;
         Ext.Ajax.request({
             method: 'POST',
             url: '/api/saleproducts',
@@ -243,6 +253,11 @@ Ext.define('FlowersDB.controller.Main', {
             success: function(response){
                 var text = response.responseText;
                 var data = JSON.parse(text);
+                if(data.length >0){
+                    me.alert.alert('Результат', 'Продано ' +data.length + ' товари(-ів)');
+                }else{
+                    me.alert.alert('Результат', 'Товарів із заданими параметрами не знайдено');
+                }
 
             },
             error:function(){
@@ -252,6 +267,7 @@ Ext.define('FlowersDB.controller.Main', {
     },
 
     setWriteOff: function(body, quantity){
+        var me = this;
         Ext.Ajax.request({
             method: 'POST',
             url: '/api/writeoff',
@@ -265,7 +281,11 @@ Ext.define('FlowersDB.controller.Main', {
             success: function(response){
                 var text = response.responseText;
                 var data = JSON.parse(text);
-
+                if(data.length >0){
+                    me.alert.alert('Результат', 'Списано ' + data.length + ' товарів(-и)');
+                }else{
+                    me.alert.alert('Результат', 'Товарів із заданими параметрами не знайдено');
+                }
             },
             error:function(){
 
@@ -276,6 +296,7 @@ Ext.define('FlowersDB.controller.Main', {
     onBalanceBtn: function(){
         this.loadProductsAndShop();
         this.balanceStore.removeAll();
+        this.getBalanceGrid().down('#total-amount').setValue(0);
         this.getMainContainer().fireEvent('balance', this)
     },
 
@@ -311,7 +332,6 @@ Ext.define('FlowersDB.controller.Main', {
                 var text = response.responseText;
                 var data = JSON.parse(text);
                 me.sortBalanceData(data)
-
             },
             error:function(){
 
@@ -325,10 +345,12 @@ Ext.define('FlowersDB.controller.Main', {
     },
 
     sortBalanceData: function(data){
+        this.totalAmount = 0;
         var arr =[];
         for(var i=0; i<data.length; i++){
             if(arr.length == 0){
                 data[i].counter = 1;
+                this.totalAmount +=data[i].price;
                 arr.push(data[i])
             }else{
                 var prodId = data[i].productId;
@@ -341,6 +363,7 @@ Ext.define('FlowersDB.controller.Main', {
                     var arrShop = arr[j].shopId;
                     if(arrId == prodId && arrPrice == price && arrShop == shopId){
                         arr[j].counter++;
+                        this.totalAmount +=arr[j].price;
                         isExist = true;
                         break;
                     }else{
@@ -349,6 +372,7 @@ Ext.define('FlowersDB.controller.Main', {
                 }
                 if(!isExist){
                     data[i].counter = 1;
+                    this.totalAmount +=data[i].price;
                     arr.push(data[i])
                 }
             }
@@ -357,7 +381,8 @@ Ext.define('FlowersDB.controller.Main', {
         this.balanceStore.loadData(arr);
 
         this.getBalanceGrid().bindStore(this.balanceStore);
-        this.getBalanceGrid().reconfigure(this.balanceStore)
+        this.getBalanceGrid().reconfigure(this.balanceStore);
+        this.getBalanceGrid().down('#total-amount').setValue(this.totalAmount)
     },
 
     setTotalAmount:function(){
@@ -366,6 +391,8 @@ Ext.define('FlowersDB.controller.Main', {
 
     onRevenueBtn: function(){
         this.loadProductsAndShop(true);
+        this.balanceStore.removeAll();
+        this.getBalanceGrid().down('#total-amount').setValue(0);
         this.getMainContainer().fireEvent('revenue');
     },
 
@@ -402,7 +429,7 @@ Ext.define('FlowersDB.controller.Main', {
             success: function(response){
                 var text = response.responseText;
                 var data = JSON.parse(text);
-                me.sortRevenueData(data)
+                me.sortBalanceData(data)
 
             },
             error:function(){
@@ -410,42 +437,8 @@ Ext.define('FlowersDB.controller.Main', {
             }
         })
 
-    },
-
-    sortRevenueData: function(data){
-        var arr =[];
-        for(var i=0; i<data.length; i++){
-            if(arr.length == 0){
-                data[i].counter = 1;
-                arr.push(data[i])
-            }else{
-                var prodId = data[i].productId;
-                var price = data[i].price;
-                var shopId = data[i].shopId;
-                var isExist = true;
-                for(var j=0; j<arr.length; j++){
-                    var arrId = arr[j].productId;
-                    var arrPrice = arr[j].price;
-                    var arrShop = arr[j].shopId;
-                    if(arrId == prodId && arrPrice == price && arrShop == shopId){
-                        arr[j].counter++;
-                        isExist = true;
-                        break;
-                    }else{
-                        isExist = false
-                    }
-                }
-                if(!isExist){
-                    data[i].counter = 1;
-                    arr.push(data[i])
-                }
-            }
-        }
-        this.balanceStore.removeAll();
-        this.balanceStore.loadData(arr);
-
-        this.getBalanceGrid().bindStore(this.balanceStore);
-        this.getBalanceGrid().reconfigure(this.balanceStore)
     }
+
+
 
 });
