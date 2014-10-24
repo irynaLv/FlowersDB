@@ -48,7 +48,7 @@ Ext.define('FlowersDB.view.RevenueContainer', {
             startDay:1,
 //            maxValue: new Date(),
             name: 'startDate',
-            value: new Date(),
+            value: new Date(new Date().setDate(1)),
             cls:'input-field'
         });
         var dateTo =  Ext.create('Ext.form.DateField', {
