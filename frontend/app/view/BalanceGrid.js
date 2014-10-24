@@ -96,15 +96,13 @@ Ext.define('FlowersDB.view.BalanceGrid', {
                 renderer : function(price, el, record) {
                     var counter = record.data.counter;
                     var val = price*counter;
-//                    this.totalAmount +=val;
-//                    this.down('#total-amount').setValue(this.totalAmount)
                     return val;
                 },
                 dataIndex: 'price'
             },
             {
                 text     : 'Дата приходу',
-                width    : 80,
+                width    : 70,
                 sortable : true,
                 renderer : function(val) {
                     var date = new Date().getDate();
@@ -116,7 +114,7 @@ Ext.define('FlowersDB.view.BalanceGrid', {
             },
             {
                 text     : 'Дата продажу',
-                width    : 80,
+                width    : 70,
                 sortable : true,
                 renderer : function(val) {
                     var date = new Date().getDate();
@@ -132,7 +130,6 @@ Ext.define('FlowersDB.view.BalanceGrid', {
         this.store = Ext.getStore('FlowersDB.store.Balance');
         this.callParent();
         this.down('#total-amount').setValue(this.totalAmount);
-        //this.on('afterrender', this.setTotalAmount, this)
     },
     viewConfig: {
         stripeRows: true
