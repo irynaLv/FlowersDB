@@ -4,4 +4,4 @@
  * combination of content from app.json, and all required package's package.json
  * files.  Customizations should be placed in app.json.
  */
-{"id":"e9e79160-da56-43f8-a55c-bbc09a51b8a4","js":[],"css":[]}
+{"id":"e9e79160-da56-43f8-a55c-bbc09a51b8a4","js":[{"path":"moment.js"}],"css":[]}

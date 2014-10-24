@@ -1,5 +1,13 @@
 {
     "name": "FlowersDB",
+    "js" : [
+
+        {
+            "path": "moment.js",
+            "skipFrameworkFile": false
+        }
+    ],
+
 
     "requires": [
     ],

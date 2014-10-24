@@ -105,10 +105,8 @@ Ext.define('FlowersDB.view.BalanceGrid', {
                 width    : 70,
                 sortable : true,
                 renderer : function(val) {
-                    var date = new Date().getDate();
-                    var month =  new Date().getMonth();
-                    var year =  new Date().getFullYear();
-                    return date+'/'+month + '/'+ year;
+
+                    return moment(val).format('DD/MM/YYYY');
                 },
                 dataIndex: 'incomeDate'
             },
@@ -117,10 +115,8 @@ Ext.define('FlowersDB.view.BalanceGrid', {
                 width    : 70,
                 sortable : true,
                 renderer : function(val) {
-                    var date = new Date().getDate();
-                    var month =  new Date().getMonth();
-                    var year =  new Date().getFullYear();
-                    return date+'/'+month + '/'+ year;
+
+                    return val?moment(val).format('DD/MM/YYYY'):'-';
                 },
                 dataIndex: 'saleDate'
             }
