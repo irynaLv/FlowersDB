@@ -26,6 +26,7 @@ module.exports = function (app, passport) {
                 obj = {
                     shopId: body.shopId,
                     productId: body.productId,
+                    userId: body.userId,
                     price: body.price,
                     purchasePrice: body.purchasePrice,
                     status: 'shop',

@@ -7,7 +7,8 @@
  */
 
 var mongoose = require('mongoose');
-var bcrypt = require('bcrypt-nodejs');
+var bcrypt = require('bcrypt-nodejs'),
+autoIncrement = require('mongoose-auto-increment');
 
 // End of dependencies.
 
@@ -37,12 +38,9 @@ var UserSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
-    title:{
-        type: String,
-        required:true
-    },
-    sex:{
-        type: String,
+    id:{
+        type: Number,
+        unique:true,
         required:true
     }
 });
@@ -56,6 +54,8 @@ UserSchema.methods.generateHash = function (password) {
 UserSchema.methods.validPassword = function (password) {
     return this.password === password;
 };
+
+UserSchema.plugin(autoIncrement.plugin, { model: 'users', field: 'id' });
 
 // create the model for users and expose it to our app
 module.exports = mongoose.model('User', UserSchema);

@@ -23,6 +23,12 @@ Ext.define('FlowersDB.view.MainContainer', {
             },
             items:[
                 {
+                   xtype:  'login-container',
+                    hidden: true,
+                    width: 400,
+                    height:200
+                },
+                {
                     xtype: 'shop-boxes',
                     hidden:true
                 },
@@ -101,13 +107,29 @@ Ext.define('FlowersDB.view.MainContainer', {
         this.down('#write-off-btn').on('click', this.setWriteOff, this);
         this.down('#balance-btn').on('click', this.onBalanceClick, this);
         this.down('#revenue-btn').on('click', this.onRevenueClick, this);
+        this.down('#login-btn').on('click', this.onLoginClick, this);
 
         this.on('income', this.showCorrectContainer, this);
         this.on('addcategory', this.showAddCategoryContainer, this);
         this.on('showdashboard', this.showDashboard, this);
         this.on('balance', this.showBalance, this);
         this.on('revenue', this.showRevenueContainer, this);
+        this.on('loginuser', this.openLoginForm, this);
     },
+
+
+    openLoginForm: function(){
+        this.down('#login-container').setVisible(true);
+    },
+
+    onLoginClick: function(){
+        var container = this.down('#login-container');
+        var obj = {};
+        obj.login = container.down('#login-field').getValue();
+        obj.pass = container.down('#pass-field').getValue();
+        this.fireEvent('loginrequest', obj, this);
+    },
+
     showDashboard:function(){
         this.setContainerHidden();
         this.setComboBoxVisibility(false)
@@ -149,6 +171,7 @@ Ext.define('FlowersDB.view.MainContainer', {
         this.down('#writeoff-container').setVisible(false);
         this.down('#balance-container').setVisible(false);
         this.down('#revenue-container').setVisible(false);
+        this.down('#login-container').setVisible(false);
         this.down('#balance-grid').setVisible(false);
     },
 

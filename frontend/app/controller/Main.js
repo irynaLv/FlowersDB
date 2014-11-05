@@ -45,6 +45,7 @@ Ext.define('FlowersDB.controller.Main', {
     init: function() {
         this.initControllers();
         this.initStores();
+        //this.checkIfUserLogging();
 
 
     },
@@ -52,16 +53,18 @@ Ext.define('FlowersDB.controller.Main', {
     initControllers:function(){
         this.control({
             'app-main': {
-//                render: this.loadProductsAndShop
+                render: this.checkIfUserLogging
             },
             'app-main-container':{
+
                 'addnewproduct': this.addNewProductItem,
                 'addnewgoods': this.addNewGoods,
                 'changeprice': this.changePriceForSelectedGoods,
                 'soldstaus': this.setSaleStatus,
                 'writeoff' : this.setWriteOff,
                 'showBalance' : this.getBalance,
-                'showRevenue' : this.getRevenue
+                'showRevenue' : this.getRevenue,
+                'loginrequest' : this.sendLoginRequest
             },
             'app-menu #income-btn, app-menu #sale-btn, app-menu #revaluation-btn, app-menu #write-off-btn':{
                 click: this.setCorrectContainer
@@ -77,6 +80,9 @@ Ext.define('FlowersDB.controller.Main', {
             },
             'app-menu #main-btn':{
                 click: this.showDashboard
+            },
+            'app-menu #logout-btn':{
+                click: this.logoutUser
             }
 
         });
@@ -85,12 +91,69 @@ Ext.define('FlowersDB.controller.Main', {
     initStores: function(){
         this.productsStore = Ext.getStore('FlowersDB.store.Products');
         this.shopsStore = Ext.getStore('FlowersDB.store.Shops');
-        //this.balanceStore = Ext.getStore('FlowersDB.store.Balance');
         this.balanceStore = Ext.getStore('FlowersDB.store.Balance');
         this.balanceStore.on('load', this.sortBalanceData, this);
         this.balanceStore.on('datachanged', this.setTotalAmount, this);
         this.alert = Ext.create('Ext.window.MessageBox');
     },
+    checkIfUserLogging: function(){
+        var data = localStorage.getItem('userData');
+        if(data){
+            this.userData = JSON.parse(data);
+            this.getMenu().setVisible(true);
+            this.getMenu().down('#main-btn').toggle(true);
+            this.getMainContainer().showDashboard();
+        }else{
+           this.getMenu().setVisible(false);
+           this.getMainContainer().openLoginForm();
+        }
+    },
+
+    sendLoginRequest: function(body){
+        var me = this;
+        Ext.Ajax.request({
+            method: 'POST',
+            url: '/login',
+            params: {
+                password: body.pass,
+                login: body.login
+            },
+            success: function(response){
+                var text = response.responseText;
+                var data = JSON.parse(text);
+                if(data.msg){
+                    me.alert.alert('Помилка логування', 'Користувач не знайдено, введіть корректний логін і пароль');
+                    return;
+                } else{
+                    localStorage.setItem('userData', text);
+                    me.checkIfUserLogging();
+                }
+
+            },
+            error:function(){
+
+            }
+        })
+    },
+    logoutUser: function(){
+        var me = this;
+        Ext.Ajax.request({
+            method: 'GET',
+            url: '/logout',
+            params: {
+            },
+            success: function(response){
+                //var text = response.responseText;
+                localStorage.removeItem('userData');
+                me.userData = null;
+                me.checkIfUserLogging();
+            },
+            error:function(){
+
+            }
+        })
+    },
+
     loadProductsAndShop: function(isAddCategory){
         var me = this;
         Ext.Ajax.request({
@@ -159,6 +222,7 @@ Ext.define('FlowersDB.controller.Main', {
                 type: body.type,
                 description: body.description,
                 photoId: null
+
 //                id: 14
             },
             success: function(response){
@@ -187,6 +251,7 @@ Ext.define('FlowersDB.controller.Main', {
                 category: body.category,
                 subcategory: body.subcategory,
                 name:body.name,
+                userId: me.userData.id,
                 date:body.date,
                 type:body.type
             },
