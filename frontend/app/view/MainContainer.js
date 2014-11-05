@@ -192,6 +192,7 @@ Ext.define('FlowersDB.view.MainContainer', {
             obj.type = productsView.productValue.type;
             obj.date = this.down('#income-container').down('#date-field-picker').getValue();
             obj.price = this.down('#income-container').down('#price-field').getValue();
+            obj.purchasePrice = this.down('#income-container').down('#purchase-price-field').getValue();
             obj.status = 'shop';
             var quantity = this.down('#income-container').down('#quantity-field').getValue();
             this.fireEvent('addnewgoods', obj, quantity,  this);
@@ -205,6 +206,10 @@ Ext.define('FlowersDB.view.MainContainer', {
         var isCorrect = true;
         if(!container.down('#price-field').getValue()){
             container.down('#price-err').setVisible(true);
+            isCorrect = false;
+        }
+        if(!container.down('#purchase-price-field').getValue()){
+            container.down('#purchase-price-err').setVisible(true);
             isCorrect = false;
         }
         if(!container.down('#quantity-field').getValue()){

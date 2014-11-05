@@ -18,6 +18,10 @@ GoodsSchema = new mongoose.Schema({
         type: Number,
             required:true
     },
+    purchasePrice:{
+        type: Number,
+        required:true
+    },
     status:{
         type: String,
             required:true

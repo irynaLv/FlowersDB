@@ -181,6 +181,7 @@ Ext.define('FlowersDB.controller.Main', {
                 shopId: parseInt(body.shopId),
                 productId: parseInt(body.productId),
                 price: parseInt(body.price),
+                purchasePrice: parseInt(body.purchasePrice),
                 status: body.status,
                 quantity: parseInt(quantity),
                 category: body.category,
