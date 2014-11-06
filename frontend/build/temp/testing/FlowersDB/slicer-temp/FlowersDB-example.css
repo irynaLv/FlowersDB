@@ -21047,9 +21047,3 @@ body.x-nbr .x-tab-default-right-frameInfo {
   background-size: 218px;
   border-bottom: 14px solid #161152;
 }
-/* line 8, ../../../../../sass/src/view/Main.scss */
-.app-main .x-form-date-trigger, .app-main .x-form-date-trigger:focus, .app-main .x-form-date-trigger:hover, .app-main .x-form-date-trigger:active {
-  height: 17px;
-  background-position: 1px -25px !important;
-  background-image: url("resources/jst-jobs-tab-sprite.png") !important;
-}
