@@ -222,13 +222,15 @@ Ext.define('FlowersDB.controller.Main', {
                 type: body.type,
                 description: body.description,
                 photoId: null
-
-//                id: 14
             },
             success: function(response){
                 var text = response.responseText;
                 var data = JSON.parse(text);
-                me.alert.alert('Результат', 'Додано новий товар в категорію ' + body.category);
+                if(data.msg){
+                    me.alert.alert('Результат', 'Товар вже є в базі даних ');
+                } else{
+                    me.alert.alert('Результат', 'Додано новий товар в категорію ' + body.category);
+                }
             },
             error:function(){
 
@@ -313,6 +315,7 @@ Ext.define('FlowersDB.controller.Main', {
                 productId: parseInt(body.productId),
                 price: parseInt(body.price),
                 status: body.status,
+                userId: me.userData.id,
                 date: body.date,
                 quantity: parseInt(quantity)
             },
@@ -342,6 +345,7 @@ Ext.define('FlowersDB.controller.Main', {
                 productId: parseInt(body.productId),
                 price: parseInt(body.price),
                 date:body.date,
+                userId: me.userData.id,
                 quantity: parseInt(quantity)
             },
             success: function(response){

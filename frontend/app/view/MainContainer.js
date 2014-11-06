@@ -161,6 +161,8 @@ Ext.define('FlowersDB.view.MainContainer', {
         cont.down('#quantity-field').setValue(null);
         if(cont.down('#prev-price-field'))
             cont.down('#prev-price-field').setValue(null);
+        if(cont.down('#purchase-price-field'))
+            cont.down('#purchase-price-field').setValue(null);
 
     },
     setContainerHidden: function(){
@@ -231,7 +233,7 @@ Ext.define('FlowersDB.view.MainContainer', {
             container.down('#price-err').setVisible(true);
             isCorrect = false;
         }
-        if(!container.down('#purchase-price-field').getValue()){
+        if(container.down('#purchase-price-field') && !container.down('#purchase-price-field').getValue()){
             container.down('#purchase-price-err').setVisible(true);
             isCorrect = false;
         }
@@ -304,6 +306,8 @@ Ext.define('FlowersDB.view.MainContainer', {
     showBalance: function(){
         this.setComboBoxVisibility(true);
         this.setContainerHidden();
+        this.setEditableFields(true);
+        this.setEditableShops(true);
         this.down("#balance-container").setVisible(true);
         this.down('#balance-grid').setVisible(true);
 
@@ -337,6 +341,8 @@ Ext.define('FlowersDB.view.MainContainer', {
     showRevenueContainer: function(){
         this.setComboBoxVisibility(true);
         this.setContainerHidden();
+        this.setEditableFields(true);
+        this.setEditableShops(true);
         this.down("#revenue-container").setVisible(true);
         this.down('#balance-grid').setVisible(true);
     },

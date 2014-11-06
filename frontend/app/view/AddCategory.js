@@ -56,7 +56,7 @@ Ext.define('FlowersDB.view.AddCategory', {
                     store: null,
                     cls: 'input-field',
                     editable:true,
-
+                    hidden: true,
                     queryMode: 'local',
                     displayField: 'subcategory',
                     valueField: 'subcategory',
@@ -83,7 +83,7 @@ Ext.define('FlowersDB.view.AddCategory', {
                     fieldLabel: 'Назва',
                     store: null,
                     editable: true,
-//                    hidden: true,
+                    hidden: true,
                     queryMode: 'local',
                     displayField: 'name',
                     valueField: 'name',
@@ -111,6 +111,7 @@ Ext.define('FlowersDB.view.AddCategory', {
                     store: null,
                     cls: 'input-field',
                     editable: true,
+                    hidden: true,
                     queryMode: 'local',
                     displayField: 'type',
                     valueField: 'type',
@@ -205,8 +206,9 @@ Ext.define('FlowersDB.view.AddCategory', {
             }
         }
         arr = this.filterData(arr, 'subcategory');
-        if(arr.length > 0){
             this.down('#subcategory-field').setVisible(true)
+        if(!newValue){
+            this.down('#subcategory-field').setVisible(false);
         }
         store.loadData(arr);
 
@@ -233,8 +235,9 @@ Ext.define('FlowersDB.view.AddCategory', {
             this.productValue =arr[0];
         }
         arr = this.filterData(arr, 'name');
-        if(arr.length > 0){
-            this.down('#name-field').setVisible(true)
+        this.down('#name-field').setVisible(true);
+        if(!newValue){
+            this.down('#name-field').setVisible(false);
         }
 
         store.loadData(arr);
@@ -262,8 +265,9 @@ Ext.define('FlowersDB.view.AddCategory', {
             this.productValue =arr[0];
         }
         arr = this.filterData(arr, 'type');
-        if(arr.length > 0){
-            this.down('#type-field').setVisible(true)
+        this.down('#type-field').setVisible(true)
+        if(!newValue){
+            this.down('#type-field').setVisible(false)
         }
         store.loadData(arr);
         this.down('#type-field').setValue(null);

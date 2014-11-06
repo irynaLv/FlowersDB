@@ -52,25 +52,43 @@ module.exports = function (app, passport) {
     });
 
     app.post('/api/product', function(req, res) {
-        var body = req.body,
-            obj = {
-                category: body.category || 'No category',
-                subcategory: body.subcategory || 'No subcategory',
-                name: body.name || null,
-                type: body.type || null,
-                description: body.description || null,
-                photoId: null
-            },
-            doc = new Product(obj);
-        doc.save(function (err, doc) {
-            if (!err && doc) {
-                res.json(doc);
-            } else {
-                res.status(404);
-                res.send();
+        var body = req.body;
+        var obj = {};
+        obj.category = body.category;
+        obj.subcategory = body.subcategory;
+        if(body.type){
+            obj.type = body.type;
+        }
+        if(body.name){
+            obj.name = body.name;
+        }
+
+        var query= Product.find(obj , function (err, docs) {
+            if (!docs.length){
+                var   obj = {
+                        category: body.category || 'No category',
+                        subcategory: body.subcategory || 'No subcategory',
+                        name: body.name || null,
+                        type: body.type || null,
+                        description: body.description || null,
+                        photoId: null
+                    },
+
+                    doc = new Product(obj);
+                doc.save(function (err, doc) {
+                    if (!err && doc) {
+                        res.json(doc);
+                    } else {
+                        res.status(404);
+                        res.send();
+                    }
+                });
+            }else{
+                res.json({msg:'Product exist'});
             }
         });
-    });
+    }) ;
+
     app.post('/api/changeprice', function(req, res) {
         var limitValue = parseInt(req.body.quantity);
         var query = Goods.find({shopId: req.body.shopId, productId: req.body.productId, price:req.body.prevValue, status:'shop'})
@@ -105,6 +123,7 @@ module.exports = function (app, passport) {
                     var goods = doc[i];
                     goods.price = 0;
                     goods.status = 'sold';
+                    //goods.userIdSale = req.body.userId;
                     goods.saleDate = req.body.date;
                     goods.save(function (err) {
                         if (!err && doc) {
@@ -136,6 +155,7 @@ module.exports = function (app, passport) {
                 for(var i=0; i<doc.length; i++){
                     var goods = doc[i];
                     goods.status = 'sold';
+                    //goods.userIdSale = req.body.userId;
                     goods.saleDate = req.body.date;
                     goods.save(function (err) {
                         if (!err && doc) {
@@ -213,13 +233,13 @@ module.exports = function (app, passport) {
             query.where('name').equals(req.query.name)
         }
         query.exec(function (err, doc) {
-                if (!err && doc) {
-                    res.json(doc);
-                } else {
-                    res.status(404);
-                    res.send();
-                }
-            });
+            if (!err && doc) {
+                res.json(doc);
+            } else {
+                res.status(404);
+                res.send();
+            }
+        });
 
     });
 

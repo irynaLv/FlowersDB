@@ -840,6 +840,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "FlowersDB.view.BalanceGrid": [],
   "FlowersDB.view.DateField": [],
   "FlowersDB.view.IncomeContainer": [],
+  "FlowersDB.view.Login": [],
   "FlowersDB.view.Main": [],
   "FlowersDB.view.MainContainer": [],
   "FlowersDB.view.Menu": [],
@@ -1859,6 +1860,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "FlowersDB.view.IncomeContainer": [
     "widget.income-container"
+  ],
+  "FlowersDB.view.Login": [
+    "widget.login-container"
   ],
   "FlowersDB.view.Main": [
     "widget.app-main"
