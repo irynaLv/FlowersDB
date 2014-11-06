@@ -23,6 +23,12 @@ Ext.define('FlowersDB.view.MainContainer', {
             },
             items:[
                 {
+                   xtype:  'login-container',
+                    hidden: true,
+                    width: 400,
+                    height:200
+                },
+                {
                     xtype: 'shop-boxes',
                     hidden:true
                 },
@@ -101,13 +107,29 @@ Ext.define('FlowersDB.view.MainContainer', {
         this.down('#write-off-btn').on('click', this.setWriteOff, this);
         this.down('#balance-btn').on('click', this.onBalanceClick, this);
         this.down('#revenue-btn').on('click', this.onRevenueClick, this);
+        this.down('#login-btn').on('click', this.onLoginClick, this);
 
         this.on('income', this.showCorrectContainer, this);
         this.on('addcategory', this.showAddCategoryContainer, this);
         this.on('showdashboard', this.showDashboard, this);
         this.on('balance', this.showBalance, this);
         this.on('revenue', this.showRevenueContainer, this);
+        this.on('loginuser', this.openLoginForm, this);
     },
+
+
+    openLoginForm: function(){
+        this.down('#login-container').setVisible(true);
+    },
+
+    onLoginClick: function(){
+        var container = this.down('#login-container');
+        var obj = {};
+        obj.login = container.down('#login-field').getValue();
+        obj.pass = container.down('#pass-field').getValue();
+        this.fireEvent('loginrequest', obj, this);
+    },
+
     showDashboard:function(){
         this.setContainerHidden();
         this.setComboBoxVisibility(false)
@@ -139,6 +161,8 @@ Ext.define('FlowersDB.view.MainContainer', {
         cont.down('#quantity-field').setValue(null);
         if(cont.down('#prev-price-field'))
             cont.down('#prev-price-field').setValue(null);
+        if(cont.down('#purchase-price-field'))
+            cont.down('#purchase-price-field').setValue(null);
 
     },
     setContainerHidden: function(){
@@ -149,6 +173,7 @@ Ext.define('FlowersDB.view.MainContainer', {
         this.down('#writeoff-container').setVisible(false);
         this.down('#balance-container').setVisible(false);
         this.down('#revenue-container').setVisible(false);
+        this.down('#login-container').setVisible(false);
         this.down('#balance-grid').setVisible(false);
     },
 
@@ -192,6 +217,7 @@ Ext.define('FlowersDB.view.MainContainer', {
             obj.type = productsView.productValue.type;
             obj.date = this.down('#income-container').down('#date-field-picker').getValue();
             obj.price = this.down('#income-container').down('#price-field').getValue();
+            obj.purchasePrice = this.down('#income-container').down('#purchase-price-field').getValue();
             obj.status = 'shop';
             var quantity = this.down('#income-container').down('#quantity-field').getValue();
             this.fireEvent('addnewgoods', obj, quantity,  this);
@@ -205,6 +231,10 @@ Ext.define('FlowersDB.view.MainContainer', {
         var isCorrect = true;
         if(!container.down('#price-field').getValue()){
             container.down('#price-err').setVisible(true);
+            isCorrect = false;
+        }
+        if(container.down('#purchase-price-field') && !container.down('#purchase-price-field').getValue()){
+            container.down('#purchase-price-err').setVisible(true);
             isCorrect = false;
         }
         if(!container.down('#quantity-field').getValue()){
@@ -276,6 +306,8 @@ Ext.define('FlowersDB.view.MainContainer', {
     showBalance: function(){
         this.setComboBoxVisibility(true);
         this.setContainerHidden();
+        this.setEditableFields(true);
+        this.setEditableShops(true);
         this.down("#balance-container").setVisible(true);
         this.down('#balance-grid').setVisible(true);
 
@@ -309,6 +341,8 @@ Ext.define('FlowersDB.view.MainContainer', {
     showRevenueContainer: function(){
         this.setComboBoxVisibility(true);
         this.setContainerHidden();
+        this.setEditableFields(true);
+        this.setEditableShops(true);
         this.down("#revenue-container").setVisible(true);
         this.down('#balance-grid').setVisible(true);
     },

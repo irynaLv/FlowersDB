@@ -3,8 +3,8 @@
 //    "js" : [
 //
 //        {
-//            "path": "moment.js"
-////            "skipFrameworkFile": false
+//            "path": "moment.js",
+//            "skipFrameworkFile": false
 //        }
 //    ],
 

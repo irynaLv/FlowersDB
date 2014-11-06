@@ -1,2 +1,3 @@
 // @tag full-page
-// @require G:\FlowersDBs\frontend\app.js
+// @require D:\FLDB\frontend\moment.js
+// @require D:\FLDB\frontend\app.js

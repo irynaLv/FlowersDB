@@ -14,9 +14,21 @@ GoodsSchema = new mongoose.Schema({
         type: Number,
         required:true
     },
+    userId:{
+        type: Number,
+        required:true
+    },
+    //userIdSale:{
+    //    type: Number,
+    //    required:true
+    //},
     price:{
         type: Number,
             required:true
+    },
+    purchasePrice:{
+        type: Number,
+        required:true
     },
     status:{
         type: String,

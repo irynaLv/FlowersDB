@@ -19,10 +19,9 @@ Ext.define('FlowersDB.view.IncomeContainer', {
     width: '100%',
 //    renderTo: Ext.getBody(),
     items: [
-
         {
-            xtype: 'date-field'
-        },
+          xtype: 'date-field'
+       },
 
         {
             xtype:'container',
@@ -41,6 +40,26 @@ Ext.define('FlowersDB.view.IncomeContainer', {
                     itemId: 'count-err',
                     hidden: true,
                     text: 'Вкажіть кількість',
+                    margin: '0 0 0 10'
+                }
+            ]
+        },
+        {
+            xtype:'container',
+            layout:'hbox',
+            items:[
+                {
+                    xtype: 'numberfield',
+                    anchor: '100%',
+                    itemId: 'purchase-price-field',
+                    cls: 'input-field',
+                    fieldLabel: 'Закупівельна ціна'
+                },
+                {
+                    xtype: 'label',
+                    itemId: 'purchase-price-err',
+                    hidden: true,
+                    text: 'Вкажіть ціну закупки',
                     margin: '0 0 0 10'
                 }
             ]
@@ -77,6 +96,7 @@ Ext.define('FlowersDB.view.IncomeContainer', {
         me.callParent(arguments);
         this.down('#quantity-field').on('blur', this.checkIfEmpty, this, this.down('#count-err'));
         this.down('#price-field').on('blur', this.checkIfEmpty, this, this.down('#price-err'));
+        this.down('#purchase-price-field').on('blur', this.checkIfEmpty, this, this.down('#purchase-price-err'));
     },
     checkIfEmpty: function( el,e, err){
         if(el.getValue() > 0){

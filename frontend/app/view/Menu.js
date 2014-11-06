@@ -95,6 +95,14 @@ Ext.define('FlowersDB.view.Menu', {
             itemId: 'add-category-btn',
             icon:'resources/plus_orange.png'
 
+        },
+        {
+            xtype: 'button',
+            text: 'Вихід',
+            width: 200,
+            toggleGroup:'menu',
+            itemId: 'logout-btn',
+            icon:'resources/log_off.png'
         }
 //        {
 //            xtype: 'button',
@@ -103,10 +111,12 @@ Ext.define('FlowersDB.view.Menu', {
 //            itemId: 'update-category-btn'
 //
 //        }
+
+
     ],
 
     initComponent: function () {
         var me = this;
         me.callParent();
-            }
+    }
 });
