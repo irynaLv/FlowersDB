@@ -21035,8 +21035,19 @@ body.x-nbr .x-tab-default-right-frameInfo {
 .app-main-container .input-field {
   margin: .2em 0!important;
 }
+/* line 7, ../../../../../sass/src/view/MainContainer.scss */
+.app-main-container .x-btn {
+  height: 30px;
+  width: 10em;
+  margin: 1em;
+}
+/* line 11, ../../../../../sass/src/view/MainContainer.scss */
+.app-main-container .x-btn .x-btn-inner {
+  line-height: 20px;
+  font-size: 12px;
+}
 
-/* line 13, ../../../../../sass/src/view/MainContainer.scss */
+/* line 23, ../../../../../sass/src/view/MainContainer.scss */
 .balance-grid .x-grid-rowwrap.x-grid-td {
   overflow: visible;
 }
