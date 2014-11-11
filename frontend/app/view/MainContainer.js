@@ -40,25 +40,25 @@ Ext.define('FlowersDB.view.MainContainer', {
                 {
                     xtype: 'income-container',
                     width: 400,
-                    height:400,
+                    height:150,
                     hidden:true
                 },
                 {
                     xtype: 'sale-container',
                     width: 400,
-                    height:200,
+                    height:120,
                     hidden:true
                 },
                 {
                     xtype: 'revaluation-container',
                     width: 400,
-                    height:200,
+                    height:115,
                     hidden:true
                 },
                 {
                     xtype: 'writeoff-container',
                     width: 400,
-                    height:200,
+                    height:115,
                     hidden:true
                 },
                 {
@@ -79,6 +79,13 @@ Ext.define('FlowersDB.view.MainContainer', {
                     width: 400,
                     height:200,
                     hidden:true
+                },
+
+                {
+                    xtype: 'button',
+                    text:"Залишок",
+                    hidden: true,
+                    itemId:'balance-in-section-btn'
                 }
             ]
         },
@@ -99,6 +106,10 @@ Ext.define('FlowersDB.view.MainContainer', {
     initComponent: function () {
         var me = this;
         me.callParent(arguments);
+        this.categoryField = null;
+        this.subcategoryField = null;
+        this.nameField = null;
+        this.typeField = null;
         this.doLayout();
         this.down('#new-product-btn').on('click', this.onAddNewProduct, this);
         this.down('#new-goods-btn-revaluation').on('click', this.changePriceForGoods, this);
@@ -108,6 +119,7 @@ Ext.define('FlowersDB.view.MainContainer', {
         this.down('#balance-btn').on('click', this.onBalanceClick, this);
         this.down('#revenue-btn').on('click', this.onRevenueClick, this);
         this.down('#login-btn').on('click', this.onLoginClick, this);
+        this.down('#balance-in-section-btn').on('click', this.onBalanceClick, this, true);
 
         this.on('income', this.showCorrectContainer, this);
         this.on('addcategory', this.showAddCategoryContainer, this);
@@ -119,6 +131,7 @@ Ext.define('FlowersDB.view.MainContainer', {
 
 
     openLoginForm: function(){
+        this.showDashboard();
         this.down('#login-container').setVisible(true);
     },
 
@@ -163,8 +176,18 @@ Ext.define('FlowersDB.view.MainContainer', {
             cont.down('#prev-price-field').setValue(null);
         if(cont.down('#purchase-price-field'))
             cont.down('#purchase-price-field').setValue(null);
-
+        this.setErrorLabelHidden(cont);
+        this.down('#balance-in-section-btn').setVisible(true);
+        this.down('#balance-grid').setVisible(true);
     },
+
+    setErrorLabelHidden: function(container){
+        this.down('#category-err').setVisible(false);
+        this.down('#subcategory-err').setVisible(false);
+        this.down('#name-err').setVisible(false);
+        this.down('#type-err').setVisible(false);
+    },
+
     setContainerHidden: function(){
         this.down('#income-container').setVisible(false);
         this.down('#sale-container').setVisible(false);
@@ -175,6 +198,7 @@ Ext.define('FlowersDB.view.MainContainer', {
         this.down('#revenue-container').setVisible(false);
         this.down('#login-container').setVisible(false);
         this.down('#balance-grid').setVisible(false);
+        this.down('#balance-in-section-btn').setVisible(false);
     },
 
     setEditableFields: function(value){
@@ -207,7 +231,7 @@ Ext.define('FlowersDB.view.MainContainer', {
         var productsView = this.down('#products-boxes');
 
         var isCorrect = this.checkData(this.down('#income-container'));
-        if(isCorrect){
+        if(isCorrect && productsView.productValue && shopsView.shopValue){
             var obj = {};
             obj.shopId = shopsView.shopValue.shopId;
             obj.productId = productsView.productValue.id;
@@ -308,18 +332,18 @@ Ext.define('FlowersDB.view.MainContainer', {
         this.setContainerHidden();
         this.setEditableFields(true);
         this.setEditableShops(true);
+        this.setErrorLabelHidden();
+        this.down('#balance-in-section-btn').setVisible(false);
         this.down("#balance-container").setVisible(true);
         this.down('#balance-grid').setVisible(true);
 
     },
-    onBalanceClick: function(){
+    onBalanceClick: function(el, btn, sectionBalance){
         var shopsView = this.down('#shop-boxes');
         var productsView = this.down('#products-boxes');
         var obj = {};
         if(shopsView.shopValue){
             obj.shopId = shopsView.shopValue.shopId;
-        }else{
-
         }
         if(productsView.productValue){
             obj.productId = productsView.productValue.id;
@@ -334,8 +358,13 @@ Ext.define('FlowersDB.view.MainContainer', {
             obj.type = productsView.down('#type-field').getValue();
             obj.productId = null;
         }
+        this.shopField = obj.shopId;
+        this.categoryField = obj.category;
+        this.subcategoryField = obj.subcategory;
+        this.nameField = obj.name;
+        this.typeField = obj.type;
 
-        this.fireEvent('showBalance', obj,  this);
+        this.fireEvent('showBalance', obj, sectionBalance, this);
     },
 
     showRevenueContainer: function(){
@@ -343,6 +372,8 @@ Ext.define('FlowersDB.view.MainContainer', {
         this.setContainerHidden();
         this.setEditableFields(true);
         this.setEditableShops(true);
+        this.setErrorLabelHidden();
+        this.down('#balance-in-section-btn').setVisible(false);
         this.down("#revenue-container").setVisible(true);
         this.down('#balance-grid').setVisible(true);
     },
@@ -375,6 +406,8 @@ Ext.define('FlowersDB.view.MainContainer', {
     showAddCategoryContainer:function(){
         this.setComboBoxVisibility(false);
         this.setContainerHidden();
+        this.setErrorLabelHidden();
+        this.down('#balance-in-section-btn').setVisible(false);
         this.down("#new-product-container").setVisible(true);
     }
 

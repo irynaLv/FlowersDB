@@ -3,6 +3,16 @@
   .input-field{
     margin: .2em 0!important;
   }
+
+  .x-btn{
+    height: 27px;
+    width: 10em;
+    margin: 0.25em 1em !important;
+    .x-btn-inner{
+      line-height: 20px;
+//      font-size: 12px;
+    }
+  }
 }
 .shop-boxes{
   .shop-field{

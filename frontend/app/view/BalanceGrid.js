@@ -14,7 +14,7 @@ Ext.define('FlowersDB.view.BalanceGrid', {
     data:[],
     columnLines: true,
     height: 500,
-    width: 800,
+    width: 730,
 
     defaults: {
         flex: 1
@@ -57,13 +57,14 @@ Ext.define('FlowersDB.view.BalanceGrid', {
             }, {
                 text     : 'Тип',
                 width    : 80,
+                hidden:true,
                 sortable : true,
                 dataIndex: 'type'
             },
             {
                 text     : 'Кількість',
                 width    : 60,
-                sortable : true,
+//                sortable : true,
                 dataIndex: 'counter'
             },
             {
@@ -76,9 +77,19 @@ Ext.define('FlowersDB.view.BalanceGrid', {
                 dataIndex: 'price'
             },
             {
+                text     : 'Сума',
+                width    : 80,
+                renderer : function(price, el, record) {
+                    var counter = record.data.counter;
+                    var val = price*counter;
+                    return val;
+                },
+                dataIndex: 'price'
+            },
+            {
                 text     : 'Магазин',
                 width    : 80,
-                sortable : true,
+//                sortable : true,
                 renderer : function(val) {
                     var record = Ext.getStore('shops').findRecord('shopId', val);
                     if(record){
@@ -91,19 +102,9 @@ Ext.define('FlowersDB.view.BalanceGrid', {
                 dataIndex: 'shopId'
             },
             {
-                text     : 'Сума',
-                width    : 80,
-                renderer : function(price, el, record) {
-                    var counter = record.data.counter;
-                    var val = price*counter;
-                    return val;
-                },
-                dataIndex: 'price'
-            },
-            {
                 text     : 'Дата приходу',
-                width    : 70,
-                sortable : true,
+                width    : 80,
+//                sortable : true,
                 renderer : function(val) {
                     var date = val.getDate();
                     var month = val.getMonth()+1;
@@ -114,8 +115,8 @@ Ext.define('FlowersDB.view.BalanceGrid', {
             },
             {
                 text     : 'Дата продажу',
-                width    : 70,
-                sortable : true,
+                width    : 80,
+//                sortable : true,
                 renderer : function(val) {
                     if(val){
                         var date = val.getDate();

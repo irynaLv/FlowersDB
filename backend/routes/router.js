@@ -54,13 +54,13 @@ module.exports = function (app, passport) {
     app.post('/api/product', function(req, res) {
         var body = req.body;
         var obj = {};
-        obj.category = body.category;
-        obj.subcategory = body.subcategory;
+        obj.category = body.category.toUpperCase();
+        obj.subcategory = body.subcategory.toUpperCase();
         if(body.type){
-            obj.type = body.type;
+            obj.type = body.type.toUpperCase();
         }
         if(body.name){
-            obj.name = body.name;
+            obj.name = body.name.toUpperCase();
         }
 
         var query= Product.find(obj , function (err, docs) {
@@ -123,7 +123,7 @@ module.exports = function (app, passport) {
                     var goods = doc[i];
                     goods.price = 0;
                     goods.status = 'sold';
-                    //goods.userIdSale = req.body.userId;
+                    goods.userIdSale = req.body.userId;
                     goods.saleDate = req.body.date;
                     goods.save(function (err) {
                         if (!err && doc) {
@@ -155,7 +155,7 @@ module.exports = function (app, passport) {
                 for(var i=0; i<doc.length; i++){
                     var goods = doc[i];
                     goods.status = 'sold';
-                    //goods.userIdSale = req.body.userId;
+                    goods.userIdSale = req.body.userId;
                     goods.saleDate = req.body.date;
                     goods.save(function (err) {
                         if (!err && doc) {

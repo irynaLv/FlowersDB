@@ -23,7 +23,7 @@ Ext.define('FlowersDB.view.ShopBoxes', {
                     itemId: 'shop-field',
                     cls: 'input-field shop',
                     store: null,
-                    editable: false,
+                    editable: true,
                     queryMode: 'local',
                     displayField: 'address',
                     valueField: 'address',
@@ -57,7 +57,7 @@ Ext.define('FlowersDB.view.ShopBoxes', {
             }]
         })
         this.shopStore.loadData(this.shopData);
-        this.down('#shop-field').setValue(null);
+//        this.down('#shop-field').setValue(null);
         this.down('#shop-field').bindStore(this.shopStore);
     },
 

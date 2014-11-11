@@ -90,6 +90,7 @@ Ext.define('FlowersDB.view.IncomeContainer', {
             text:"Додати товар",
             itemId:'new-goods-btn-income'
         }
+
 ],
     initComponent: function () {
         var me = this;

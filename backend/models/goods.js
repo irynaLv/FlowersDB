@@ -15,20 +15,20 @@ GoodsSchema = new mongoose.Schema({
         required:true
     },
     userId:{
-        type: Number,
-        required:true
+        type: Number
+//        required:true
     },
-    //userIdSale:{
-    //    type: Number,
-    //    required:true
-    //},
+    userIdSale:{
+        type: Number
+//        required:true
+    },
     price:{
         type: Number,
             required:true
     },
     purchasePrice:{
-        type: Number,
-        required:true
+        type: Number
+//        required:true
     },
     status:{
         type: String,

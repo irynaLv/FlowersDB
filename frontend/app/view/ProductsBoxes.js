@@ -22,7 +22,7 @@ Ext.define('FlowersDB.view.ProductsBoxes', {
                         itemId: 'category-field',
                         fieldLabel: 'Категорія',
                         store:null,
-                        editable: false,
+                        editable: true,
                         cls: 'input-field',
                         queryMode: 'local',
                         displayField: 'category',
@@ -48,7 +48,7 @@ Ext.define('FlowersDB.view.ProductsBoxes', {
                         itemId: 'subcategory-field',
                         store: null,
                         cls: 'input-field',
-                        editable: false,
+                        editable: true,
                         hidden: true,
                         queryMode: 'local',
                         displayField: 'subcategory',
@@ -75,7 +75,7 @@ Ext.define('FlowersDB.view.ProductsBoxes', {
                         itemId: 'name-field',
                         fieldLabel: 'Назва',
                         store: null,
-                        editable: false,
+                        editable: true,
                         hidden: true,
                         queryMode: 'local',
                         displayField: 'name',
@@ -103,7 +103,7 @@ Ext.define('FlowersDB.view.ProductsBoxes', {
                         fieldLabel: 'Тип',
                         store: null,
                         cls: 'input-field',
-                        editable: false,
+                        editable: true,
                         hidden: true,
                         queryMode: 'local',
                         displayField: 'type',
@@ -186,17 +186,29 @@ Ext.define('FlowersDB.view.ProductsBoxes', {
             var arr = this.filterData(this.data, 'category');
             store.loadData(arr);
 
-            this.down('#category-field').setValue(null);
+//            this.down('#category-field').setValue(null);
+//            this.down('#subcategory-field').setValue(null);
+//            this.down('#name-field').setValue(null);
+//            this.down('#type-field').setValue(null);
             this.down('#category-field').bindStore(store);
 //        this.down('#category-field').setValue(store.first())
         },
 
         onCategoryChange: function(el, newValue, oldValue){
             this.productValue = null;
+            if(!newValue){
+                this.down('#subcategory-field').setValue(null);
+                this.down('#name-field').setValue(null);
+                this.down('#type-field').setValue(null);
+                return
+            }
             this.down('#category-err').setVisible(false);
-            this.down('#subcategory-field').setVisible(false)
+            this.down('#subcategory-field').setVisible(false);
             this.down('#name-field').setVisible(false);
             this.down('#type-field').setVisible(false);
+            this.down('#subcategory-err').setVisible(false);
+            this.down('#name-err').setVisible(false);
+            this.down('#type-err').setVisible(false);
             var store = Ext.create('Ext.data.Store', {
                 model: 'FlowersDB.model.Products',
                 sorters: [{
@@ -210,20 +222,31 @@ Ext.define('FlowersDB.view.ProductsBoxes', {
                     arr.push(this.data[i]);
                 }
             }
-            arr = this.filterData(arr, 'subcategory');
             if(arr.length > 0){
-                this.down('#subcategory-field').setVisible(true)
-            }
-            store.loadData(arr);
+                arr = this.filterData(arr, 'subcategory');
+                if(arr.length > 0){
+                    this.down('#subcategory-field').setVisible(true)
+                }
+                store.loadData(arr);
 
-            this.down('#subcategory-field').setValue(null);
-            this.down('#subcategory-field').bindStore(store);
+                this.down('#subcategory-field').setValue(null);
+                this.down('#subcategory-field').bindStore(store);
+            }else{
+                this.down('#category-err').setVisible(true);
+            }
         },
         onSubcategoryChange: function(el, newValue){
             this.productValue = null;
+            if(!newValue){
+                this.down('#name-field').setValue(null);
+                this.down('#type-field').setValue(null);
+                return
+            }
             this.down('#subcategory-err').setVisible(false);
             this.down('#name-field').setVisible(false);
             this.down('#type-field').setVisible(false);
+            this.down('#name-err').setVisible(false);
+            this.down('#type-err').setVisible(false);
             var store = Ext.create('Ext.data.Store', {
                 model: 'FlowersDB.model.Products',
                 sorters: [{
@@ -240,20 +263,29 @@ Ext.define('FlowersDB.view.ProductsBoxes', {
             if(arr.length == 1){
                 this.productValue =arr[0];
             }
-            arr = this.filterData(arr, 'name');
-            if(arr.length > 0){
-                this.down('#name-field').setVisible(true)
-            }
+            if(arr.length > 0) {
+                arr = this.filterData(arr, 'name');
+                if (arr.length > 0) {
+                    this.down('#name-field').setVisible(true)
+                }
 
-            store.loadData(arr);
-            this.down('#name-field').setValue(null);
-            this.down('#name-field').bindStore(store);
+                store.loadData(arr);
+                this.down('#name-field').setValue(null);
+                this.down('#name-field').bindStore(store);
+            }else{
+                this.down('#subcategory-err').setVisible(true);
+            }
         },
 
         onNameChange: function(el, newValue){
             this.productValue = null;
+            if(!newValue){
+                this.down('#type-field').setValue(null);
+                return
+            }
             this.down('#name-err').setVisible(false);
             this.down('#type-field').setVisible(false);
+            this.down('#type-err').setVisible(false);
             var store = Ext.create('Ext.data.Store', {
                 model: 'FlowersDB.model.Products',
                 sorters: [{
@@ -270,19 +302,29 @@ Ext.define('FlowersDB.view.ProductsBoxes', {
             if(arr.length == 1){
                 this.productValue =arr[0];
             }
-            arr = this.filterData(arr, 'type');
             if(arr.length > 0){
-                this.down('#type-field').setVisible(true)
+                arr = this.filterData(arr, 'type');
+                if(arr.length > 0){
+                    this.down('#type-field').setVisible(true)
+                }
+                store.loadData(arr);
+                this.down('#type-field').setValue(null);
+                this.down('#type-field').bindStore(store);
+
+            }else{
+                this.down('#name-err').setVisible(true);
             }
-            store.loadData(arr);
-            this.down('#type-field').setValue(null);
-            this.down('#type-field').bindStore(store);
         },
 
         onTypeChange: function(el, newValue){
             this.down('#type-err').setVisible(false);
             var typeRecord = this.down('#type-field').findRecord('type', newValue);
-            this.productValue = typeRecord.data;
+            if(typeRecord){
+                this.productValue = typeRecord.data;
+
+            }else{
+                this.down('#type-err').setVisible(false);
+            }
         },
         checkIfEmpty: function( el,e, err){
             if(el.getValue() > 0){
@@ -322,7 +364,7 @@ Ext.define('FlowersDB.view.ProductsBoxes', {
                     isCorrect = false;
                 }
             }
-             return isCorrect;
+            return isCorrect;
         }
 
 

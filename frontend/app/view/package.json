@@ -1,0 +1,636 @@
+
+{
+"_id" : ObjectId("54461826f38cc0dc2f6c3536"),
+"id" : 1,
+"category" : "Квіти",
+"subcategory" : "Троянди",
+"name" : "Гранд-прі",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+
+{
+"_id" : ObjectId("54461830f38cc0dc2f6c3537"),
+"id" : 2,
+"category" : "Квіти",
+"subcategory" : "Гвоздики",
+"name" : null,
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+
+{
+"_id" : ObjectId("54461838f38cc0dc2f6c3538"),
+"id" : 3,
+"category" : "Квіти",
+"subcategory" : "Хризантеми",
+"name" : null,
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+
+{
+"_id" : ObjectId("5446589af38cc0dc2f6c357d"),
+"id" : 4,
+"category" : "Вазонки",
+"subcategory" : "Вазонки",
+"name" : "Фікус",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+
+{
+"_id" : ObjectId("5446589ef38cc0dc2f6c357e"),
+"id" : 5,
+"category" : "Вазонки",
+"subcategory" : "Вазонки",
+"name" : "Кактус",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+
+{
+"_id" : ObjectId("544658bef38cc0dc2f6c357f"),
+"id" : 6,
+"category" : "Вазонки",
+"subcategory" : "Вазонки",
+"name" : "Фіалка",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+
+{
+"_id" : ObjectId("5447fbce157ca3e8300f8296"),
+"id" : 7,
+"category" : "Вазонки",
+"subcategory" : "Вазонки",
+"name" : "Папороть",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+
+{
+"_id" : ObjectId("54489524157ca3e8300f829b"),
+"id" : 8,
+"category" : "Квіти",
+"subcategory" : "Троянди",
+"name" : "Гранд-прі",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+
+{
+"_id" : ObjectId("5449372f157ca3e8300f829c"),
+"id" : 9,
+"category" : "Вазонки",
+"subcategory" : "Вазонки",
+"name" : "Азалія",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+
+{
+"_id" : ObjectId("54493741157ca3e8300f829d"),
+"id" : 10,
+"category" : "Вазонки",
+"subcategory" : "Вазонки",
+"name" : "Антуріум",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+/* 11 */
+{
+"_id" : ObjectId("54493764157ca3e8300f829e"),
+"id" : 11,
+"category" : "Вазонки",
+"subcategory" : "Вазонки",
+"name" : "Спатефілуум",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+/* 12 */
+{
+"_id" : ObjectId("54493774157ca3e8300f829f"),
+"id" : 12,
+"category" : "Вазонки",
+"subcategory" : "Вазонки",
+"name" : "Ечиверія",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+/* 13 */
+{
+"_id" : ObjectId("54493781157ca3e8300f82a0"),
+"id" : 13,
+"category" : "Вазонки",
+"subcategory" : "Вазонки",
+"name" : "Монстера",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+/* 14 */
+{
+"_id" : ObjectId("544938ca157ca3e8300f82a5"),
+"id" : 14,
+"category" : "Сувеніри",
+"subcategory" : "Статуетки",
+"name" : "Ангел",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+/* 15 */
+{
+"_id" : ObjectId("54493ba4157ca3e8300f82b8"),
+"id" : 15,
+"category" : "Квіти",
+"subcategory" : "Троянди",
+"name" : "Гранд-прі",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+/* 16 */
+{
+"_id" : ObjectId("54493c48157ca3e8300f82b9"),
+"id" : 16,
+"category" : "декор",
+"subcategory" : "метелики",
+"name" : null,
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+/* 17 */
+{
+"_id" : ObjectId("544ca57fb61eadec3147e1ef"),
+"id" : 18,
+"category" : "Вазонки",
+"subcategory" : "Вазонки",
+"name" : "Глоксинія",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+/* 18 */
+{
+"_id" : ObjectId("544ca59eb61eadec3147e1f0"),
+"id" : 19,
+"category" : "Вазонки",
+"subcategory" : "Вазонки",
+"name" : "Азалія",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+/* 19 */
+{
+"_id" : ObjectId("544ca5cdb61eadec3147e1f1"),
+"id" : 20,
+"category" : "Вазонки",
+"subcategory" : "Вазонки",
+"name" : "Орхідея",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+/* 20 */
+{
+"_id" : ObjectId("544ca5eeb61eadec3147e1f2"),
+"id" : 21,
+"category" : "Вазонки",
+"subcategory" : "Вазонки",
+"name" : "Азалія",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+/* 21 */
+{
+"_id" : ObjectId("544ca649b61eadec3147e1f3"),
+"id" : 22,
+"category" : "Вазонки",
+"subcategory" : "Вазонки",
+"name" : "Бегонія",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+/* 22 */
+{
+"_id" : ObjectId("544cade8b61eadec3147e1f4"),
+"id" : 23,
+"category" : "Вазонки",
+"subcategory" : "Вазонки",
+"name" : "Калатея",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+/* 23 */
+{
+"_id" : ObjectId("544cb013b61eadec3147e1f6"),
+"id" : 25,
+"category" : "Вазонки",
+"subcategory" : "Вазонки",
+"name" : "Драцена",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+/* 24 */
+{
+"_id" : ObjectId("544cb03cb61eadec3147e1f7"),
+"id" : 26,
+"category" : "Вазонки",
+"subcategory" : "Вазонки",
+"name" : "Цикламен",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+/* 25 */
+{
+"_id" : ObjectId("544cb068b61eadec3147e1f8"),
+"id" : 27,
+"category" : "Вазонки",
+"subcategory" : "Вазонки",
+"name" : "Маранта",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+/* 26 */
+{
+"_id" : ObjectId("544cb09ab61eadec3147e1f9"),
+"id" : 28,
+"category" : "Квіти",
+"subcategory" : "Гербера",
+"name" : null,
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+/* 27 */
+{
+"_id" : ObjectId("544cb1d3b61eadec3147e1fa"),
+"id" : 29,
+"category" : "Квіти",
+"subcategory" : "Лілія",
+"name" : null,
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+/* 28 */
+{
+"_id" : ObjectId("544cb20cb61eadec3147e1fb"),
+"id" : 30,
+"category" : "Квіти",
+"subcategory" : "Троянди",
+"name" : "Фієста",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+/* 29 */
+{
+"_id" : ObjectId("544f535e6852d29601585f37"),
+"id" : 37,
+"category" : "Вазонки",
+"subcategory" : "Вазонки",
+"name" : "Стефанотіс",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+/* 30 */
+{
+"_id" : ObjectId("545bb77b65b8710000ebf227"),
+"id" : 93,
+"category" : "Вазонки",
+"subcategory" : "Вазонки",
+"name" : "Аглоонема",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+/* 31 */
+{
+"_id" : ObjectId("544cb22db61eadec3147e1fc"),
+"id" : 31,
+"category" : "Квіти",
+"subcategory" : "Троянди",
+"name" : "Ельторо",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+/* 32 */
+{
+"_id" : ObjectId("544cb277b61eadec3147e1fd"),
+"id" : 32,
+"category" : "Квіти",
+"subcategory" : "Троянди",
+"name" : "Аква",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+/* 33 */
+{
+"_id" : ObjectId("544f51e16852d29601585f36"),
+"id" : 36,
+"category" : "Вазонки",
+"subcategory" : "Вазонки",
+"name" : "Кротон",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+/* 34 */
+{
+"_id" : ObjectId("544f537c6852d29601585f38"),
+"id" : 38,
+"category" : "Вазонки",
+"subcategory" : "Вазонки",
+"name" : "Юкка",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+/* 35 */
+{
+"_id" : ObjectId("544f53a56852d29601585f39"),
+"id" : 39,
+"category" : "Вазонки",
+"subcategory" : "Вазонки",
+"name" : "Дефенбахія",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+/* 36 */
+{
+"_id" : ObjectId("544f53dc6852d29601585f3a"),
+"id" : 40,
+"category" : "Вазонки",
+"subcategory" : "Вазонки",
+"name" : "Ехмея",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+/* 37 */
+{
+"_id" : ObjectId("544f540a6852d29601585f3b"),
+"id" : 41,
+"category" : "Вазонки",
+"subcategory" : "Вазонки",
+"name" : "Каланхоє",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+/* 38 */
+{
+"_id" : ObjectId("544f54276852d29601585f3c"),
+"id" : 42,
+"category" : "Вазонки",
+"subcategory" : "Вазонки",
+"name" : "Плющ",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+/* 39 */
+{
+"_id" : ObjectId("544f54506852d29601585f3d"),
+"id" : 43,
+"category" : "Вазонки",
+"subcategory" : "Вазонки",
+"name" : "Хамедорея",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+/* 40 */
+{
+"_id" : ObjectId("544f54916852d29601585f3e"),
+"id" : 44,
+"category" : "Вазонки",
+"subcategory" : "Вазонки",
+"name" : "Красула",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+/* 41 */
+{
+"_id" : ObjectId("544f54c26852d29601585f3f"),
+"id" : 45,
+"category" : "Вазонки",
+"subcategory" : "Вазонки",
+"name" : "Пасльон",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+/* 42 */
+{
+"_id" : ObjectId("544f54e66852d29601585f40"),
+"id" : 46,
+"category" : "Вазонки",
+"subcategory" : "Вазонки",
+"name" : "Гіацинт",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+/* 43 */
+{
+"_id" : ObjectId("544f557a6852d29601585f41"),
+"id" : 47,
+"category" : "Вазонки",
+"subcategory" : "Вазонки",
+"name" : "Шефлера",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+/* 44 */
+{
+"_id" : ObjectId("544f55aa6852d29601585f42"),
+"id" : 48,
+"category" : "Вазонки",
+"subcategory" : "Вазонки",
+"name" : "Заміокулькас",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+/* 45 */
+{
+"_id" : ObjectId("544f55c96852d29601585f43"),
+"id" : 49,
+"category" : "Вазонки",
+"subcategory" : "Вазонки",
+"name" : "Аспарагус",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+/* 46 */
+{
+"_id" : ObjectId("544f55e86852d29601585f44"),
+"id" : 50,
+"category" : "Вазонки",
+"subcategory" : "Вазонки",
+"name" : "Фінік",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+/* 47 */
+{
+"_id" : ObjectId("544f56106852d29601585f45"),
+"id" : 51,
+"category" : "Вазонки",
+"subcategory" : "Вазонки",
+"name" : "Мендевіла",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+/* 48 */
+{
+"_id" : ObjectId("544f56386852d29601585f46"),
+"id" : 52,
+"category" : "Вазонки",
+"subcategory" : "Вазонки",
+"name" : "В.Роза",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}
+
+/* 49 */
+{
+"_id" : ObjectId("544f565c6852d29601585f47"),
+"id" : 53,
+"category" : "Вазонки",
+"subcategory" : "Вазонки",
+"name" : "Сульфінія",
+"type" : null,
+"description" : null,
+"photoId" : null,
+"__v" : 0
+}

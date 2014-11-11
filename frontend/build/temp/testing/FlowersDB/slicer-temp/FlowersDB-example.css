@@ -21035,8 +21035,19 @@ body.x-nbr .x-tab-default-right-frameInfo {
 .app-main-container .input-field {
   margin: .2em 0!important;
 }
+/* line 7, ../../../../../sass/src/view/MainContainer.scss */
+.app-main-container .x-btn {
+  height: 30px;
+  width: 10em;
+  margin: 1em;
+}
+/* line 11, ../../../../../sass/src/view/MainContainer.scss */
+.app-main-container .x-btn .x-btn-inner {
+  line-height: 20px;
+  font-size: 12px;
+}
 
-/* line 13, ../../../../../sass/src/view/MainContainer.scss */
+/* line 23, ../../../../../sass/src/view/MainContainer.scss */
 .balance-grid .x-grid-rowwrap.x-grid-td {
   overflow: visible;
 }
@@ -21046,10 +21057,4 @@ body.x-nbr .x-tab-default-right-frameInfo {
   background-image: url("s_flower_2.jpg");
   background-size: 218px;
   border-bottom: 14px solid #161152;
-}
-/* line 8, ../../../../../sass/src/view/Main.scss */
-.app-main .x-form-date-trigger, .app-main .x-form-date-trigger:focus, .app-main .x-form-date-trigger:hover, .app-main .x-form-date-trigger:active {
-  height: 17px;
-  background-position: 1px -25px !important;
-  background-image: url("resources/jst-jobs-tab-sprite.png") !important;
 }

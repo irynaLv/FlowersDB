@@ -103,6 +103,8 @@ Ext.define('FlowersDB.controller.Main', {
             this.getMenu().setVisible(true);
             this.getMenu().down('#main-btn').toggle(true);
             this.getMainContainer().showDashboard();
+            this.getMainContainer().down('#login-field').setValue(null);
+            this.getMainContainer().down('#pass-field').setValue(null);
         }else{
            this.getMenu().setVisible(false);
            this.getMainContainer().openLoginForm();
@@ -136,6 +138,7 @@ Ext.define('FlowersDB.controller.Main', {
         })
     },
     logoutUser: function(){
+
         var me = this;
         Ext.Ajax.request({
             method: 'GET',
@@ -260,6 +263,7 @@ Ext.define('FlowersDB.controller.Main', {
             success: function(response){
                 var text = response.responseText;
                 var data = JSON.parse(text);
+                me.prepareDataForBalance(data);
                 me.alert.alert('Результат', 'Прихід: ' + " категорія "+ body.category + " кількість " +quantity + " ціна "+ body.price );
             },
             error:function(){
@@ -268,8 +272,37 @@ Ext.define('FlowersDB.controller.Main', {
         })
     },
 
+    prepareDataForBalance: function(data){
+        var cont = this.getMainContainer();
+        var obj = {};
+        if(cont.categoryField == data.category){
+            obj.category = data.category;
+        }else{
+            obj.category = data.category;
+        }
+        if(cont.subcategoryField == data.subcategory){
+            obj.subcategory = data.subcategory;
+        }else if(data.subcategory == 'Вазонки' || data.subcategory == 'Троянди' || data.subcategory == 'Статуетки'){
+            obj.subcategory = data.subcategory;
+        }
+        if(cont.nameField == data.name){
+            obj.name = data.name;
+        }
+        if(cont.typeField == data.typr){
+            obj.type = data.type;
+        }
+        if(cont.shopField == data.shopId){
+            obj.shopId = data.shopId;
+        }else{
+            obj.shopId = data.shopId;
+        }
+        this.getBalance(obj)
+    },
+
     setCorrectContainer: function(el){
         this.loadProductsAndShop();
+        this.balanceStore.removeAll();
+        this.getBalanceGrid().down('#total-amount').setValue(0);
         this.getMainContainer().fireEvent('income', el)
     },
 
@@ -295,6 +328,7 @@ Ext.define('FlowersDB.controller.Main', {
                 var text = response.responseText;
                 var data = JSON.parse(text);
                 if(data.length >0){
+                    me.prepareDataForBalance(data[0]);
                     me.alert.alert('Результат', 'Ціну змінено з '+ prevValue +'грн на '+body.price+ 'грн в категорії '+ data[0].category);
                 }else{
                     me.alert.alert('Результат', 'Товарів із заданими параметрами не знайдено');
@@ -323,6 +357,7 @@ Ext.define('FlowersDB.controller.Main', {
                 var text = response.responseText;
                 var data = JSON.parse(text);
                 if(data.length >0){
+                    me.prepareDataForBalance(data[0]);
                     me.alert.alert('Результат', 'Продано ' +data.length + ' товари(-ів)');
                 }else{
                     me.alert.alert('Результат', 'Товарів із заданими параметрами не знайдено');
@@ -352,6 +387,7 @@ Ext.define('FlowersDB.controller.Main', {
                 var text = response.responseText;
                 var data = JSON.parse(text);
                 if(data.length >0){
+                    me.prepareDataForBalance(data[0]);
                     me.alert.alert('Результат', 'Списано ' + data.length + ' товарів(-и)');
                 }else{
                     me.alert.alert('Результат', 'Товарів із заданими параметрами не знайдено');
@@ -370,7 +406,7 @@ Ext.define('FlowersDB.controller.Main', {
         this.getMainContainer().fireEvent('balance', this)
     },
 
-    getBalance: function(body){
+    getBalance: function(body, isSection){
         var me = this;
         var obj= {};
         var shopId = body.shopId;
@@ -407,11 +443,6 @@ Ext.define('FlowersDB.controller.Main', {
 
             }
         })
-
-
-//        var proxy = this.balanceStore.getProxy();
-//        proxy.params = obj;
-//        this.balanceStore.load();
     },
 
     sortBalanceData: function(data){

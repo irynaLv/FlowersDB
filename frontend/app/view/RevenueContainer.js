@@ -20,22 +20,7 @@ Ext.define('FlowersDB.view.RevenueContainer', {
     width: '100%',
 //    renderTo: Ext.getBody(),
     items: [
-//        {
-//            xtype: 'date-field',
-//            fieldLabel:'Від',
-//            itemId:'dateFrom'
-//        },
-//        {
-//            xtype: 'date-field',
-//            fieldLabel:'До',
-//            itemId:'dateTo'
-//        },
-//
-//        {
-//            xtype: 'button',
-//            text:"Виручка",
-//            itemId:'revenue-btn'
-//        }
+
     ],
     initComponent: function () {
         var me = this;

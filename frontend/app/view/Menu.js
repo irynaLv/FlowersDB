@@ -21,16 +21,15 @@ Ext.define('FlowersDB.view.Menu', {
             xtype: 'button',
             text: 'Головна',
             width: 200,
-            pressed:true,
-            toggleGroup:'menu',
+            pressed: true,
+            toggleGroup: 'menu',
             itemId: 'main-btn',
-            icon:'resources/flower_8-512.png'
+            icon: 'resources/flower_8-512.png'
         },
         {
             xtype: 'button',
             text: 'Прихід',
             width: 200,
-//            pressed:true,
             toggleGroup:'menu',
             itemId: 'income-btn',
             icon:'resources/goods_arrival-512.png'
@@ -80,13 +79,6 @@ Ext.define('FlowersDB.view.Menu', {
             icon:'resources/Invest_128x128.png'
 
         },
-//        {
-//            xtype: 'button',
-//            text: 'Звіти',
-//            width: '13em',
-//            itemId: 'btn'
-//
-//        },
         {
             xtype: 'button',
             text: 'Додати категорію товарів',
@@ -118,5 +110,15 @@ Ext.define('FlowersDB.view.Menu', {
     initComponent: function () {
         var me = this;
         me.callParent();
+        me.down('#income-btn').on('click', this.onChangeMenuItem, this);
+        me.down('#sale-btn').on('click', this.onChangeMenuItem, this);
+        me.down('#revaluation-btn').on('click', this.onChangeMenuItem, this);
+        me.down('#write-off-btn').on('click', this.onChangeMenuItem, this);
+        me.down('#balance-btn').on('click', this.onChangeMenuItem, this);
+        me.down('#revenue-btn').on('click', this.onChangeMenuItem, this);
+    },
+
+    onChangeMenuItem: function(){
+        console.log('change')
     }
 });
