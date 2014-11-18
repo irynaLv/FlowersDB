@@ -404,7 +404,7 @@ Ext.define('FlowersDB.controller.Main', {
     deleteGoodsFromDB: function(body,quantity){
         var me = this;
         Ext.Ajax.request({
-            method: 'DELETE',
+            method: 'POST',
             url: '/api/delete',
             params: {
                 shopId: parseInt(body.shopId),

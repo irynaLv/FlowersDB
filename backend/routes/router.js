@@ -281,16 +281,22 @@ module.exports = function (app, passport) {
         });
     });
 
-    app.delete('/api/delete', function(req, res) {
+    app.post('/api/delete', function(req, res) {
         var limitValue = parseInt(req.body.quantity);
-        var query = Goods.remove({shopId: req.body.shopId, productId: req.body.productId, price:req.body.price, status:'shop', incomeDate:req.body.date})
+        var query = Goods.find(
+            {shopId: req.body.shopId,
+                productId: req.body.productId,
+                price:req.body.price,
+                status:'shop',
+                incomeDate:req.body.date})
             .limit(limitValue)
             .exec(function (err, doc) {
-                res.json(doc);
-
-
+                for(var i=0; i<doc.length; i++){
+                    var goods = doc[i];
+                    goods.remove()
+                }
+                res.json(doc.length);
             })
-
 
     });
 
