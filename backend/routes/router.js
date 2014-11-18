@@ -91,7 +91,7 @@ module.exports = function (app, passport) {
 
     app.post('/api/changeprice', function(req, res) {
         var limitValue = parseInt(req.body.quantity);
-        var query = Goods.find({shopId: req.body.shopId, productId: req.body.productId, price:req.body.prevValue, status:'shop'})
+        var query = Goods.find({shopId: req.body.shopId, productId: req.body.productId, price:req.body.prevValue, status:'shop', incomeDate:req.body.date})
             .limit(limitValue)
             .exec(function (err, doc) {
                 for(var i=0; i<doc.length; i++){
@@ -281,10 +281,17 @@ module.exports = function (app, passport) {
         });
     });
 
-    app.delete('/api/document/:id', function(req, res) {
-        Document.findByIdAndRemove(req.params.id, function () {
-            res.send();
-        });
+    app.delete('/api/delete', function(req, res) {
+        var limitValue = parseInt(req.body.quantity);
+        var query = Goods.remove({shopId: req.body.shopId, productId: req.body.productId, price:req.body.price, status:'shop', incomeDate:req.body.date})
+            .limit(limitValue)
+            .exec(function (err, doc) {
+                res.json(doc);
+
+
+            })
+
+
     });
 
     app.get('/api/users', function(req, res) {
@@ -296,14 +303,14 @@ module.exports = function (app, passport) {
 
 // normal routes ===============================================================
 
-    // PROFILE SECTION =========================
+// PROFILE SECTION =========================
     app.get('/api/profile', isLoggedIn, function (req, res) {
 //        res.render('profile.ejs', {
 //            user: req.user
 //        });
     });
 
-    // LOGOUT ==============================
+// LOGOUT ==============================
     app.get('/logout', function (req, res) {
         req.logout();
         res.redirect('/');
@@ -313,7 +320,7 @@ module.exports = function (app, passport) {
 // AUTHENTICATE (FIRST LOGIN) ==================================================
 // =============================================================================
 
-    // process the login form
+// process the login form
     app.post('/login', function(req, res, next){
         passport.authenticate('local-login', function (err, user, message) {
             if(!user){
@@ -331,9 +338,9 @@ module.exports = function (app, passport) {
 //        return user;
 //    });
 
-    // SIGNUP =================================
+// SIGNUP =================================
 
-    // process the signup form
+// process the signup form
     app.post('/signup', function(req, res, next){
         passport.authenticate('local-signup', function(err, user){
             if(err){

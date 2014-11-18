@@ -62,11 +62,12 @@ Ext.define('FlowersDB.controller.Main', {
                 'changeprice': this.changePriceForSelectedGoods,
                 'soldstaus': this.setSaleStatus,
                 'writeoff' : this.setWriteOff,
+                'deletegoods' : this.deleteGoodsFromDB,
                 'showBalance' : this.getBalance,
                 'showRevenue' : this.getRevenue,
                 'loginrequest' : this.sendLoginRequest
             },
-            'app-menu #income-btn, app-menu #sale-btn, app-menu #revaluation-btn, app-menu #write-off-btn':{
+            'app-menu #income-btn, app-menu #sale-btn, app-menu #revaluation-btn, app-menu #write-off-btn, app-menu #delete-btn':{
                 click: this.setCorrectContainer
             },
             'app-menu #add-category-btn':{
@@ -318,6 +319,7 @@ Ext.define('FlowersDB.controller.Main', {
             url: '/api/changeprice',
             params: {
                 shopId: parseInt(body.shopId),
+                date: body.date,
                 productId: parseInt(body.productId),
                 price: parseInt(body.price),
                 status: body.status,
@@ -329,7 +331,7 @@ Ext.define('FlowersDB.controller.Main', {
                 var data = JSON.parse(text);
                 if(data.length >0){
                     me.prepareDataForBalance(data[0]);
-                    me.alert.alert('Результат', 'Ціну змінено з '+ prevValue +'грн на '+body.price+ 'грн в категорії '+ data[0].category);
+                    me.alert.alert('Результат', 'Ціну змінено з '+ prevValue +'грн на '+body.price+ 'грн в категорії '+ data[0].category+ '.' + data.length + 'шт');
                 }else{
                     me.alert.alert('Результат', 'Товарів із заданими параметрами не знайдено');
                 }
@@ -394,6 +396,33 @@ Ext.define('FlowersDB.controller.Main', {
                 }
             },
             error:function(){
+
+            }
+        })
+    },
+
+    deleteGoodsFromDB: function(body,quantity){
+        var me = this;
+        Ext.Ajax.request({
+            method: 'DELETE',
+            url: '/api/delete',
+            params: {
+                shopId: parseInt(body.shopId),
+                productId: parseInt(body.productId),
+                price: parseInt(body.price),
+                date:body.date,
+                userId: me.userData.id,
+                quantity: parseInt(quantity)
+            },
+            success: function (response) {
+                if(parseInt(response.responseText) >0){
+                    me.prepareDataForBalance(body);
+                    me.alert.alert('Результат','Видалено ' + response.responseText + 'товар(-ів)');
+                }else{
+                    me.alert.alert('Результат', 'Товарів із заданими параметрами не знайдено');
+                }
+            },
+            error: function () {
 
             }
         })

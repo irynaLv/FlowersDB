@@ -14,6 +14,7 @@ Ext.define('FlowersDB.Application', {
         'FlowersDB.view.SaleContainer',
         'FlowersDB.view.RevaluationContainer',
         'FlowersDB.view.WriteOffContainer',
+        'FlowersDB.view.RemoveContainer',
         'FlowersDB.view.BalanceContainer',
         'FlowersDB.view.RevenueContainer',
         'FlowersDB.view.DateField',

@@ -79,6 +79,24 @@ Ext.define('FlowersDB.view.Menu', {
             icon:'resources/Invest_128x128.png'
 
         },
+//        {
+//            xtype: 'button',
+//            text: 'Редагувати товар',
+//            width: 200,
+//            toggleGroup:'menu',
+//            itemId: 'update-btn',
+//            icon:'resources/gr-org-icon.png'
+//
+//        },
+        {
+            xtype: 'button',
+            text: 'Видалити товар',
+            width: 200,
+            toggleGroup:'menu',
+            itemId: 'delete-btn',
+            icon:'resources/gr-org-icon.png'
+
+        },
         {
             xtype: 'button',
             text: 'Додати категорію товарів',
@@ -96,14 +114,6 @@ Ext.define('FlowersDB.view.Menu', {
             itemId: 'logout-btn',
             icon:'resources/log_off.png'
         }
-//        {
-//            xtype: 'button',
-//            text: 'Редагути товари',
-//            width: '13em',
-//            itemId: 'update-category-btn'
-//
-//        }
-
 
     ],
 

@@ -16,7 +16,7 @@ Ext.define('FlowersDB.view.DateField', {
     },
     items: [
                 {
-                    fieldLabel: 'Дата',
+                    fieldLabel: 'Дата приходу',
                     flex: 1,
                     maskRe: /[0-9\/]/,
                     startDay:1,
