@@ -56,9 +56,9 @@ module.exports = function (app, passport) {
         var obj = {};
         obj.category = body.category.toUpperCase();
         obj.subcategory = body.subcategory.toUpperCase();
-        if(body.type){
-            obj.type = body.type.toUpperCase();
-        }
+        //if(body.type){
+        //    obj.type = body.type.toUpperCase();
+        //}
         if(body.name){
             obj.name = body.name.toUpperCase();
         }
