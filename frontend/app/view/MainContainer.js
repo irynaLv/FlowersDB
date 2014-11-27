@@ -63,8 +63,8 @@ Ext.define('FlowersDB.view.MainContainer', {
                 },
                 {
                     xtype: 'remove-container',
-                    width: 300,
-                    height:150,
+                    width: 400,
+                    height:140,
                     hidden:true
                 },
                 {
@@ -75,7 +75,7 @@ Ext.define('FlowersDB.view.MainContainer', {
                 },
                 {
                     xtype: 'revenue-container',
-                    width: 300,
+                    width: 400,
                     height:200,
                     hidden:true
                 },
@@ -212,6 +212,7 @@ Ext.define('FlowersDB.view.MainContainer', {
         this.down('#balance-container').setVisible(false);
         this.down('#revenue-container').setVisible(false);
         this.down('#login-container').setVisible(false);
+        this.down('#remove-container').setVisible(false);
         this.down('#balance-grid').setVisible(false);
         this.down('#balance-in-section-btn').setVisible(false);
     },
@@ -290,6 +291,10 @@ Ext.define('FlowersDB.view.MainContainer', {
         if(!shopsView.checkData()){
             isCorrect = false;
         }
+        if(container.down('#status-field') && !container.down('#status-field').getValue()){
+            container.down('#status-err').setVisible(true);
+            isCorrect = false;
+        }
         return isCorrect;
     },
 
@@ -303,7 +308,7 @@ Ext.define('FlowersDB.view.MainContainer', {
             obj.shopId = shopsView.shopValue.shopId;
             obj.productId = productsView.productValue.id;
             obj.status = 'shop';
-            obj.date = cont.down('#date-field-picker').getValue();
+//            obj.date = cont.down('#date-field-picker').getValue();
             obj.price = cont.down('#price-field').getValue();
             var quantity = cont.down('#quantity-field').getValue();
             var prevValue = cont.down('#prev-price-field').getValue();
@@ -352,7 +357,7 @@ Ext.define('FlowersDB.view.MainContainer', {
             obj.shopId = shopsView.shopValue.shopId;
             obj.productId = productsView.productValue.id;
             obj.price = this.down('#remove-container').down('#price-field').getValue();
-            obj.date = this.down('#remove-container').down('#date-field-picker').getValue();
+            obj.status = this.down('#remove-container').down('#status-field').getValue();
             var quantity = this.down('#remove-container').down('#quantity-field').getValue();
             this.fireEvent('deletegoods', obj,quantity,  this);
         }

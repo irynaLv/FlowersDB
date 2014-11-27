@@ -319,7 +319,8 @@ Ext.define('FlowersDB.controller.Main', {
             url: '/api/changeprice',
             params: {
                 shopId: parseInt(body.shopId),
-                date: body.date,
+//                date: body.date,
+                userId: me.userData.id,
                 productId: parseInt(body.productId),
                 price: parseInt(body.price),
                 status: body.status,
@@ -410,14 +411,17 @@ Ext.define('FlowersDB.controller.Main', {
                 shopId: parseInt(body.shopId),
                 productId: parseInt(body.productId),
                 price: parseInt(body.price),
-                date:body.date,
+                status: body.status,
+//                date:body.date,
                 userId: me.userData.id,
                 quantity: parseInt(quantity)
             },
             success: function (response) {
-                if(parseInt(response.responseText) >0){
+                var text = response.responseText;
+                var data = JSON.parse(text);
+                if(data.length >0){
                     me.prepareDataForBalance(body);
-                    me.alert.alert('Результат','Видалено ' + response.responseText + 'товар(-ів)');
+                    me.alert.alert('Результат','Видалено ' + data.length + 'товар(-ів)');
                 }else{
                     me.alert.alert('Результат', 'Товарів із заданими параметрами не знайдено');
                 }

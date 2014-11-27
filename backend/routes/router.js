@@ -35,7 +35,12 @@ module.exports = function (app, passport) {
                     subcategory: body.subcategory || null,
                     name:body.name || null,
                     type:body.type || null,
-                    saleDate: null
+                    saleDate: null,
+                    history:[{status:'arrival',
+                        date: new Date(),
+                        userId: req.body.userId,
+                        price: body.price
+                    }]
                 };
             var doc = new Goods(obj);
             doc.save(function (err, doc) {
@@ -91,12 +96,19 @@ module.exports = function (app, passport) {
 
     app.post('/api/changeprice', function(req, res) {
         var limitValue = parseInt(req.body.quantity);
-        var query = Goods.find({shopId: req.body.shopId, productId: req.body.productId, price:req.body.prevValue, status:'shop', incomeDate:req.body.date})
+        var query = Goods.find({shopId: req.body.shopId, productId: req.body.productId, price:req.body.prevValue, status:'shop'})
             .limit(limitValue)
             .exec(function (err, doc) {
                 for(var i=0; i<doc.length; i++){
                     var goods = doc[i];
                     goods.price = req.body.price;
+                    goods.history.push(
+                        {status:'revaluation',
+                            date: new Date(),
+                            userId: req.body.userId,
+                            oldPrice:req.body.prevValue,
+                            newPrice: req.body.price
+                        });
                     goods.save(function (err) {
                         if (!err && doc) {
                             res.json(doc);
@@ -125,6 +137,11 @@ module.exports = function (app, passport) {
                     goods.status = 'sold';
                     goods.userIdSale = req.body.userId;
                     goods.saleDate = req.body.date;
+                    goods.history.push({status:'writeoff',
+                        date: new Date(),
+                        userId: req.body.userId,
+                        oldPrice:req.body.price
+                    });
                     goods.save(function (err) {
                         if (!err && doc) {
                             res.json(doc);
@@ -157,6 +174,11 @@ module.exports = function (app, passport) {
                     goods.status = 'sold';
                     goods.userIdSale = req.body.userId;
                     goods.saleDate = req.body.date;
+                    goods.history.push({status:'sold',
+                        date: new Date(),
+                        userId: req.body.userId,
+                        price:req.body.price
+                    });
                     goods.save(function (err) {
                         if (!err && doc) {
                             res.json(doc);
@@ -287,15 +309,30 @@ module.exports = function (app, passport) {
             {shopId: req.body.shopId,
                 productId: req.body.productId,
                 price:req.body.price,
-                status:'shop',
-                incomeDate:req.body.date})
+                status:req.body.status
+            })
             .limit(limitValue)
             .exec(function (err, doc) {
                 for(var i=0; i<doc.length; i++){
                     var goods = doc[i];
-                    goods.remove()
+                    goods.status = 'delete';
+                    goods.history.push({status:'delete',
+                        date: new Date(),
+                        price:req.body.price,
+                        userId: req.body.userId
+                    });
+                    goods.save(function (err) {
+                        if (!err && doc) {
+                            res.json(doc);
+                        } else {
+                            res.status(404);
+                            res.send();
+                        }
+                    });
                 }
-                res.json(doc.length);
+                if(doc.length == 0){
+                    res.json([]);
+                }
             })
 
     });

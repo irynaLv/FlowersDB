@@ -57,9 +57,10 @@ GoodsSchema = new mongoose.Schema({
     type:{
         type: String
 //            required:true
+    },
+    history:{
+        type: Array
     }
-
-
 });
 //ProductsSchema.plugin(autoIncrement.plugin, { model: 'products', field: 'id' });
 module.exports = mongoose.model('goods', GoodsSchema, 'goods');
