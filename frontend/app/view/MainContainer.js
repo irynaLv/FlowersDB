@@ -52,13 +52,19 @@ Ext.define('FlowersDB.view.MainContainer', {
                 {
                     xtype: 'revaluation-container',
                     width: 400,
-                    height:115,
+                    height:140,
                     hidden:true
                 },
                 {
                     xtype: 'writeoff-container',
                     width: 400,
                     height:115,
+                    hidden:true
+                },
+                {
+                    xtype: 'remove-container',
+                    width: 400,
+                    height:140,
                     hidden:true
                 },
                 {
@@ -69,7 +75,7 @@ Ext.define('FlowersDB.view.MainContainer', {
                 },
                 {
                     xtype: 'revenue-container',
-                    width: 300,
+                    width: 400,
                     height:200,
                     hidden:true
                 },
@@ -116,6 +122,7 @@ Ext.define('FlowersDB.view.MainContainer', {
         this.down('#new-goods-btn-income').on('click', this.onAddNewGoods, this);
         this.down('#new-goods-btn-sale').on('click', this.setSaleStatus, this);
         this.down('#write-off-btn').on('click', this.setWriteOff, this);
+        this.down('#delete-goods-btn').on('click', this.setDeleteGoods, this);
         this.down('#balance-btn').on('click', this.onBalanceClick, this);
         this.down('#revenue-btn').on('click', this.onRevenueClick, this);
         this.down('#login-btn').on('click', this.onLoginClick, this);
@@ -170,6 +177,14 @@ Ext.define('FlowersDB.view.MainContainer', {
             cont = this.down('#writeoff-container');
             cont.setVisible(true)
         }
+        else if(btn.itemId == 'update-btn'){
+            cont = this.down('#writeoff-container');
+            cont.setVisible(true)
+        }
+        else if(btn.itemId == 'delete-btn'){
+            cont = this.down('#remove-container');
+            cont.setVisible(true)
+        }
         cont.down('#price-field').setValue(null);
         cont.down('#quantity-field').setValue(null);
         if(cont.down('#prev-price-field'))
@@ -197,6 +212,7 @@ Ext.define('FlowersDB.view.MainContainer', {
         this.down('#balance-container').setVisible(false);
         this.down('#revenue-container').setVisible(false);
         this.down('#login-container').setVisible(false);
+        this.down('#remove-container').setVisible(false);
         this.down('#balance-grid').setVisible(false);
         this.down('#balance-in-section-btn').setVisible(false);
     },
@@ -275,6 +291,10 @@ Ext.define('FlowersDB.view.MainContainer', {
         if(!shopsView.checkData()){
             isCorrect = false;
         }
+        if(container.down('#status-field') && !container.down('#status-field').getValue()){
+            container.down('#status-err').setVisible(true);
+            isCorrect = false;
+        }
         return isCorrect;
     },
 
@@ -288,6 +308,7 @@ Ext.define('FlowersDB.view.MainContainer', {
             obj.shopId = shopsView.shopValue.shopId;
             obj.productId = productsView.productValue.id;
             obj.status = 'shop';
+//            obj.date = cont.down('#date-field-picker').getValue();
             obj.price = cont.down('#price-field').getValue();
             var quantity = cont.down('#quantity-field').getValue();
             var prevValue = cont.down('#prev-price-field').getValue();
@@ -324,6 +345,21 @@ Ext.define('FlowersDB.view.MainContainer', {
             obj.date = this.down('#writeoff-container').down('#date-field-picker').getValue();
             var quantity = this.down('#writeoff-container').down('#quantity-field').getValue();
             this.fireEvent('writeoff', obj,quantity,  this);
+        }
+    },
+
+    setDeleteGoods: function(){
+        var shopsView = this.down('#shop-boxes');
+        var productsView = this.down('#products-boxes');
+        var isCorrect = this.checkData(this.down('#remove-container'));
+        if(isCorrect){
+            var obj = {};
+            obj.shopId = shopsView.shopValue.shopId;
+            obj.productId = productsView.productValue.id;
+            obj.price = this.down('#remove-container').down('#price-field').getValue();
+            obj.status = this.down('#remove-container').down('#status-field').getValue();
+            var quantity = this.down('#remove-container').down('#quantity-field').getValue();
+            this.fireEvent('deletegoods', obj,quantity,  this);
         }
     },
 

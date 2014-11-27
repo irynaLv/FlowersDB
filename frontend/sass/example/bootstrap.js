@@ -846,6 +846,7 @@ Ext.ClassManager.addNameAlternateMappings({
   "FlowersDB.view.Menu": [],
   "FlowersDB.view.NumberInputField": [],
   "FlowersDB.view.ProductsBoxes": [],
+  "FlowersDB.view.RemoveContainer": [],
   "FlowersDB.view.RevaluationContainer": [],
   "FlowersDB.view.RevenueContainer": [],
   "FlowersDB.view.SaleContainer": [],
@@ -1878,6 +1879,9 @@ Ext.ClassManager.addNameAliasMappings({
   ],
   "FlowersDB.view.ProductsBoxes": [
     "widget.products-boxes"
+  ],
+  "FlowersDB.view.RemoveContainer": [
+    "widget.remove-container"
   ],
   "FlowersDB.view.RevaluationContainer": [
     "widget.revaluation-container"

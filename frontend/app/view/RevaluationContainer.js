@@ -19,6 +19,10 @@ Ext.define('FlowersDB.view.RevaluationContainer', {
     width: '100%',
     data: null,
     items: [
+//        {
+//            xtype: 'date-field'
+//        },
+
 
         {
             xtype:'container',
